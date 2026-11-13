@@ -1,0 +1,2339 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teatro de la Ciudad de Coatzacoalcos | Cartelera Oficial</title>
+
+  <!-- CDN de Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Extensión de Configuración de Tailwind CSS con la paleta de colores requerida -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1E3A8A',     // Azul Golfo
+            secondary: '#D9CBB8',   // Arena Arquitectónica
+            accent: '#E58E26',      // Dorado Atardecer
+            highlight: '#38BDF8',   // Celeste Brisa
+            'base-bg': '#F8F9FA',   // Blanco Nube
+            'base-text': '#0F172A', // Carbón Pizarra
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body
+  class="bg-base-bg text-base-text min-h-screen flex flex-col font-sans antialiased selection:bg-highlight selection:text-primary">
+
+  <!-- A) NAVBAR (<nav>) - Mimetizado con el fondo bg-primary -->
+  <nav class="bg-primary text-white sticky top-0 z-50 shadow-md border-b border-white/10">
+    <div class="w-full px-4 sm:px-6 md:px-[100px]">
+      <div class="flex items-center justify-between h-20">
+
+        <!-- Logo a la izquierda -->
+        <a href="#mural" class="flex items-center space-x-3.5 group">
+          <div
+            class="w-11 h-11 rounded-xl bg-gradient-to-br from-highlight/30 to-accent/30 border border-white/20 flex items-center justify-center text-accent shadow-inner group-hover:scale-105 transition-transform duration-200">
+            <!-- Icono Mascaras Teatrales / Arquitectura -->
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
+              </path>
+            </svg>
+          </div>
+          <div>
+            <div class="font-extrabold text-lg sm:text-xl tracking-tight leading-none text-white">TEATRO DE LA CIUDAD
+            </div>
+            <div class="text-[11px] sm:text-xs text-secondary tracking-wider uppercase font-medium">Coatzacoalcos, Veracruz</div>
+          </div>
+        </a>
+
+        <!-- Enlaces al centro: Inicio (al Mural), Cartelera y Cotizar Evento -->
+        <div class="hidden md:flex items-center space-x-8 text-sm font-semibold">
+          <a href="#mural"
+            class="text-white hover:text-highlight transition-colors duration-200 py-1 border-b-2 border-transparent hover:border-highlight flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+              </path>
+            </svg>
+            <span>Inicio</span>
+          </a>
+          <a href="#cartelera"
+            class="text-white hover:text-highlight transition-colors duration-200 py-1 border-b-2 border-transparent hover:border-highlight">Cartelera</a>
+          <a href="cotizar.html"
+            class="text-white hover:text-highlight transition-colors duration-200 py-1 border-b-2 border-transparent hover:border-highlight">Cotizar Teatro</a>
+        </div>
+
+        <!-- Área de usuario: Iniciar Sesión / Registrarse o Cerrar Sesión si ya cuenta con sesión -->
+        <div id="nav-auth-container" class="flex items-center gap-2 sm:gap-3">
+          <a href="cuenta.html#login" class="text-white hover:text-highlight text-xs sm:text-sm font-semibold px-2 sm:px-3 py-2 transition-colors duration-200">
+            Iniciar Sesión
+          </a>
+          <a href="cuenta.html#registro" id="btn-crear-cuenta"
+            class="bg-accent hover:brightness-110 active:scale-95 text-white font-bold text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-full shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z">
+              </path>
+            </svg>
+            <span>Registrarse</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- B) MURAL DE LA TEMPORADA CULTURAL (<header>) -->
+  <!-- Altura completa de pantalla con margen vertical reducido en 20px -->
+  <header id="mural"
+    class="w-full relative overflow-hidden bg-slate-950 text-white py-5 sm:py-9 md:py-[44px] flex items-center min-h-[calc(100vh-5rem)]"
+    style="min-height: calc(100vh - 80px);">
+
+    <!-- CARRUSEL DE FOTOS DEL TEATRO Y CENTRO DE CONVENCIONES + FONDO AZUL TRANSPARENTADO -->
+    <div class="absolute inset-0 z-0">
+      <div id="mural-carousel-slides" class="relative w-full h-full">
+        <img
+          src="https://escapadas.mexicodesconocido.com.mx/wp-content/uploads/2021/04/2467-GEMD-Veracruz-Region-Olmeca-Coatzacoalcos-Centro-de-Convenciones-GP-Hi.jpg"
+          alt="Fachada del Centro de Convenciones y Teatro de la Ciudad de Coatzacoalcos"
+          class="mural-slide-img absolute inset-0 w-full h-full object-cover object-center filter brightness-95 contrast-105 transition-opacity duration-700 opacity-100"
+          onerror="this.src='img/teatro-sala-interior.jpg'" />
+        <img
+          src="img/teatro-sala-interior.jpg"
+          alt="Interior de la Gran Sala Principal del Teatro de la Ciudad"
+          class="mural-slide-img absolute inset-0 w-full h-full object-cover object-center filter brightness-95 contrast-105 transition-opacity duration-700 opacity-0"
+          onerror="this.src='https://convencionescoatzacoalcos.com/wp-content/uploads/2012/04/teatro-lleno-02.jpg'" />
+      </div>
+      <!-- Fondo azul transparentado un 90% (solo 10% opacidad del Azul Golfo #1E3A8A) -->
+      <div class="absolute inset-0 bg-primary/10 pointer-events-none"></div>
+
+      <!-- Degradado sutil en el lateral derecho y base para garantizar máxima legibilidad -->
+      <div
+        class="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-l from-slate-950/85 via-slate-950/45 to-slate-950/25 pointer-events-none">
+      </div>
+    </div>
+
+    <!-- FLECHAS DE NAVEGACIÓN DEL CARRUSEL -->
+    <button type="button" id="mural-prev-btn" aria-label="Foto anterior"
+      class="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-slate-950/60 hover:bg-primary text-white border border-white/25 backdrop-blur-md flex items-center justify-center shadow-lg transition hover:scale-105">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path>
+      </svg>
+    </button>
+    <button type="button" id="mural-next-btn" aria-label="Foto siguiente"
+      class="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-slate-950/60 hover:bg-primary text-white border border-white/25 backdrop-blur-md flex items-center justify-center shadow-lg transition hover:scale-105">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </button>
+
+    <!-- CONTENIDO MURAL: DATO CURIOSO A LA IZQUIERDA + CONTENIDO PRINCIPAL A LA DERECHA -->
+    <div class="relative z-10 w-full px-4 sm:px-6 md:px-[100px] flex flex-col-reverse lg:flex-row lg:items-end lg:justify-between gap-6">
+
+      <!-- TARJETA DE DATO CURIOSO DEL CENTRO DE CONVENCIONES + INDICADORES DEL CARRUSEL -->
+      <div class="w-full lg:max-w-sm flex flex-col items-start gap-3">
+        <div id="mural-fact-card"
+          class="w-full bg-slate-950/75 backdrop-blur-md border border-white/20 rounded-2xl p-4 sm:p-5 shadow-2xl transition-all duration-300">
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <span class="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-accent">
+              <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+              </svg>
+              <span id="mural-fact-title">Dato Curioso · Arquitectura Monumental</span>
+            </span>
+            <span id="mural-slide-counter" class="text-[11px] font-mono text-gray-300 bg-white/10 px-2 py-0.5 rounded-full">1 / 2</span>
+          </div>
+          <p id="mural-fact-text" class="text-xs sm:text-sm text-gray-100 leading-relaxed">
+            El complejo del Centro de Convenciones y Teatro de la Ciudad fue diseñado con una arquitectura contemporánea emblemática frente al Golfo de México, convirtiéndose en el ícono cultural y de congresos más grande del sur de Veracruz.
+          </p>
+        </div>
+
+        <!-- Indicadores (dots) del carrusel -->
+        <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-950/60 border border-white/15 backdrop-blur-md">
+          <div id="mural-carousel-dots" class="flex items-center gap-2"></div>
+          <span class="text-[10px] text-gray-300 font-medium pl-1 border-l border-white/20">Galería del Recinto</span>
+        </div>
+      </div>
+
+      <div class="max-w-2xl w-full flex flex-col items-end text-right">
+
+        <!-- Badge institucional superior alineado a la derecha -->
+        <div
+          class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-950/70 border border-white/20 text-highlight text-xs sm:text-sm font-semibold tracking-wide uppercase mb-5 backdrop-blur-md shadow-md">
+          <span class="w-2 h-2 rounded-full bg-accent animate-ping"></span>
+          <span id="mural-badge-sub">Temporada Cultural y Escénica 2026 - 2027</span>
+        </div>
+
+        <!-- H1 Requerido: "El epicentro cultural de Coatzacoalcos" (texto grande, bold, blanco) -->
+        <h1 id="mural-main-title"
+          class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight md:leading-[1.15] drop-shadow-lg">
+          El epicentro cultural de Coatzacoalcos
+        </h1>
+
+        <!-- Párrafo descriptivo con datos reales de la sede -->
+        <p id="mural-main-desc" class="mt-5 text-base sm:text-lg text-gray-100 max-w-xl font-normal leading-relaxed drop-shadow">
+          El recinto escénico y artístico más moderno del sur de Veracruz. Con un aforo monumental de <strong
+            class="text-white font-semibold">1,724 butacas</strong>, albergamos las más grandes producciones de danza
+          clásica, teatro de clase mundial, conciertos estelares y festivales sinfónicos.
+        </p>
+
+        <!-- Referencia visual de la foto del teatro -->
+        <div
+          class="mt-4 inline-flex items-center gap-2 text-xs text-secondary bg-slate-950/60 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/15">
+          <svg class="w-3.5 h-3.5 text-accent" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd"
+              d="M4 5a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V7a2 2 0 00-2-2H4zm12 2l-4.5 4.5a1 1 0 01-1.414 0L7 8.414 4.707 10.707a1 1 0 01-1.414-1.414l3-3a1 1 0 011.414 0l3.086 3.086L15.293 6.293A1 1 0 0116.707 7.707l-3 3a1 1 0 01-1.414 0L10 8.414l-2.293 2.293a1 1 0 01-1.414-1.414L9.586 6l3.707 3.707L16 7z"
+              clip-rule="evenodd" />
+          </svg>
+          <span id="mural-photo-caption">Fotografía Oficial: Sala de Espectáculos del Teatro &bull; Arq. Abraham Zabludovsky</span>
+        </div>
+
+        <!-- Botón CTA requerido: bg-accent con el texto "Explorar Cartelera" alineado a la derecha -->
+        <div class="mt-8 flex flex-wrap items-center justify-end gap-3.5 w-full">
+          <a href="#cartelera"
+            class="inline-flex items-center justify-center gap-2 bg-accent hover:brightness-110 active:scale-95 text-white font-bold text-base px-8 py-3.5 rounded-full shadow-xl hover:shadow-accent/40 transition-all duration-200 transform hover:-translate-y-0.5">
+            <span>Explorar Cartelera</span>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </a>
+          <a href="cotizar.html"
+            class="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold text-base px-6 py-3.5 rounded-full backdrop-blur-md border border-white/20 transition-all">
+            <span>Cotizar Teatro</span>
+          </a>
+        </div>
+
+        <!-- Métricas destacadas en píldoras con backdrop blur pegadas a la derecha (Exclusivas del Teatro) -->
+        <div class="mt-8 grid grid-cols-3 gap-3 w-full max-w-lg pt-5 border-t border-white/20">
+          <div class="bg-slate-950/60 backdrop-blur-md rounded-xl p-3 border border-white/15 text-center">
+            <div class="text-accent text-xl sm:text-2xl font-extrabold">1,724</div>
+            <div class="text-gray-200 text-[11px] uppercase tracking-wider mt-0.5">Teatro Butacas</div>
+          </div>
+          <div class="bg-slate-950/60 backdrop-blur-md rounded-xl p-3 border border-white/15 text-center">
+            <div class="text-highlight text-xl sm:text-2xl font-extrabold">60</div>
+            <div class="text-gray-200 text-[11px] uppercase tracking-wider mt-0.5">Músicos en Foso</div>
+          </div>
+          <div class="bg-slate-950/60 backdrop-blur-md rounded-xl p-3 border border-white/15 text-center">
+            <div class="text-secondary text-xl sm:text-2xl font-extrabold">5</div>
+            <div class="text-gray-200 text-[11px] uppercase tracking-wider mt-0.5">Niveles de Sala</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </header>
+
+  <!-- C) CONTENIDO PRINCIPAL (<main>) - Margen ajustado a 100px por lado -->
+  <main class="w-full px-4 sm:px-6 md:px-[100px] py-10 md:py-12 flex-1" id="cartelera">
+
+    <!-- Encabezado de la Sección de Cartelera -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-gray-200 gap-4">
+      <div>
+        <div class="inline-flex items-center gap-2 text-accent text-xs font-bold tracking-widest uppercase">
+          <span class="w-2 h-2 rounded-full bg-accent"></span>
+          Información Oficial en Tiempo Real
+        </div>
+        <h2 id="cartelera-heading" class="text-2xl sm:text-3xl font-extrabold text-primary tracking-tight mt-1">
+          Cartelera y Próximos Espectáculos
+        </h2>
+        <p id="cartelera-sub" class="text-gray-600 text-sm mt-1 max-w-2xl">
+          Temporada oficial de obras de teatro, ballet, danza contemporánea y conciertos en el escenario principal del Teatro de la Ciudad.
+        </p>
+      </div>
+
+      <div
+        class="text-xs text-gray-500 bg-secondary/30 px-3.5 py-2 rounded-lg border border-secondary/60 flex items-center gap-2 self-start md:self-auto">
+        <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd"
+            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+            clip-rule="evenodd"></path>
+        </svg>
+        <span>Boletos disponibles en taquilla del recinto y plataformas oficiales</span>
+      </div>
+    </div>
+
+    <!-- SECCIÓN DE EVENTOS Y CARTELERA A ANCHO COMPLETO -->
+    <div class="space-y-6">
+
+      <!-- BARRA DE FILTROS, BÚSQUEDA Y CALENDARIO FIJA / STICKY EN CABECERA -->
+      <div
+        class="sticky top-20 z-40 bg-white/95 backdrop-blur-md p-4 sm:p-5 rounded-2xl border border-gray-200/90 shadow-md space-y-3 mb-8">
+
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3.5">
+
+          <!-- Izquierda: Buscador + Botón Desplegable de Categorías (al lado del buscador) -->
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 flex-1 max-w-3xl">
+
+            <!-- Buscador interactivo -->
+            <div class="relative flex-1">
+              <input type="text" id="search-input" placeholder="Buscar evento, obra o artista..."
+                class="w-full px-3.5 py-2.5 pl-10 rounded-xl border border-gray-300 bg-base-bg text-xs sm:text-sm text-base-text placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-highlight focus:border-transparent transition-all shadow-inner" />
+              <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Botón Desplegable de Categorías (un solo botón al lado del buscador) -->
+            <div class="relative flex-shrink-0" id="category-dropdown-wrapper">
+              <button type="button" id="btn-category-dropdown"
+                class="w-full sm:w-auto px-4 py-2.5 rounded-xl border border-gray-300 bg-base-bg hover:bg-white text-xs sm:text-sm font-semibold text-gray-700 flex items-center justify-between sm:justify-start gap-2.5 transition shadow-sm hover:border-gray-400">
+                <div class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z">
+                    </path>
+                  </svg>
+                  <span id="category-btn-label">Categorías: Todas</span>
+                </div>
+                <svg class="w-3.5 h-3.5 text-gray-500 transition-transform duration-200" id="category-chevron"
+                  fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+
+              <!-- Menú Desplegable de Categorías -->
+              <div id="category-dropdown-menu"
+                class="hidden absolute left-0 sm:left-auto sm:right-0 mt-2 w-64 bg-white rounded-2xl shadow-2xl border border-gray-200 p-2 z-50 animate-fade-in">
+                <div class="text-[11px] font-bold text-gray-400 uppercase tracking-wider px-3 py-1.5">
+                  Filtrar por categoría
+                </div>
+                <div class="space-y-1" id="category-options-list">
+                  <button type="button" data-filter="all"
+                    class="category-option-btn w-full px-3 py-2.5 rounded-xl text-left text-xs flex items-center justify-between transition hover:bg-gray-100 bg-primary/10 text-primary font-bold">
+                    <span class="flex items-center gap-2">🌟 Todas las categorías</span>
+                    <span class="cat-badge bg-primary text-white text-[10px] px-2 py-0.5 rounded-full font-bold">12</span>
+                  </button>
+                  <button type="button" data-filter="teatro"
+                    class="category-option-btn w-full px-3 py-2.5 rounded-xl text-left text-xs font-semibold flex items-center justify-between transition hover:bg-gray-100 text-gray-700">
+                    <span class="flex items-center gap-2">🎭 Obras de Teatro</span>
+                    <span class="cat-badge bg-gray-100 text-gray-600 text-[10px] px-2 py-0.5 rounded-full font-bold">2</span>
+                  </button>
+                  <button type="button" data-filter="danza"
+                    class="category-option-btn w-full px-3 py-2.5 rounded-xl text-left text-xs font-semibold flex items-center justify-between transition hover:bg-gray-100 text-gray-700">
+                    <span class="flex items-center gap-2">🩰 Danza & Ballet</span>
+                    <span class="cat-badge bg-gray-100 text-gray-600 text-[10px] px-2 py-0.5 rounded-full font-bold">5</span>
+                  </button>
+                  <button type="button" data-filter="conciertos"
+                    class="category-option-btn w-full px-3 py-2.5 rounded-xl text-left text-xs font-semibold flex items-center justify-between transition hover:bg-gray-100 text-gray-700">
+                    <span class="flex items-center gap-2">🎵 Conciertos & Música</span>
+                    <span class="cat-badge bg-gray-100 text-gray-600 text-[10px] px-2 py-0.5 rounded-full font-bold">5</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Derecha: Contador, Reset y Botón Calendario (Reemplazo de Próximas Fechas) -->
+          <div
+            class="flex items-center justify-between sm:justify-end gap-3 text-xs sm:text-sm text-gray-600 flex-wrap">
+            <div>
+              Mostrando <strong id="events-count" class="text-primary font-bold text-base">12 eventos</strong>
+            </div>
+
+            <button type="button" id="reset-filters"
+              class="text-xs text-accent hover:text-accent/80 font-bold hover:underline transition">
+              Restablecer
+            </button>
+
+            <!-- Botón Calendario / Rango de Fechas (Ticketmaster Style) -->
+            <div class="relative pl-2 border-l border-gray-200" id="calendar-dropdown-wrapper">
+              <button type="button" id="btn-calendar-dropdown"
+                class="px-3.5 py-2.5 rounded-xl border border-gray-300 bg-base-bg hover:bg-white text-xs font-semibold text-gray-700 flex items-center gap-2 cursor-pointer hover:border-gray-400 transition shadow-sm">
+                <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+                <span id="calendar-btn-label">Fechas del Teatro</span>
+                <svg class="w-3.5 h-3.5 text-gray-500 transition-transform duration-200" id="calendar-chevron"
+                  fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+
+              <!-- Panel Desplegable Calendario Estilo Ticketmaster -->
+              <div id="calendar-dropdown-menu"
+                class="hidden absolute right-0 mt-2 w-[340px] sm:w-[380px] bg-white rounded-2xl shadow-2xl border border-gray-200 p-4 sm:p-5 z-50 animate-fade-in text-gray-800">
+
+                <!-- Encabezado del Popover -->
+                <div class="flex items-center justify-between pb-3 border-b border-gray-100 mb-3">
+                  <div>
+                    <h4 class="font-bold text-sm text-primary">Filtrar por Fechas</h4>
+                    <p class="text-[11px] text-gray-500">Selecciona un día o un rango de fechas (estilo Ticketmaster)</p>
+                  </div>
+                  <button type="button" id="btn-close-calendar"
+                    class="text-gray-400 hover:text-gray-700 p-1 rounded-lg hover:bg-gray-100 transition" aria-label="Cerrar">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                      </path>
+                    </svg>
+                  </button>
+                </div>
+
+                <!-- Accesos Rápidos de Fechas (Ticketmaster Presets) -->
+                <div class="grid grid-cols-2 gap-1.5 mb-3.5 text-xs">
+                  <button type="button" data-preset="all"
+                    class="preset-date-btn px-2.5 py-1.5 rounded-lg border border-gray-200 bg-gray-50 hover:bg-primary hover:text-white hover:border-primary transition font-medium text-left">
+                    🗓️ Todas las fechas
+                  </button>
+                  <button type="button" data-preset="weekend"
+                    class="preset-date-btn px-2.5 py-1.5 rounded-lg border border-gray-200 bg-gray-50 hover:bg-primary hover:text-white hover:border-primary transition font-medium text-left">
+                    🎉 Este fin de semana
+                  </button>
+                  <button type="button" data-preset="nov"
+                    class="preset-date-btn px-2.5 py-1.5 rounded-lg border border-gray-200 bg-gray-50 hover:bg-primary hover:text-white hover:border-primary transition font-medium text-left">
+                    🍂 Noviembre 2026
+                  </button>
+                  <button type="button" data-preset="dic"
+                    class="preset-date-btn px-2.5 py-1.5 rounded-lg border border-gray-200 bg-gray-50 hover:bg-primary hover:text-white hover:border-primary transition font-medium text-left">
+                    🎄 Diciembre 2026
+                  </button>
+                </div>
+
+                <!-- Barra de Navegación del Mes -->
+                <div class="flex items-center justify-between mb-2 px-1">
+                  <button type="button" id="cal-prev-month"
+                    class="p-1.5 rounded-lg hover:bg-gray-100 text-gray-600 hover:text-primary transition"
+                    title="Mes anterior">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                  </button>
+                  <span id="cal-month-title" class="font-bold text-sm text-gray-800">Noviembre 2026</span>
+                  <button type="button" id="cal-next-month"
+                    class="p-1.5 rounded-lg hover:bg-gray-100 text-gray-600 hover:text-primary transition"
+                    title="Mes siguiente">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                  </button>
+                </div>
+
+                <!-- Cabecera de días de la semana -->
+                <div class="grid grid-cols-7 gap-1 text-center text-[11px] font-bold text-gray-400 uppercase mb-1">
+                  <span>D</span><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span>
+                </div>
+
+                <!-- Matriz dinámica de días del mes -->
+                <div id="cal-days-grid" class="grid grid-cols-7 gap-1 text-xs mb-3">
+                  <!-- Días generados por JS -->
+                </div>
+
+                <!-- Estado del Rango Seleccionado -->
+                <div
+                  class="p-2.5 rounded-xl bg-base-bg border border-gray-200 text-xs mb-3 flex items-center justify-between">
+                  <div class="truncate">
+                    <span class="text-gray-400 font-medium">Selección:</span>
+                    <strong id="cal-selection-text" class="text-primary font-bold ml-1">Todas las fechas</strong>
+                  </div>
+                  <button type="button" id="cal-clear-btn"
+                    class="text-[11px] text-gray-400 hover:text-red-500 font-bold ml-2">Borrar</button>
+                </div>
+
+                <!-- Acciones del Calendario -->
+                <div class="flex items-center gap-2 pt-1 border-t border-gray-100">
+                  <button type="button" id="cal-btn-cancel"
+                    class="flex-1 py-2 rounded-xl text-xs font-semibold text-gray-600 hover:bg-gray-100 transition text-center">
+                    Cerrar
+                  </button>
+                  <button type="button" id="cal-btn-apply"
+                    class="flex-1 py-2 rounded-xl text-xs font-bold bg-accent hover:brightness-110 active:scale-95 text-white shadow-md transition text-center">
+                    Aplicar Fechas
+                  </button>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Fila de Chips / Filtros Activos (si hay alguno aplicado) -->
+        <div id="active-filters-bar"
+          class="hidden flex items-center gap-2 pt-2 border-t border-gray-100 text-xs text-gray-500 flex-wrap">
+          <span class="font-semibold text-gray-400 text-[11px] uppercase tracking-wider">Filtros activos:</span>
+          <span id="chip-category"
+            class="hidden inline-flex items-center gap-1.5 bg-primary/10 text-primary font-bold px-3 py-1 rounded-full border border-primary/20">
+            <span id="chip-category-text">Teatro</span>
+            <button type="button" id="chip-remove-category" class="hover:text-red-500 font-bold ml-0.5">&times;</button>
+          </span>
+          <span id="chip-date"
+            class="hidden inline-flex items-center gap-1.5 bg-accent/15 text-accent-800 font-bold px-3 py-1 rounded-full border border-accent/30 text-amber-900">
+            <span id="chip-date-text">13 Nov - 20 Nov</span>
+            <button type="button" id="chip-remove-date" class="hover:text-red-500 font-bold ml-0.5">&times;</button>
+          </span>
+          <button type="button" id="chip-clear-all"
+            class="text-[11px] text-gray-400 hover:text-accent font-semibold underline ml-1">
+            Limpiar filtros
+          </button>
+        </div>
+
+      </div>
+
+      <!-- CUADRÍCULA DE TARJETAS (grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6" id="events-grid">
+
+        <!-- CARD 1: Manuel Medrano -->
+        <article
+          class="event-card bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden border border-gray-200/70 group hover:-translate-y-1"
+          data-category="conciertos" data-title="Manuel Medrano Superior Tour Concierto" data-date="2026-11-13">
+          <!-- Parte superior: div vacío de color bg-secondary o gris para simular la imagen -->
+          <div class="h-44 bg-secondary relative overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+            <span
+              class="absolute top-3 left-3 bg-primary text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">
+              Concierto Pop
+            </span>
+            <span class="absolute bottom-2 right-3 text-white/90 text-xs font-medium drop-shadow">
+              Teatro de la Ciudad
+            </span>
+            <svg class="w-12 h-12 text-primary/30 group-hover:scale-110 transition-transform duration-300"
+              fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z">
+              </path>
+            </svg>
+          </div>
+          <!-- Cuerpo de la tarjeta -->
+          <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+            <div class="space-y-2">
+              <div class="flex items-center gap-1.5 text-xs font-semibold text-accent">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+                <span>13 Nov 2026 • 20:30 hrs</span>
+              </div>
+              <h3
+                class="font-bold text-base md:text-lg text-base-text group-hover:text-primary transition-colors leading-snug">
+                Manuel Medrano: Superior Tour
+              </h3>
+              <p class="text-xs text-gray-600 line-clamp-2">
+                El galardonado cantautor colombiano presenta su más reciente producción en un concierto acústico e
+                inolvidable.
+              </p>
+            </div>
+            <div class="pt-3 border-t border-gray-100 flex items-center justify-between">
+              <span class="text-xs text-gray-500 font-medium">Desde $450 MXN</span>
+              <button type="button"
+                class="bg-accent hover:brightness-110 active:scale-95 text-white text-xs font-bold px-4 py-2 rounded-full shadow-sm transition-all duration-200">
+                Ver más
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 2: El Cascanueces (World Ballet Tour) -->
+        <article
+          class="event-card bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden border border-gray-200/70 group hover:-translate-y-1"
+          data-category="danza" data-title="El Cascanueces World Ballet Tour" data-date="2026-11-14">
+          <div class="h-44 bg-slate-300 relative overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+            <span
+              class="absolute top-3 left-3 bg-accent text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">
+              Ballet Clásico
+            </span>
+            <span class="absolute bottom-2 right-3 text-white/90 text-xs font-medium drop-shadow">
+              Teatro de la Ciudad
+            </span>
+            <svg class="w-12 h-12 text-slate-500/40 group-hover:scale-110 transition-transform duration-300"
+              fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z" />
+            </svg>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+            <div class="space-y-2">
+              <div class="flex items-center gap-1.5 text-xs font-semibold text-accent">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+                <span>14 Nov 2026 • 20:00 hrs</span>
+              </div>
+              <h3
+                class="font-bold text-base md:text-lg text-base-text group-hover:text-primary transition-colors leading-snug">
+                El Cascanueces: World Ballet Tour
+              </h3>
+              <p class="text-xs text-gray-600 line-clamp-2">
+                Magistral espectáculo navideño de talla internacional con solistas internacionales de primer nivel y
+                escenografía deslumbrante.
+              </p>
+            </div>
+            <div class="pt-3 border-t border-gray-100 flex items-center justify-between">
+              <span class="text-xs text-gray-500 font-medium">Boletos en Taquilla</span>
+              <button type="button"
+                class="bg-accent hover:brightness-110 active:scale-95 text-white text-xs font-bold px-4 py-2 rounded-full shadow-sm transition-all duration-200">
+                Ver más
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 3: Marco Barrientos Concierto -->
+        <article
+          class="event-card bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden border border-gray-200/70 group hover:-translate-y-1"
+          data-category="conciertos" data-title="Concierto de Marco Barrientos 40 Aniversario" data-date="2026-11-20">
+          <div class="h-44 bg-secondary relative overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+            <span
+              class="absolute top-3 left-3 bg-primary text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">
+              Concierto Aniversario
+            </span>
+            <span class="absolute bottom-2 right-3 text-white/90 text-xs font-medium drop-shadow">
+              Teatro de la Ciudad
+            </span>
+            <svg class="w-12 h-12 text-primary/30 group-hover:scale-110 transition-transform duration-300"
+              fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z">
+              </path>
+            </svg>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+            <div class="space-y-2">
+              <div class="flex items-center gap-1.5 text-xs font-semibold text-accent">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+                <span>20 Nov 2026 • 16:00 hrs</span>
+              </div>
+              <h3
+                class="font-bold text-base md:text-lg text-base-text group-hover:text-primary transition-colors leading-snug">
+                Concierto de Marco Barrientos
+              </h3>
+              <p class="text-xs text-gray-600 line-clamp-2">
+                Celebración del 40 Aniversario de la Iglesia Cristiana Emmanuel, acompañado de Conquistando Fronteras.
+              </p>
+            </div>
+            <div class="pt-3 border-t border-gray-100 flex items-center justify-between">
+              <span class="text-xs text-gray-500 font-medium">Desde $350 MXN</span>
+              <button type="button"
+                class="bg-accent hover:brightness-110 active:scale-95 text-white text-xs font-bold px-4 py-2 rounded-full shadow-sm transition-all duration-200">
+                Ver más
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 4: La Dama de Negro -->
+        <article
+          class="event-card bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden border border-gray-200/70 group hover:-translate-y-1"
+          data-category="teatro" data-title="La Dama de Negro Teatro Suspenso Terror" data-date="2026-11-21">
+          <div class="h-44 bg-slate-800 relative overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+            <span
+              class="absolute top-3 left-3 bg-accent text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">
+              Teatro de Suspenso
+            </span>
+            <span class="absolute bottom-2 right-3 text-white/90 text-xs font-medium drop-shadow">
+              Teatro de la Ciudad
+            </span>
+            <svg class="w-12 h-12 text-slate-400/40 group-hover:scale-110 transition-transform duration-300"
+              fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd"
+                d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+            <div class="space-y-2">
+              <div class="flex items-center gap-1.5 text-xs font-semibold text-accent">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+                <span>21 Nov 2026 • 19:00 hrs</span>
+              </div>
+              <h3
+                class="font-bold text-base md:text-lg text-base-text group-hover:text-primary transition-colors leading-snug">
+                La Dama de Negro
+              </h3>
+              <p class="text-xs text-gray-600 line-clamp-2">
+                La célebre puesta en escena que ha estremecido a México por más de 30 años ininterrumpidos en su gira oficial.
+              </p>
+            </div>
+            <div class="pt-3 border-t border-gray-100 flex items-center justify-between">
+              <span class="text-xs text-gray-500 font-medium">Desde $400 MXN</span>
+              <button type="button"
+                class="bg-accent hover:brightness-110 active:scale-95 text-white text-xs font-bold px-4 py-2 rounded-full shadow-sm transition-all duration-200">
+                Ver más
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 5: Esquizofrenia (con Rafael Perrín) -->
+        <article
+          class="event-card bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden border border-gray-200/70 group hover:-translate-y-1"
+          data-category="teatro" data-title="Esquizofrenia Rafael Perrin Terror Psicologico" data-date="2026-11-27">
+          <div class="h-44 bg-secondary relative overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+            <span
+              class="absolute top-3 left-3 bg-primary text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">
+              Psicoterror Inmersivo
+            </span>
+            <span class="absolute bottom-2 right-3 text-white/90 text-xs font-medium drop-shadow">
+              Teatro de la Ciudad
+            </span>
+            <svg class="w-12 h-12 text-primary/30 group-hover:scale-110 transition-transform duration-300"
+              fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd"
+                d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.12z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+            <div class="space-y-2">
+              <div class="flex items-center gap-1.5 text-xs font-semibold text-accent">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+                <span>27 Nov 2026 • 20:30 hrs</span>
+              </div>
+              <h3
+                class="font-bold text-base md:text-lg text-base-text group-hover:text-primary transition-colors leading-snug">
+                Esquizofrenia: Rafael Perrín
+              </h3>
+              <p class="text-xs text-gray-600 line-clamp-2">
+                Aclamada obra teatral de terror psicológico donde el espectador experimenta en carne propia los misterios de la mente.
+              </p>
+            </div>
+            <div class="pt-3 border-t border-gray-100 flex items-center justify-between">
+              <span class="text-xs text-gray-500 font-medium">Desde $350 MXN</span>
+              <button type="button"
+                class="bg-accent hover:brightness-110 active:scale-95 text-white text-xs font-bold px-4 py-2 rounded-full shadow-sm transition-all duration-200">
+                Ver más
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 6: Manuhere Danzas Polinesias -->
+        <article
+          class="event-card bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden border border-gray-200/70 group hover:-translate-y-1"
+          data-category="danza" data-title="Manuhere El vuelo de un alma libre Tamure" data-date="2026-11-29">
+          <div class="h-44 bg-slate-300 relative overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+            <span
+              class="absolute top-3 left-3 bg-accent text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">
+              Danza y Folclore
+            </span>
+            <span class="absolute bottom-2 right-3 text-white/90 text-xs font-medium drop-shadow">
+              Teatro de la Ciudad
+            </span>
+            <svg class="w-12 h-12 text-slate-500/40 group-hover:scale-110 transition-transform duration-300"
+              fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd"
+                d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+            <div class="space-y-2">
+              <div class="flex items-center gap-1.5 text-xs font-semibold text-accent">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+                <span>29 Nov 2026 • 16:30 hrs</span>
+              </div>
+              <h3
+                class="font-bold text-base md:text-lg text-base-text group-hover:text-primary transition-colors leading-snug">
+                Manuhere: El vuelo de un alma libre
+              </h3>
+              <p class="text-xs text-gray-600 line-clamp-2">
+                Espectáculo de danzas polinesias y percusiones en vivo presentado por la prestigiada Academia Tamure.
+              </p>
+            </div>
+            <div class="pt-3 border-t border-gray-100 flex items-center justify-between">
+              <span class="text-xs text-gray-500 font-medium">Boletos en Taquilla</span>
+              <button type="button"
+                class="bg-accent hover:brightness-110 active:scale-95 text-white text-xs font-bold px-4 py-2 rounded-full shadow-sm transition-all duration-200">
+                Ver más
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 7: Aladdin: La Magia de la Danza -->
+        <article
+          class="event-card bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden border border-gray-200/70 group hover:-translate-y-1"
+          data-category="danza" data-title="Aladdin La Magia de la Danza CONARTE" data-date="2026-12-04">
+          <div class="h-44 bg-secondary relative overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+            <span
+              class="absolute top-3 left-3 bg-primary text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">
+              Teatro Familiar
+            </span>
+            <span class="absolute bottom-2 right-3 text-white/90 text-xs font-medium drop-shadow">
+              Teatro de la Ciudad
+            </span>
+            <svg class="w-12 h-12 text-primary/30 group-hover:scale-110 transition-transform duration-300"
+              fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd"
+                d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+            <div class="space-y-2">
+              <div class="flex items-center gap-1.5 text-xs font-semibold text-accent">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+                <span>04 Dic 2026 • 18:00 hrs</span>
+              </div>
+              <h3
+                class="font-bold text-base md:text-lg text-base-text group-hover:text-primary transition-colors leading-snug">
+                Aladdin: La Magia de la Danza
+              </h3>
+              <p class="text-xs text-gray-600 line-clamp-2">
+                Espectáculo teatral y coreográfico para toda la familia producido por la compañía CONARTE.
+              </p>
+            </div>
+            <div class="pt-3 border-t border-gray-100 flex items-center justify-between">
+              <span class="text-xs text-gray-500 font-medium">Familiar</span>
+              <button type="button"
+                class="bg-accent hover:brightness-110 active:scale-95 text-white text-xs font-bold px-4 py-2 rounded-full shadow-sm transition-all duration-200">
+                Ver más
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 8: El Cascanueces (Yessel Ballet) -->
+        <article
+          class="event-card bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden border border-gray-200/70 group hover:-translate-y-1"
+          data-category="danza" data-title="El Cascanueces Yessel Ballet School" data-date="2026-12-06">
+          <div class="h-44 bg-slate-300 relative overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+            <span
+              class="absolute top-3 left-3 bg-accent text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">
+              Ballet Escolar
+            </span>
+            <span class="absolute bottom-2 right-3 text-white/90 text-xs font-medium drop-shadow">
+              Teatro de la Ciudad
+            </span>
+            <svg class="w-12 h-12 text-slate-500/40 group-hover:scale-110 transition-transform duration-300"
+              fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+              </path>
+            </svg>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+            <div class="space-y-2">
+              <div class="flex items-center gap-1.5 text-xs font-semibold text-accent">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+                <span>06 Dic 2026 • 18:30 hrs</span>
+              </div>
+              <h3
+                class="font-bold text-base md:text-lg text-base-text group-hover:text-primary transition-colors leading-snug">
+                El Cascanueces: Yessel Ballet School
+              </h3>
+              <p class="text-xs text-gray-600 line-clamp-2">
+                La academia regional presenta la clásica suite navideña de Tchaikovsky con jóvenes talentos
+                veracruzanos.
+              </p>
+            </div>
+            <div class="pt-3 border-t border-gray-100 flex items-center justify-between">
+              <span class="text-xs text-gray-500 font-medium">Taquilla Abierta</span>
+              <button type="button"
+                class="bg-accent hover:brightness-110 active:scale-95 text-white text-xs font-bold px-4 py-2 rounded-full shadow-sm transition-all duration-200">
+                Ver más
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 9: El Cascanueces (Ballet Ruso Mary El) -->
+        <article
+          class="event-card bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden border border-gray-200/70 group hover:-translate-y-1"
+          data-category="danza" data-title="El Cascanueces Ballet Ruso Mary El Gala" data-date="2026-12-15">
+          <div class="h-44 bg-secondary relative overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+            <span
+              class="absolute top-3 left-3 bg-primary text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">
+              Gala Rusa
+            </span>
+            <span class="absolute bottom-2 right-3 text-white/90 text-xs font-medium drop-shadow">
+              Teatro de la Ciudad
+            </span>
+            <svg class="w-12 h-12 text-primary/30 group-hover:scale-110 transition-transform duration-300"
+              fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+            <div class="space-y-2">
+              <div class="flex items-center gap-1.5 text-xs font-semibold text-accent">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+                <span>15 Dic 2026 • 19:00 hrs</span>
+              </div>
+              <h3
+                class="font-bold text-base md:text-lg text-base-text group-hover:text-primary transition-colors leading-snug">
+                El Cascanueces: Ballet Ruso Mary El
+              </h3>
+              <p class="text-xs text-gray-600 line-clamp-2">
+                La prestigiosa compañía rusa deleitará al público porteño con virtuosismo técnico, elegancia y
+                vestuarios de época.
+              </p>
+            </div>
+            <div class="pt-3 border-t border-gray-100 flex items-center justify-between">
+              <span class="text-xs text-gray-500 font-medium">Boletos Numerados</span>
+              <button type="button"
+                class="bg-accent hover:brightness-110 active:scale-95 text-white text-xs font-bold px-4 py-2 rounded-full shadow-sm transition-all duration-200">
+                Ver más
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 10: Érase Una Vez Concierto Navideño con Beto Castillo -->
+        <article
+          class="event-card bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden border border-gray-200/70 group hover:-translate-y-1"
+          data-category="conciertos" data-title="Erase Una Vez Concierto Navideno Beto Castillo" data-date="2026-12-16">
+          <div class="h-44 bg-slate-300 relative overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+            <span
+              class="absolute top-3 left-3 bg-accent text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">
+              Concierto Navideño
+            </span>
+            <span class="absolute bottom-2 right-3 text-white/90 text-xs font-medium drop-shadow">
+              Teatro de la Ciudad
+            </span>
+            <svg class="w-12 h-12 text-slate-500/40 group-hover:scale-110 transition-transform duration-300"
+              fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd"
+                d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+            <div class="space-y-2">
+              <div class="flex items-center gap-1.5 text-xs font-semibold text-accent">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+                <span>16 Dic 2026 • 18:30 hrs</span>
+              </div>
+              <h3
+                class="font-bold text-base md:text-lg text-base-text group-hover:text-primary transition-colors leading-snug">
+                Érase Una Vez: Concierto Navideño
+              </h3>
+              <p class="text-xs text-gray-600 line-clamp-2">
+                Un recorrido por los grandes clásicos de fantasía y villancicos con la voz estelar de Beto Castillo y
+                coro invitado.
+              </p>
+            </div>
+            <div class="pt-3 border-t border-gray-100 flex items-center justify-between">
+              <span class="text-xs text-gray-500 font-medium">Preventa Especial</span>
+              <button type="button"
+                class="bg-accent hover:brightness-110 active:scale-95 text-white text-xs font-bold px-4 py-2 rounded-full shadow-sm transition-all duration-200">
+                Ver más
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 11: Gala Sinfónica de Invierno -->
+        <article
+          class="event-card bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden border border-gray-200/70 group hover:-translate-y-1"
+          data-category="conciertos" data-title="Gala Sinfonica de Invierno Orquesta Xalapa" data-date="2026-12-19">
+          <div class="h-44 bg-secondary relative overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-primary text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">
+              Música Clásica
+            </span>
+            <span class="absolute bottom-2 right-3 text-white/90 text-xs font-medium drop-shadow">
+              Teatro de la Ciudad
+            </span>
+            <svg class="w-12 h-12 text-primary/30 group-hover:scale-110 transition-transform duration-300"
+              fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z">
+              </path>
+            </svg>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+            <div class="space-y-2">
+              <div class="flex items-center gap-1.5 text-xs font-semibold text-accent">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+                <span>19 Dic 2026 • 20:00 hrs</span>
+              </div>
+              <h3
+                class="font-bold text-base md:text-lg text-base-text group-hover:text-primary transition-colors leading-snug">
+                Gala Sinfónica de Invierno
+              </h3>
+              <p class="text-xs text-gray-600 line-clamp-2">
+                Magno concierto de temporada con solistas invitados interpretando oberturas clásicas y villancicos orquestales.
+              </p>
+            </div>
+            <div class="pt-3 border-t border-gray-100 flex items-center justify-between">
+              <span class="text-xs text-gray-500 font-medium">Desde $280 MXN</span>
+              <button type="button"
+                class="bg-accent hover:brightness-110 active:scale-95 text-white text-xs font-bold px-4 py-2 rounded-full shadow-sm transition-all duration-200">
+                Ver más
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 12: Enjambre: Daños Luz Tour -->
+        <article
+          class="event-card bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden border border-gray-200/70 group hover:-translate-y-1"
+          data-category="conciertos" data-title="Enjambre Danos Luz Tour Rock Concierto" data-date="2026-12-20">
+          <div class="h-44 bg-slate-800 relative overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+            <span
+              class="absolute top-3 left-3 bg-accent text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">
+              Rock Nacional
+            </span>
+            <span class="absolute bottom-2 right-3 text-white/90 text-xs font-medium drop-shadow">
+              Teatro de la Ciudad
+            </span>
+            <svg class="w-12 h-12 text-accent/40 group-hover:scale-110 transition-transform duration-300"
+              fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z">
+              </path>
+            </svg>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+            <div class="space-y-2">
+              <div class="flex items-center gap-1.5 text-xs font-semibold text-accent">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+                <span>20 Dic 2026 • 21:00 hrs</span>
+              </div>
+              <h3
+                class="font-bold text-base md:text-lg text-base-text group-hover:text-primary transition-colors leading-snug">
+                Enjambre: Daños Luz Tour
+              </h3>
+              <p class="text-xs text-gray-600 line-clamp-2">
+                La aclamada banda de rock contemporáneo presenta sus más grandes éxitos en una noche estelar en el Teatro de la Ciudad.
+              </p>
+            </div>
+            <div class="pt-3 border-t border-gray-100 flex items-center justify-between">
+              <span class="text-xs text-gray-500 font-medium">Desde $450 MXN</span>
+              <button type="button"
+                class="bg-accent hover:brightness-110 active:scale-95 text-white text-xs font-bold px-4 py-2 rounded-full shadow-sm transition-all duration-200">
+                Ver más
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- ESTADO VACÍO (CUANDO NO HAY RESULTADOS) -->
+        <div id="empty-state"
+          class="hidden col-span-full py-16 text-center bg-white rounded-2xl border border-gray-200 p-8 shadow-sm">
+          <div
+            class="w-16 h-16 mx-auto mb-4 rounded-full bg-secondary/30 flex items-center justify-center text-primary">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-primary">No se encontraron eventos</h3>
+          <p class="text-sm text-gray-500 mt-1 max-w-md mx-auto">No hay funciones disponibles que coincidan con la
+            categoría o término de búsqueda seleccionado.</p>
+          <button type="button" id="empty-reset-btn"
+            class="mt-5 inline-flex items-center gap-2 bg-accent hover:brightness-110 text-white font-bold text-xs px-5 py-2.5 rounded-full shadow transition">
+            Mostrar todos los eventos
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Paginación Interactiva Centrada (Aparece únicamente si hay más de 10 eventos) -->
+      <div id="pagination-container" class="mt-10 pt-6 border-t border-gray-200 flex flex-col items-center justify-center gap-3 text-center">
+        <div id="pagination-controls" class="flex flex-wrap items-center justify-center gap-2">
+          <!-- Botones interactivos generados por JavaScript -->
+        </div>
+        <p id="pagination-info" class="text-xs text-gray-500">
+          Mostrando <span id="pagination-range" class="font-bold text-primary">1 a 10</span> de <span id="pagination-total" class="font-bold text-primary">12</span> eventos en cartelera
+        </p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- SECCIÓN COMPLEMENTARIA: COTIZACIÓN DE EVENTOS -->
+  <section class="bg-white py-12 md:py-14 border-t border-gray-200" id="cotizar">
+    <div class="w-full px-4 sm:px-6 md:px-[100px]">
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center">
+
+        <!-- MITAD IZQUIERDA: IMAGEN CON MARGEN REDUCIDO Y MÁS GRANDE SIN AGRANDAR LA SECCIÓN -->
+        <div class="w-full h-full flex items-center justify-center">
+          <div
+            class="w-full h-[340px] sm:h-[370px] lg:h-[390px] rounded-2xl overflow-hidden shadow-xl border border-gray-200/80 group">
+            <img src="teatro-sala-butacas.jpg" alt="Sala de Espectáculos del Teatro de la Ciudad Coatzacoalcos"
+              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" />
+          </div>
+        </div>
+
+        <!-- MITAD DERECHA: INFORMACIÓN CENTRADA SIN BANNERS NI TARJETAS -->
+        <div
+          class="flex flex-col justify-center items-center text-center space-y-5 py-2 max-w-xl mx-auto lg:max-w-none">
+
+          <!-- Pregunta Principal -->
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-primary tracking-tight leading-tight">
+            ¿Es costoso realizar un evento en el Teatro de la Ciudad?
+          </h2>
+
+          <!-- Respuesta breve y clara -->
+          <p class="text-gray-700 text-sm sm:text-base leading-relaxed">
+            <strong class="text-primary font-bold">No.</strong> Al ser un complejo público e institucional, contamos con
+            tarifas accesibles y esquemas modulares que se adaptan a producciones culturales, artísticas, escolares,
+            conciertos y congresos empresariales.
+          </p>
+
+          <p class="text-gray-500 text-xs sm:text-sm leading-relaxed">
+            Cada contratación incluye equipamiento de audio profesional, iluminación computarizada, mecánica teatral,
+            camerinos equipados y personal técnico de soporte en sitio.
+          </p>
+
+          <!-- Botón de llamado a la acción hacia la pantalla de cotización -->
+          <div class="pt-2">
+            <a href="cotizar.html"
+              class="inline-flex items-center gap-2.5 bg-accent hover:brightness-110 active:scale-95 text-white font-bold text-base px-8 py-3.5 rounded-full shadow-lg hover:shadow-accent/40 transition-all duration-200 transform hover:-translate-y-0.5">
+              <span>Ir al Apartado de Cotizar</span>
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3">
+                </path>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Teléfono directo de atención -->
+          <div class="text-xs text-gray-500 flex items-center justify-center gap-2 pt-1">
+            <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 4V3z">
+              </path>
+            </svg>
+            <span>Vinculación y eventos: <strong class="text-primary font-bold">(921) 210 6616</strong></span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER INSTITUCIONAL -->
+  <footer class="bg-primary text-white border-t border-white/10 pt-12 pb-8" id="contacto">
+    <div class="w-full px-4 sm:px-6 md:px-[100px]">
+
+      <!-- Columnas Principales del Footer -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-10 border-b border-white/15">
+
+        <!-- Columna 1: Identidad -->
+        <div class="space-y-4 md:col-span-1">
+          <div class="flex items-center space-x-3">
+            <div class="w-9 h-9 rounded-lg bg-accent text-white flex items-center justify-center font-bold">
+              TC
+            </div>
+            <div>
+              <div class="font-bold text-base tracking-tight text-white leading-tight">TEATRO DE LA CIUDAD</div>
+              <div class="text-[11px] text-secondary">Coatzacoalcos, Veracruz</div>
+            </div>
+          </div>
+          <p class="text-xs text-gray-200 leading-relaxed">
+            El complejo arquitectónico y cultural más importante de la región sur del estado de Veracruz.
+          </p>
+        </div>
+
+        <!-- Columna 2: Enlaces Rápidos -->
+        <div>
+          <h4 class="text-sm font-bold text-highlight uppercase tracking-wider mb-3">Navegación</h4>
+          <ul class="space-y-2 text-xs text-gray-200">
+            <li><a href="#mural" class="hover:text-highlight transition">Inicio</a></li>
+            <li><a href="#cartelera" class="hover:text-highlight transition">Cartelera de Espectáculos</a></li>
+            <li><a href="cotizar.html" class="hover:text-highlight transition">Cotizar Evento</a></li>
+            <li><a href="https://convencionescoatzacoalcos.com/" target="_blank" rel="noopener noreferrer"
+                class="hover:text-highlight transition">Sitio Web Oficial</a></li>
+          </ul>
+        </div>
+
+        <!-- Columna 3: Información de Taquilla y Atención -->
+        <div>
+          <h4 class="text-sm font-bold text-highlight uppercase tracking-wider mb-3">Atención y Taquilla</h4>
+          <div class="space-y-2 text-xs text-gray-200">
+            <p><strong>Lunes a Viernes:</strong> 09:00 - 17:30 hrs</p>
+            <p><strong>Sábados:</strong> 09:00 - 13:00 hrs</p>
+            <p><strong>Teléfono:</strong> (921) 210 6616</p>
+            <p><strong>Días de función:</strong> Taquilla abierta hasta 30 min iniciada la obra.</p>
+          </div>
+        </div>
+
+        <!-- Columna 4: Portal y Redes -->
+        <div>
+          <h4 class="text-sm font-bold text-highlight uppercase tracking-wider mb-3">Portal Oficial</h4>
+          <p class="text-xs text-gray-200 leading-relaxed">
+            Consulta la disponibilidad de fechas para eventos corporativos y artísticos a través del portal oficial.
+          </p>
+          <div class="mt-4">
+            <a href="https://convencionescoatzacoalcos.com/" target="_blank" rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 text-xs text-accent hover:text-white font-bold transition">
+              <span>Visitar convencionescoatzacoalcos.com</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3">
+                </path>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Pie inferior de copyright y paleta -->
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-300 gap-3">
+        <p>© 2026 Teatro de la Ciudad y Centro de Convenciones de Coatzacoalcos. Prototipo de Alta Fidelidad.</p>
+        <div class="flex items-center space-x-4">
+          <a href="admin.html" class="text-white/80 hover:text-accent font-semibold transition flex items-center gap-1.5 bg-white/10 px-3 py-1 rounded-full border border-white/15">
+            <svg class="w-3.5 h-3.5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+            <span>Panel Admin</span>
+          </a>
+          <span class="text-secondary hidden sm:inline">Paleta: Azul Golfo &bull; Arena &bull; Dorado &bull; Celeste</span>
+        </div>
+      </div>
+
+      <!-- LO ÚLTIMO DEL FOOTER: Dirección oficial integrada de forma natural -->
+      <div class="mt-6 pt-5 border-t border-white/10 text-center">
+        <p class="inline-flex items-center justify-center flex-wrap gap-2 text-xs text-gray-300 leading-relaxed">
+          <span class="inline-flex items-center gap-1.5 text-white font-medium">
+            <svg class="w-4 h-4 text-accent flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd"
+                d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                clip-rule="evenodd"></path>
+            </svg>
+            Av. Abraham Zabludovsky #201, Col. El Encanto, C.P. 96535, Coatzacoalcos, Veracruz, México
+          </span>
+          <span class="text-white/30 hidden sm:inline">&bull;</span>
+          <span id="footer-taquilla-phone">Taquilla: (921) 210 6616</span>
+          <span class="text-white/30 hidden sm:inline">&bull;</span>
+          <span class="text-secondary">Horario: Lun - Vie 9:00 a 17:30 hrs | Sáb 9:00 a 13:00 hrs</span>
+        </p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- MODAL: CREAR CUENTA -->
+  <div id="modal-crear-cuenta"
+    class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm transition-all duration-300">
+    <div
+      class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-gray-100 relative animate-fade-in space-y-5">
+      <!-- Botón cerrar modal -->
+      <button type="button" id="close-modal-cuenta"
+        class="absolute top-5 right-5 text-gray-400 hover:text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-full w-8 h-8 flex items-center justify-center transition">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+
+      <!-- Cabecera del modal -->
+      <div class="text-center space-y-2">
+        <div class="w-12 h-12 rounded-2xl bg-primary/10 text-primary mx-auto flex items-center justify-center">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-extrabold text-primary">Crea tu Cuenta Oficial</h3>
+        <p class="text-xs text-gray-500 max-w-xs mx-auto">
+          Accede a preventas exclusivas, reserva tus boletos y recibe avisos de la cartelera oficial de Coatzacoalcos.
+        </p>
+      </div>
+
+      <!-- Formulario de registro -->
+      <form id="form-crear-cuenta" class="space-y-4">
+        <div class="space-y-1">
+          <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider">Nombre Completo</label>
+          <input type="text" required placeholder="Ej. Mariana Morales"
+            class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition bg-base-bg">
+        </div>
+
+        <div class="space-y-1">
+          <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider">Correo Electrónico</label>
+          <input type="email" required placeholder="correo@ejemplo.com"
+            class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition bg-base-bg">
+        </div>
+
+        <div class="space-y-1">
+          <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider">Teléfono / WhatsApp</label>
+          <input type="tel" required placeholder="(921) 000 0000"
+            class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition bg-base-bg">
+        </div>
+
+        <div class="space-y-1">
+          <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider">Contraseña</label>
+          <input type="password" required placeholder="••••••••"
+            class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition bg-base-bg">
+        </div>
+
+        <div class="flex items-start gap-2 pt-1 text-xs text-gray-600">
+          <input type="checkbox" id="check-terms" required class="mt-0.5 rounded text-primary focus:ring-highlight">
+          <label for="check-terms">Acepto los términos del recinto y recibir notificaciones oficiales.</label>
+        </div>
+
+        <button type="submit"
+          class="w-full bg-accent hover:brightness-110 active:scale-95 text-white font-bold text-sm py-3 rounded-full shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2">
+          <span>Registrarme</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+          </svg>
+        </button>
+
+        <div id="cuenta-success"
+          class="hidden p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs text-center font-medium">
+          🎉 ¡Cuenta creada con éxito! Bienvenido al Teatro de la Ciudad.
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- SCRIPT PARA INTERACTIVIDAD, FILTRO DE CATEGORÍAS, CALENDARIO TICKETMASTER Y MODAL -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const EVENTS_PER_PAGE = 10; // Máximo 10 eventos por página
+      let currentPage = 1;
+      let activeCategory = 'all';
+      let searchQuery = '';
+      let activeStartDate = null; // 'YYYY-MM-DD'
+      let activeEndDate = null;   // 'YYYY-MM-DD'
+
+      // Variables temporales para el picker de calendario
+      let tempStartDate = null;
+      let tempEndDate = null;
+      let calYear = 2026;
+      let calMonth = 10; // Noviembre (0-indexed: 10 = Noviembre, 11 = Diciembre)
+
+      const monthNames = [
+        'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+        'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+      ];
+
+      const monthShortNames = [
+        'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun',
+        'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'
+      ];
+
+      const categoryLabels = {
+        'all': '🌟 Todas las categorías',
+        'teatro': '🎭 Obras de Teatro',
+        'danza': '🩰 Danza & Ballet',
+        'conciertos': '🎵 Conciertos & Música'
+      };
+
+      const categoryShortNames = {
+        'all': 'Todas',
+        'teatro': 'Teatro',
+        'danza': 'Danza & Ballet',
+        'conciertos': 'Conciertos'
+      };
+
+      // Elementos del DOM principales
+      let cards = Array.from(document.querySelectorAll('.event-card'));
+      const countEl = document.getElementById('events-count');
+      const emptyState = document.getElementById('empty-state');
+      const searchInput = document.getElementById('search-input');
+      const resetBtn = document.getElementById('reset-filters');
+      const emptyResetBtn = document.getElementById('empty-reset-btn');
+
+      // Dropdown de Categorías
+      const categoryDropdownWrapper = document.getElementById('category-dropdown-wrapper');
+      const btnCategoryDropdown = document.getElementById('btn-category-dropdown');
+      const categoryDropdownMenu = document.getElementById('category-dropdown-menu');
+      const categoryBtnLabel = document.getElementById('category-btn-label');
+      const categoryChevron = document.getElementById('category-chevron');
+      const categoryOptionButtons = document.querySelectorAll('.category-option-btn');
+
+      // Dropdown de Calendario / Rango de Fechas
+      const calendarDropdownWrapper = document.getElementById('calendar-dropdown-wrapper');
+      const btnCalendarDropdown = document.getElementById('btn-calendar-dropdown');
+      const calendarDropdownMenu = document.getElementById('calendar-dropdown-menu');
+      const calendarBtnLabel = document.getElementById('calendar-btn-label');
+      const calendarChevron = document.getElementById('calendar-chevron');
+      const btnCloseCalendar = document.getElementById('btn-close-calendar');
+      const calPrevMonth = document.getElementById('cal-prev-month');
+      const calNextMonth = document.getElementById('cal-next-month');
+      const calMonthTitle = document.getElementById('cal-month-title');
+      const calDaysGrid = document.getElementById('cal-days-grid');
+      const calSelectionText = document.getElementById('cal-selection-text');
+      const calClearBtn = document.getElementById('cal-clear-btn');
+      const calBtnCancel = document.getElementById('cal-btn-cancel');
+      const calBtnApply = document.getElementById('cal-btn-apply');
+      const presetDateButtons = document.querySelectorAll('.preset-date-btn');
+
+      // Barra de Chips de filtros activos
+      const activeFiltersBar = document.getElementById('active-filters-bar');
+      const chipCategory = document.getElementById('chip-category');
+      const chipCategoryText = document.getElementById('chip-category-text');
+      const chipRemoveCategory = document.getElementById('chip-remove-category');
+      const chipDate = document.getElementById('chip-date');
+      const chipDateText = document.getElementById('chip-date-text');
+      const chipRemoveDate = document.getElementById('chip-remove-date');
+      const chipClearAll = document.getElementById('chip-clear-all');
+
+      // Paginación
+      const paginationContainer = document.getElementById('pagination-container');
+      const paginationControls = document.getElementById('pagination-controls');
+      const paginationRange = document.getElementById('pagination-range');
+      const paginationTotal = document.getElementById('pagination-total');
+
+      // Conjunto de fechas con eventos programados
+      let eventDatesSet = new Set(cards.map(c => c.getAttribute('data-date')).filter(Boolean));
+
+      // Formateo de fechas para etiquetas y rangos
+      function formatDateDisplay(isoStr, includeYear = true) {
+        if (!isoStr) return '';
+        const parts = isoStr.split('-');
+        if (parts.length !== 3) return isoStr;
+        const day = parseInt(parts[2], 10);
+        const mIdx = parseInt(parts[1], 10) - 1;
+        const year = parts[0];
+        const month = monthShortNames[mIdx] || '';
+        return includeYear ? `${day} ${month} ${year}` : `${day} ${month}`;
+      }
+
+      function formatRangeDisplay(startIso, endIso) {
+        if (!startIso) return 'Fechas del Teatro';
+        if (!endIso || startIso === endIso) {
+          return formatDateDisplay(startIso, true);
+        }
+        const startParts = startIso.split('-');
+        const endParts = endIso.split('-');
+        // Mismo año
+        if (startParts[0] === endParts[0]) {
+          // Mismo mes
+          if (startParts[1] === endParts[1]) {
+            const m = monthShortNames[parseInt(startParts[1], 10) - 1];
+            return `${parseInt(startParts[2], 10)} - ${parseInt(endParts[2], 10)} ${m} ${startParts[0]}`;
+          }
+          return `${formatDateDisplay(startIso, false)} - ${formatDateDisplay(endIso, true)}`;
+        }
+        return `${formatDateDisplay(startIso, true)} - ${formatDateDisplay(endIso, true)}`;
+      }
+
+      // =========================================================================
+      // LÓGICA DEL CALENDARIO INTERACTIVO ESTILO TICKETMASTER
+      // =========================================================================
+      function renderCalendar() {
+        if (!calDaysGrid || !calMonthTitle) return;
+
+        calMonthTitle.textContent = `${monthNames[calMonth]} ${calYear}`;
+        calDaysGrid.innerHTML = '';
+
+        const firstDayOfWeek = new Date(calYear, calMonth, 1).getDay(); // 0 = Domingo
+        const totalDays = new Date(calYear, calMonth + 1, 0).getDate();
+
+        // Celdas vacías previas
+        for (let b = 0; b < firstDayOfWeek; b++) {
+          const emptyCell = document.createElement('div');
+          emptyCell.className = 'h-9';
+          calDaysGrid.appendChild(emptyCell);
+        }
+
+        // Días del mes
+        for (let d = 1; d <= totalDays; d++) {
+          const dayIso = `${calYear}-${String(calMonth + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+          const hasEvents = eventDatesSet.has(dayIso);
+
+          const isStart = tempStartDate === dayIso;
+          const isEnd = tempEndDate === dayIso;
+          const inRange = tempStartDate && tempEndDate && dayIso > tempStartDate && dayIso < tempEndDate;
+
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.dataset.date = dayIso;
+
+          let cellClasses = 'h-9 w-full flex flex-col items-center justify-center relative text-xs transition duration-150 select-none ';
+
+          if (isStart && isEnd) {
+            cellClasses += 'bg-primary text-white font-bold rounded-xl shadow-md';
+          } else if (isStart) {
+            cellClasses += 'bg-primary text-white font-bold rounded-l-xl shadow-md ' + (tempEndDate ? 'rounded-r-none' : 'rounded-xl');
+          } else if (isEnd) {
+            cellClasses += 'bg-primary text-white font-bold rounded-r-xl rounded-l-none shadow-md';
+          } else if (inRange) {
+            cellClasses += 'bg-primary/15 text-primary font-bold rounded-none';
+          } else {
+            cellClasses += 'text-gray-700 hover:bg-gray-100 rounded-lg font-medium';
+          }
+
+          btn.className = cellClasses;
+
+          // Contenido: Número de día + punto si tiene evento
+          let innerHtml = `<span>${d}</span>`;
+          if (hasEvents) {
+            const dotColor = (isStart || isEnd) ? 'bg-amber-300' : 'bg-accent';
+            innerHtml += `<span class="w-1.5 h-1.5 rounded-full ${dotColor} absolute bottom-1"></span>`;
+          }
+          btn.innerHTML = innerHtml;
+
+          // Manejador de clic en día (Selección de rango)
+          btn.addEventListener('click', () => {
+            handleDayClick(dayIso);
+          });
+
+          calDaysGrid.appendChild(btn);
+        }
+
+        // Actualizar texto de selección actual en el popover
+        updateSelectionStatusText();
+      }
+
+      function handleDayClick(dayIso) {
+        if (!tempStartDate || (tempStartDate && tempEndDate)) {
+          // Iniciar nueva selección
+          tempStartDate = dayIso;
+          tempEndDate = null;
+        } else if (tempStartDate && !tempEndDate) {
+          // Segundo clic: definir fin del rango
+          if (dayIso >= tempStartDate) {
+            tempEndDate = dayIso;
+          } else {
+            // Si hace clic en una fecha anterior, se convierte en la nueva fecha de inicio
+            tempStartDate = dayIso;
+            tempEndDate = null;
+          }
+        }
+        renderCalendar();
+      }
+
+      function updateSelectionStatusText() {
+        if (!calSelectionText) return;
+        if (!tempStartDate) {
+          calSelectionText.textContent = 'Todas las fechas';
+        } else if (tempStartDate && !tempEndDate) {
+          calSelectionText.textContent = `${formatDateDisplay(tempStartDate, true)} (Elige fecha fin o Aplica)`;
+        } else {
+          calSelectionText.textContent = `${formatDateDisplay(tempStartDate, true)} al ${formatDateDisplay(tempEndDate, true)}`;
+        }
+      }
+
+      // Navegación de mes del calendario
+      if (calPrevMonth) {
+        calPrevMonth.addEventListener('click', () => {
+          calMonth--;
+          if (calMonth < 0) {
+            calMonth = 11;
+            calYear--;
+          }
+          renderCalendar();
+        });
+      }
+
+      if (calNextMonth) {
+        calNextMonth.addEventListener('click', () => {
+          calMonth++;
+          if (calMonth > 11) {
+            calMonth = 0;
+            calYear++;
+          }
+          renderCalendar();
+        });
+      }
+
+      // Presets de Ticketmaster
+      presetDateButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const preset = btn.getAttribute('data-preset');
+          if (preset === 'all') {
+            tempStartDate = null;
+            tempEndDate = null;
+            activeStartDate = null;
+            activeEndDate = null;
+            closeAllDropdowns();
+            currentPage = 1;
+            updateUI();
+          } else if (preset === 'weekend') {
+            // Fin de semana de estreno en temporada
+            tempStartDate = '2026-11-13';
+            tempEndDate = '2026-11-15';
+            calYear = 2026;
+            calMonth = 10;
+            renderCalendar();
+          } else if (preset === 'nov') {
+            tempStartDate = '2026-11-01';
+            tempEndDate = '2026-11-30';
+            calYear = 2026;
+            calMonth = 10;
+            renderCalendar();
+          } else if (preset === 'dic') {
+            tempStartDate = '2026-12-01';
+            tempEndDate = '2026-12-31';
+            calYear = 2026;
+            calMonth = 11;
+            renderCalendar();
+          }
+        });
+      });
+
+      // Borrar selección temporal dentro del popover
+      if (calClearBtn) {
+        calClearBtn.addEventListener('click', () => {
+          tempStartDate = null;
+          tempEndDate = null;
+          renderCalendar();
+        });
+      }
+
+      // Aplicar rango de fechas seleccionado
+      if (calBtnApply) {
+        calBtnApply.addEventListener('click', () => {
+          activeStartDate = tempStartDate;
+          activeEndDate = tempEndDate || tempStartDate; // Si solo seleccionó 1 día, se filtra para ese día único
+          closeAllDropdowns();
+          currentPage = 1;
+          updateUI();
+        });
+      }
+
+      // Cerrar popover de calendario
+      if (calBtnCancel) calBtnCancel.addEventListener('click', closeAllDropdowns);
+      if (btnCloseCalendar) btnCloseCalendar.addEventListener('click', closeAllDropdowns);
+
+      // =========================================================================
+      // CONTROL DE APERTURA / CIERRE DE DROPDOWNS
+      // =========================================================================
+      function toggleCategoryDropdown() {
+        const isHidden = categoryDropdownMenu.classList.contains('hidden');
+        closeAllDropdowns();
+        if (isHidden) {
+          categoryDropdownMenu.classList.remove('hidden');
+          if (categoryChevron) categoryChevron.classList.add('rotate-180');
+        }
+      }
+
+      function toggleCalendarDropdown() {
+        const isHidden = calendarDropdownMenu.classList.contains('hidden');
+        closeAllDropdowns();
+        if (isHidden) {
+          tempStartDate = activeStartDate;
+          tempEndDate = activeEndDate;
+          if (activeStartDate) {
+            const p = activeStartDate.split('-');
+            calYear = parseInt(p[0], 10);
+            calMonth = parseInt(p[1], 10) - 1;
+          }
+          renderCalendar();
+          calendarDropdownMenu.classList.remove('hidden');
+          if (calendarChevron) calendarChevron.classList.add('rotate-180');
+        }
+      }
+
+      function closeAllDropdowns() {
+        if (categoryDropdownMenu) categoryDropdownMenu.classList.add('hidden');
+        if (calendarDropdownMenu) calendarDropdownMenu.classList.add('hidden');
+        if (categoryChevron) categoryChevron.classList.remove('rotate-180');
+        if (calendarChevron) calendarChevron.classList.remove('rotate-180');
+      }
+
+      if (btnCategoryDropdown) {
+        btnCategoryDropdown.addEventListener('click', (e) => {
+          e.stopPropagation();
+          toggleCategoryDropdown();
+        });
+      }
+
+      if (btnCalendarDropdown) {
+        btnCalendarDropdown.addEventListener('click', (e) => {
+          e.stopPropagation();
+          toggleCalendarDropdown();
+        });
+      }
+
+      // Evitar que clics dentro de los menús los cierren inesperadamente
+      if (categoryDropdownMenu) {
+        categoryDropdownMenu.addEventListener('click', (e) => e.stopPropagation());
+      }
+      if (calendarDropdownMenu) {
+        calendarDropdownMenu.addEventListener('click', (e) => e.stopPropagation());
+      }
+
+      // Cerrar dropdowns al hacer clic fuera o con la tecla Escape
+      document.addEventListener('click', closeAllDropdowns);
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeAllDropdowns();
+      });
+
+      // Selección de opciones de categoría en el menú desplegable
+      categoryOptionButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          activeCategory = btn.getAttribute('data-filter') || 'all';
+          closeAllDropdowns();
+          currentPage = 1;
+          updateUI();
+        });
+      });
+
+      // Chips de eliminación individual
+      if (chipRemoveCategory) {
+        chipRemoveCategory.addEventListener('click', () => {
+          activeCategory = 'all';
+          currentPage = 1;
+          updateUI();
+        });
+      }
+
+      if (chipRemoveDate) {
+        chipRemoveDate.addEventListener('click', () => {
+          activeStartDate = null;
+          activeEndDate = null;
+          tempStartDate = null;
+          tempEndDate = null;
+          currentPage = 1;
+          updateUI();
+        });
+      }
+
+      if (chipClearAll) {
+        chipClearAll.addEventListener('click', resetAll);
+      }
+
+      // =========================================================================
+      // MOTOR DE FILTRADO Y ACTUALIZACIÓN DE LA UI
+      // =========================================================================
+      function updateUI() {
+        const q = searchQuery.toLowerCase().trim();
+
+        // 1. Filtrar eventos coincidentes por Categoría, Búsqueda de Texto y Rango de Fechas
+        const matchingCards = cards.filter(card => {
+          const category = card.getAttribute('data-category') || '';
+          const title = (card.getAttribute('data-title') || '').toLowerCase();
+          const cardText = card.innerText.toLowerCase();
+          const cardDate = card.getAttribute('data-date') || '';
+
+          const matchesCategory = (activeCategory === 'all' || category === activeCategory);
+          const matchesSearch = !q || title.includes(q) || cardText.includes(q);
+
+          let matchesDate = true;
+          if (activeStartDate && activeEndDate) {
+            matchesDate = (cardDate >= activeStartDate && cardDate <= activeEndDate);
+          } else if (activeStartDate) {
+            matchesDate = (cardDate === activeStartDate);
+          }
+
+          return matchesCategory && matchesSearch && matchesDate;
+        });
+
+        const totalMatching = matchingCards.length;
+
+        // Actualizar contador del encabezado
+        if (countEl) {
+          countEl.textContent = `${totalMatching} evento${totalMatching === 1 ? '' : 's'}`;
+        }
+
+        // Sincronizar estado visual del botón de categoría
+        if (categoryBtnLabel) {
+          categoryBtnLabel.textContent = activeCategory === 'all'
+            ? 'Categorías: Todas'
+            : `Categoría: ${categoryShortNames[activeCategory] || activeCategory}`;
+        }
+        if (btnCategoryDropdown) {
+          if (activeCategory !== 'all') {
+            btnCategoryDropdown.classList.add('border-primary', 'bg-primary/5', 'text-primary', 'font-bold');
+            btnCategoryDropdown.classList.remove('bg-base-bg', 'text-gray-700');
+          } else {
+            btnCategoryDropdown.classList.remove('border-primary', 'bg-primary/5', 'text-primary', 'font-bold');
+            btnCategoryDropdown.classList.add('bg-base-bg', 'text-gray-700');
+          }
+        }
+
+        // Sincronizar opciones activas en el menú de categorías
+        categoryOptionButtons.forEach(opt => {
+          const f = opt.getAttribute('data-filter');
+          const badge = opt.querySelector('.cat-badge');
+          if (f === activeCategory) {
+            opt.classList.add('bg-primary/10', 'text-primary', 'font-bold');
+            opt.classList.remove('text-gray-700');
+            if (badge) {
+              badge.classList.add('bg-primary', 'text-white');
+              badge.classList.remove('bg-gray-100', 'text-gray-600');
+            }
+          } else {
+            opt.classList.remove('bg-primary/10', 'text-primary', 'font-bold');
+            opt.classList.add('text-gray-700');
+            if (badge) {
+              badge.classList.remove('bg-primary', 'text-white');
+              badge.classList.add('bg-gray-100', 'text-gray-600');
+            }
+          }
+        });
+
+        // Sincronizar estado visual del botón de fechas / calendario
+        if (calendarBtnLabel) {
+          calendarBtnLabel.textContent = formatRangeDisplay(activeStartDate, activeEndDate);
+        }
+        if (btnCalendarDropdown) {
+          if (activeStartDate) {
+            btnCalendarDropdown.classList.add('border-accent', 'bg-accent/10', 'text-accent-800', 'font-bold');
+            btnCalendarDropdown.classList.remove('bg-base-bg', 'text-gray-700');
+          } else {
+            btnCalendarDropdown.classList.remove('border-accent', 'bg-accent/10', 'text-accent-800', 'font-bold');
+            btnCalendarDropdown.classList.add('bg-base-bg', 'text-gray-700');
+          }
+        }
+
+        // Sincronizar barra de filtros activos (chips)
+        let hasActiveFilters = false;
+        if (activeCategory !== 'all') {
+          hasActiveFilters = true;
+          if (chipCategory) {
+            chipCategory.classList.remove('hidden');
+            chipCategory.classList.add('inline-flex');
+            if (chipCategoryText) chipCategoryText.textContent = categoryLabels[activeCategory] || activeCategory;
+          }
+        } else {
+          if (chipCategory) {
+            chipCategory.classList.add('hidden');
+            chipCategory.classList.remove('inline-flex');
+          }
+        }
+
+        if (activeStartDate) {
+          hasActiveFilters = true;
+          if (chipDate) {
+            chipDate.classList.remove('hidden');
+            chipDate.classList.add('inline-flex');
+            if (chipDateText) chipDateText.textContent = `📅 ${formatRangeDisplay(activeStartDate, activeEndDate)}`;
+          }
+        } else {
+          if (chipDate) {
+            chipDate.classList.add('hidden');
+            chipDate.classList.remove('inline-flex');
+          }
+        }
+
+        if (activeFiltersBar) {
+          if (hasActiveFilters) {
+            activeFiltersBar.classList.remove('hidden');
+            activeFiltersBar.classList.add('flex');
+          } else {
+            activeFiltersBar.classList.add('hidden');
+            activeFiltersBar.classList.remove('flex');
+          }
+        }
+
+        // Manejar estado vacío
+        if (totalMatching === 0) {
+          cards.forEach(card => {
+            card.classList.add('hidden');
+            card.classList.remove('flex');
+          });
+          if (emptyState) emptyState.classList.remove('hidden');
+          if (paginationContainer) {
+            paginationContainer.classList.add('hidden');
+            paginationContainer.classList.remove('flex');
+          }
+          return;
+        }
+
+        if (emptyState) emptyState.classList.add('hidden');
+
+        // 2. Calcular páginas y rango de 10 eventos por página
+        const totalPages = Math.ceil(totalMatching / EVENTS_PER_PAGE);
+        if (currentPage > totalPages) currentPage = 1;
+        if (currentPage < 1) currentPage = 1;
+
+        const startIndex = (currentPage - 1) * EVENTS_PER_PAGE;
+        const endIndex = Math.min(startIndex + EVENTS_PER_PAGE, totalMatching);
+
+        // 3. Mostrar únicamente los eventos correspondientes a la página activa
+        cards.forEach(card => {
+          const cardIndexInMatching = matchingCards.indexOf(card);
+          if (cardIndexInMatching >= startIndex && cardIndexInMatching < endIndex) {
+            card.classList.remove('hidden');
+            card.classList.add('flex');
+          } else {
+            card.classList.add('hidden');
+            card.classList.remove('flex');
+          }
+        });
+
+        // 4. Paginación Interactiva: Solo aparece si hay MÁS de 10 eventos
+        if (totalMatching > EVENTS_PER_PAGE) {
+          if (paginationContainer) {
+            paginationContainer.classList.remove('hidden');
+            paginationContainer.classList.add('flex');
+          }
+
+          if (paginationRange) paginationRange.textContent = `${startIndex + 1} a ${endIndex}`;
+          if (paginationTotal) paginationTotal.textContent = `${totalMatching}`;
+
+          renderPaginationControls(totalPages);
+        } else {
+          if (paginationContainer) {
+            paginationContainer.classList.add('hidden');
+            paginationContainer.classList.remove('flex');
+          }
+        }
+      }
+
+      // Renderizar botones de paginación centrados
+      function renderPaginationControls(totalPages) {
+        if (!paginationControls) return;
+        paginationControls.innerHTML = '';
+
+        // Botón Anterior
+        const prevBtn = document.createElement('button');
+        prevBtn.type = 'button';
+        prevBtn.innerHTML = '&larr; Anterior';
+        if (currentPage === 1) {
+          prevBtn.className = 'px-3.5 py-2 rounded-xl bg-gray-100 text-gray-400 border border-gray-200 text-xs font-semibold cursor-not-allowed opacity-60';
+          prevBtn.disabled = true;
+        } else {
+          prevBtn.className = 'px-3.5 py-2 rounded-xl bg-white hover:bg-gray-100 text-gray-700 border border-gray-200 text-xs font-semibold cursor-pointer shadow-sm transition active:scale-95';
+          prevBtn.addEventListener('click', () => {
+            currentPage--;
+            updateUI();
+            document.getElementById('cartelera')?.scrollIntoView({ behavior: 'smooth' });
+          });
+        }
+        paginationControls.appendChild(prevBtn);
+
+        // Botones numéricos de página
+        for (let p = 1; p <= totalPages; p++) {
+          const pageBtn = document.createElement('button');
+          pageBtn.type = 'button';
+          pageBtn.textContent = p;
+
+          if (p === currentPage) {
+            pageBtn.className = 'px-4 py-2 rounded-xl bg-primary text-white text-xs font-bold shadow-md';
+          } else {
+            pageBtn.className = 'px-4 py-2 rounded-xl bg-white hover:bg-gray-100 text-gray-700 border border-gray-200 text-xs font-medium cursor-pointer shadow-sm transition active:scale-95';
+            pageBtn.addEventListener('click', () => {
+              currentPage = p;
+              updateUI();
+              document.getElementById('cartelera')?.scrollIntoView({ behavior: 'smooth' });
+            });
+          }
+          paginationControls.appendChild(pageBtn);
+        }
+
+        // Botón Siguiente
+        const nextBtn = document.createElement('button');
+        nextBtn.type = 'button';
+        nextBtn.innerHTML = 'Siguiente &rarr;';
+        if (currentPage === totalPages) {
+          nextBtn.className = 'px-3.5 py-2 rounded-xl bg-gray-100 text-gray-400 border border-gray-200 text-xs font-semibold cursor-not-allowed opacity-60';
+          nextBtn.disabled = true;
+        } else {
+          nextBtn.className = 'px-3.5 py-2 rounded-xl bg-white hover:bg-gray-100 text-gray-700 border border-gray-200 text-xs font-semibold cursor-pointer shadow-sm transition active:scale-95';
+          nextBtn.addEventListener('click', () => {
+            currentPage++;
+            updateUI();
+            document.getElementById('cartelera')?.scrollIntoView({ behavior: 'smooth' });
+          });
+        }
+        paginationControls.appendChild(nextBtn);
+      }
+
+      // Búsqueda interactiva en tiempo real (resetea a página 1)
+      if (searchInput) {
+        searchInput.addEventListener('input', function () {
+          searchQuery = this.value;
+          currentPage = 1;
+          updateUI();
+        });
+      }
+
+      // Restablecer todos los filtros
+      function resetAll() {
+        activeCategory = 'all';
+        activeStartDate = null;
+        activeEndDate = null;
+        tempStartDate = null;
+        tempEndDate = null;
+        searchQuery = '';
+        currentPage = 1;
+        if (searchInput) searchInput.value = '';
+        closeAllDropdowns();
+        updateUI();
+      }
+
+      if (resetBtn) resetBtn.addEventListener('click', resetAll);
+      if (emptyResetBtn) emptyResetBtn.addEventListener('click', resetAll);
+
+      // Control del Modal Crear Cuenta
+      const btnCrearCuenta = document.getElementById('btn-crear-cuenta');
+      const modalCrearCuenta = document.getElementById('modal-crear-cuenta');
+      const closeModalCuenta = document.getElementById('close-modal-cuenta');
+      const formCrearCuenta = document.getElementById('form-crear-cuenta');
+      const cuentaSuccess = document.getElementById('cuenta-success');
+
+      if (btnCrearCuenta && modalCrearCuenta) {
+        btnCrearCuenta.addEventListener('click', () => {
+          modalCrearCuenta.classList.remove('hidden');
+          modalCrearCuenta.classList.add('flex');
+        });
+      }
+
+      if (closeModalCuenta && modalCrearCuenta) {
+        closeModalCuenta.addEventListener('click', () => {
+          modalCrearCuenta.classList.add('hidden');
+          modalCrearCuenta.classList.remove('flex');
+        });
+      }
+
+      if (modalCrearCuenta) {
+        modalCrearCuenta.addEventListener('click', (e) => {
+          if (e.target === modalCrearCuenta) {
+            modalCrearCuenta.classList.add('hidden');
+            modalCrearCuenta.classList.remove('flex');
+          }
+        });
+      }
+
+      if (formCrearCuenta) {
+        formCrearCuenta.addEventListener('submit', (e) => {
+          e.preventDefault();
+          if (cuentaSuccess) {
+            cuentaSuccess.classList.remove('hidden');
+            setTimeout(() => {
+              modalCrearCuenta.classList.add('hidden');
+              modalCrearCuenta.classList.remove('flex');
+              cuentaSuccess.classList.add('hidden');
+              formCrearCuenta.reset();
+            }, 1800);
+          }
+        });
+      }
+
+      // Sincronizar estado de autenticación en la barra de navegación
+      function syncAuthNavbar() {
+        const authContainer = document.getElementById('nav-auth-container');
+        if (!authContainer) return;
+        const userRaw = localStorage.getItem('tc_usuario');
+
+        if (userRaw) {
+          try {
+            const user = JSON.parse(userRaw);
+            const displayName = user.nombre || (user.email ? user.email.split('@')[0] : 'Usuario');
+            authContainer.innerHTML = `
+              <div class="flex items-center gap-2 sm:gap-3">
+                <div class="hidden sm:flex items-center gap-2 text-xs text-white/90 bg-white/10 px-3 py-1.5 rounded-full border border-white/15">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                  <span class="font-semibold">${displayName}</span>
+                </div>
+                <button type="button" id="btn-cerrar-sesion" class="bg-white/10 hover:bg-red-500/80 active:scale-95 text-white font-bold text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-full border border-white/20 hover:border-transparent transition-all flex items-center gap-1.5">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                  </svg>
+                  <span>Cerrar Sesión</span>
+                </button>
+              </div>
+            `;
+            const btnLogout = document.getElementById('btn-cerrar-sesion');
+            if (btnLogout) {
+              btnLogout.addEventListener('click', function() {
+                localStorage.removeItem('tc_usuario');
+                syncAuthNavbar();
+              });
+            }
+          } catch(e) {
+            localStorage.removeItem('tc_usuario');
+          }
+        } else {
+          authContainer.innerHTML = `
+            <a href="cuenta.html#login" class="text-white hover:text-highlight text-xs sm:text-sm font-semibold px-2 sm:px-3 py-2 transition-colors duration-200">
+              Iniciar Sesión
+            </a>
+            <a href="cuenta.html#registro"
+              class="bg-accent hover:brightness-110 active:scale-95 text-white font-bold text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-full shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-1.5">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z">
+                </path>
+              </svg>
+              <span>Registrarse</span>
+            </a>
+          `;
+        }
+      }
+
+      // =========================================================================
+      // CARRUSEL DEL MURAL Y DATOS CURIOSOS DEL CENTRO DE CONVENCIONES
+      // =========================================================================
+      const DEFAULT_MURAL_SLIDES = [
+        {
+          id: 'slide-1',
+          img: 'https://escapadas.mexicodesconocido.com.mx/wp-content/uploads/2021/04/2467-GEMD-Veracruz-Region-Olmeca-Coatzacoalcos-Centro-de-Convenciones-GP-Hi.jpg',
+          caption: 'Fotografía Oficial: Fachada del Centro de Convenciones y Teatro de la Ciudad',
+          factTitle: 'Dato Curioso · Arquitectura Monumental',
+          factText: 'El complejo del Centro de Convenciones y Teatro de la Ciudad fue diseñado con una arquitectura contemporánea emblemática frente al Golfo de México, convirtiéndose en el ícono cultural y de congresos más grande del sur de Veracruz.'
+        },
+        {
+          id: 'slide-2',
+          img: 'img/teatro-sala-interior.jpg',
+          caption: 'Fotografía Oficial: Gran Sala Principal · 1,724 Butacas',
+          factTitle: 'Dato Curioso · Acústica e Isóptica Perfecta',
+          factText: 'Su Gran Sala cuenta con 1,724 butacas dispuestas en isóptica escalonada y balcones laterales, permitiendo visibilidad total y acústica natural hacia el escenario desde cualquier asiento.'
+        }
+      ];
+
+      let muralSlides = [...DEFAULT_MURAL_SLIDES];
+      let currentMuralIndex = 0;
+      let muralAutoTimer = null;
+
+      function renderMuralCarousel() {
+        const slidesContainer = document.getElementById('mural-carousel-slides');
+        const dotsContainer = document.getElementById('mural-carousel-dots');
+        if (!slidesContainer || !dotsContainer || muralSlides.length === 0) return;
+
+        if (currentMuralIndex >= muralSlides.length) currentMuralIndex = 0;
+
+        slidesContainer.innerHTML = muralSlides.map((slide, idx) => `
+          <img
+            src="${slide.img}"
+            alt="${slide.caption || 'Vista del Teatro y Centro de Convenciones'}"
+            class="mural-slide-img absolute inset-0 w-full h-full object-cover object-center filter brightness-95 contrast-105 transition-opacity duration-700 ${idx === currentMuralIndex ? 'opacity-100' : 'opacity-0'}"
+            onerror="this.src='https://convencionescoatzacoalcos.com/wp-content/uploads/2012/04/teatro-lleno-02.jpg'" />
+        `).join('');
+
+        dotsContainer.innerHTML = muralSlides.map((_, idx) => `
+          <button type="button" data-slide-idx="${idx}" aria-label="Ir a foto ${idx + 1}"
+            class="mural-dot-btn h-2 rounded-full transition-all duration-300 ${idx === currentMuralIndex ? 'w-6 bg-accent' : 'w-2 bg-white/40 hover:bg-white/75'}"></button>
+        `).join('');
+
+        dotsContainer.querySelectorAll('.mural-dot-btn').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            goToMuralSlide(Number(btn.getAttribute('data-slide-idx')));
+            restartMuralAutoplay();
+          });
+        });
+
+        updateActiveMuralSlideInfo();
+      }
+
+      function updateActiveMuralSlideInfo() {
+        if (!muralSlides.length) return;
+        const slide = muralSlides[currentMuralIndex];
+        const slideImgs = document.querySelectorAll('#mural-carousel-slides .mural-slide-img');
+        slideImgs.forEach((img, idx) => {
+          img.classList.toggle('opacity-100', idx === currentMuralIndex);
+          img.classList.toggle('opacity-0', idx !== currentMuralIndex);
+        });
+
+        const dotBtns = document.querySelectorAll('#mural-carousel-dots .mural-dot-btn');
+        dotBtns.forEach((dot, idx) => {
+          dot.className = `mural-dot-btn h-2 rounded-full transition-all duration-300 ${idx === currentMuralIndex ? 'w-6 bg-accent' : 'w-2 bg-white/40 hover:bg-white/75'}`;
+        });
+
+        const factTitleEl = document.getElementById('mural-fact-title');
+        const factTextEl = document.getElementById('mural-fact-text');
+        const captionEl = document.getElementById('mural-photo-caption');
+        const counterEl = document.getElementById('mural-slide-counter');
+
+        if (factTitleEl) factTitleEl.textContent = slide.factTitle || 'Dato Curioso del Recinto';
+        if (factTextEl) factTextEl.textContent = slide.factText || '';
+        if (captionEl) captionEl.textContent = slide.caption || '';
+        if (counterEl) counterEl.textContent = `${currentMuralIndex + 1} / ${muralSlides.length}`;
+      }
+
+      function goToMuralSlide(idx) {
+        if (!muralSlides.length) return;
+        currentMuralIndex = (idx + muralSlides.length) % muralSlides.length;
+        updateActiveMuralSlideInfo();
+      }
+
+      function restartMuralAutoplay() {
+        if (muralAutoTimer) clearInterval(muralAutoTimer);
+        if (muralSlides.length > 1) {
+          muralAutoTimer = setInterval(() => {
+            goToMuralSlide(currentMuralIndex + 1);
+          }, 6500);
+        }
+      }
+
+      const muralPrevBtn = document.getElementById('mural-prev-btn');
+      const muralNextBtn = document.getElementById('mural-next-btn');
+      if (muralPrevBtn) {
+        muralPrevBtn.addEventListener('click', () => {
+          goToMuralSlide(currentMuralIndex - 1);
+          restartMuralAutoplay();
+        });
+      }
+      if (muralNextBtn) {
+        muralNextBtn.addEventListener('click', () => {
+          goToMuralSlide(currentMuralIndex + 1);
+          restartMuralAutoplay();
+        });
+      }
+
+      // =========================================================================
+      // SINCRONIZACIÓN EN VIVO CON EL PANEL DE ADMINISTRACIÓN (admin.html)
+      // =========================================================================
+      function syncWithAdminPanel() {
+        // 1. Sincronizar textos e imágenes del CMS si el administrador los modificó
+        let customSlides = null;
+        try {
+          const rawCms = localStorage.getItem('tc_admin_cms');
+          if (rawCms) {
+            const cms = JSON.parse(rawCms);
+            const badgeEl = document.getElementById('mural-badge-sub');
+            const titleEl = document.getElementById('mural-main-title');
+            const descEl = document.getElementById('mural-main-desc');
+            const cartHeadingEl = document.getElementById('cartelera-heading');
+            const cartSubEl = document.getElementById('cartelera-sub');
+            const phoneEl = document.getElementById('footer-taquilla-phone');
+            if (badgeEl && cms.muralBadge) badgeEl.textContent = cms.muralBadge;
+            if (titleEl && cms.muralTitle) titleEl.textContent = cms.muralTitle;
+            if (descEl && cms.muralDesc) descEl.textContent = cms.muralDesc;
+            if (cartHeadingEl && cms.carteleraHeading) cartHeadingEl.textContent = cms.carteleraHeading;
+            if (cartSubEl && cms.carteleraSub) cartSubEl.textContent = cms.carteleraSub;
+            if (phoneEl && cms.contactPhone) phoneEl.textContent = `Taquilla: ${cms.contactPhone}`;
+            if (Array.isArray(cms.muralSlides) && cms.muralSlides.length > 0) {
+              customSlides = cms.muralSlides;
+            }
+          }
+        } catch (e) {}
+
+        muralSlides = customSlides || [...DEFAULT_MURAL_SLIDES];
+        renderMuralCarousel();
+        restartMuralAutoplay();
+
+        // 2. Sincronizar espectáculos de la cartelera si el administrador los modificó
+        try {
+          const rawEvents = localStorage.getItem('tc_admin_eventos');
+          if (rawEvents) {
+            const adminEvents = JSON.parse(rawEvents);
+            const visibleEvents = adminEvents.filter(ev => ev.status !== 'borrador');
+            const grid = document.getElementById('events-grid');
+            const emptyEl = document.getElementById('empty-state');
+
+            if (grid && emptyEl) {
+              // Eliminar tarjetas estáticas anteriores
+              grid.querySelectorAll('.event-card').forEach(el => el.remove());
+
+              const bgColors = {
+                'conciertos': 'bg-secondary',
+                'danza': 'bg-slate-300',
+                'teatro': 'bg-slate-800'
+              };
+
+              // Insertar tarjetas actualizadas desde el panel admin
+              visibleEvents.forEach(ev => {
+                const bgClass = bgColors[ev.category] || 'bg-secondary';
+                const badgeBg = ev.category === 'conciertos' ? 'bg-primary' : 'bg-accent';
+                const dateFormatted = formatDateDisplay(ev.date, true);
+                const isSoldOut = ev.status === 'agotado';
+
+                const article = document.createElement('article');
+                article.className = 'event-card bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden border border-gray-200/70 group hover:-translate-y-1';
+                article.setAttribute('data-category', ev.category);
+                article.setAttribute('data-title', ev.title);
+                article.setAttribute('data-date', ev.date);
+
+                article.innerHTML = `
+                  <div class="h-44 ${bgClass} relative overflow-hidden flex items-center justify-center">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent"></div>
+                    <span class="absolute top-3 left-3 ${badgeBg} text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">
+                      ${ev.badge || ev.category}
+                    </span>
+                    ${isSoldOut ? '<span class="absolute top-3 right-3 bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-md shadow-sm uppercase">Agotado</span>' : ''}
+                    <span class="absolute bottom-2 right-3 text-white/90 text-xs font-medium drop-shadow">
+                      Teatro de la Ciudad
+                    </span>
+                    <svg class="w-12 h-12 text-primary/30 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z"></path>
+                    </svg>
+                  </div>
+                  <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+                    <div class="space-y-2">
+                      <div class="flex items-center gap-1.5 text-xs font-semibold text-accent">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                        <span>${dateFormatted} • ${ev.time}</span>
+                      </div>
+                      <h3 class="font-bold text-base md:text-lg text-base-text group-hover:text-primary transition-colors leading-snug">
+                        ${ev.title}
+                      </h3>
+                      <p class="text-xs text-gray-600 line-clamp-2">
+                        ${ev.desc}
+                      </p>
+                    </div>
+                    <div class="pt-3 border-t border-gray-100 flex items-center justify-between">
+                      <span class="text-xs text-gray-500 font-medium">${ev.price}</span>
+                      <button type="button" class="bg-accent hover:brightness-110 active:scale-95 text-white text-xs font-bold px-4 py-2 rounded-full shadow-sm transition-all duration-200">
+                        Ver más
+                      </button>
+                    </div>
+                  </div>
+                `;
+
+                grid.insertBefore(article, emptyEl);
+              });
+
+              // Actualizar referencias dinámicas y conteos de categorías
+              cards = Array.from(document.querySelectorAll('.event-card'));
+              eventDatesSet = new Set(cards.map(c => c.getAttribute('data-date')).filter(Boolean));
+
+              // Actualizar badges de categorías en el menú desplegable
+              categoryOptionButtons.forEach(opt => {
+                const filterKey = opt.getAttribute('data-filter');
+                const badgeEl = opt.querySelector('.cat-badge');
+                if (badgeEl) {
+                  const count = filterKey === 'all'
+                    ? cards.length
+                    : cards.filter(c => c.getAttribute('data-category') === filterKey).length;
+                  badgeEl.textContent = count;
+                }
+              });
+            }
+          }
+        } catch (e) {}
+      }
+
+      // Escuchar cambios si se edita en otra pestaña con admin.html abierto
+      window.addEventListener('storage', (e) => {
+        if (e.key === 'tc_admin_eventos' || e.key === 'tc_admin_cms') {
+          syncWithAdminPanel();
+          updateUI();
+        }
+      });
+
+      syncAuthNavbar();
+      syncWithAdminPanel();
+
+      // Inicializar estado con paginación
+      updateUI();
+    });
+  </script>
+
+</body>
+
+</html>
