@@ -102,11 +102,11 @@
     <div class="w-full px-4 sm:px-6 md:px-[100px] relative z-10">
 
       <div class="max-w-4xl space-y-4">
-        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white leading-tight">
+        <h1 id="cotpage-hero-title" class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white leading-tight">
           Cotiza tu Producción en el Teatro de la Ciudad de Coatzacoalcos
         </h1>
 
-        <p class="text-base sm:text-lg text-gray-200 leading-relaxed max-w-3xl font-light">
+        <p id="cotpage-hero-desc" class="text-base sm:text-lg text-gray-200 leading-relaxed max-w-3xl font-light">
           Diseñado por el Arq. Abraham Zabludovsky, el Teatro de la Ciudad ofrece una infraestructura escénica de
           estándar internacional con aforo de <strong class="text-white font-semibold">1,724 butacas numeradas</strong>
           para obras de teatro, danza clásica, conciertos, recitales sinfónicos y actos de graduación.
@@ -114,10 +114,10 @@
 
         <!-- Pregunta y respuesta sobre costos y presupuestos (solo texto) -->
         <div class="space-y-3 max-w-3xl pt-2">
-          <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">
+          <h2 id="cotpage-faq-title" class="text-xl sm:text-2xl font-bold text-white tracking-tight">
             ¿Es costoso realizar un evento en el Teatro de la Ciudad?
           </h2>
-          <p class="text-base sm:text-lg text-gray-200 leading-relaxed font-light">
+          <p id="cotpage-faq-p1" class="text-base sm:text-lg text-gray-200 leading-relaxed font-light">
             <strong class="text-highlight font-semibold">Esto es un mito, nuestra respuesta definitiva es NO</strong>,
             ya que cada evento se realiza en base a lo que el cliente requiere, por lo que el costo total está definido
             por las necesidades de su producción. La renta del Teatro de la Ciudad ya incluye su infraestructura
@@ -126,7 +126,7 @@
             permite desde montajes sencillos y escolares hasta grandes producciones que requieren foso de orquesta,
             conchas acústicas e iluminación modular.
           </p>
-          <p class="text-base sm:text-lg text-gray-200 leading-relaxed font-light">
+          <p id="cotpage-faq-p2" class="text-base sm:text-lg text-gray-200 leading-relaxed font-light">
             No importa cuál sea el presupuesto para su evento, usted puede realizarlo en el Teatro de la Ciudad y tendrá
             el respaldo de nuestro personal técnico, que se preocupará porque su función sea un éxito.
           </p>
@@ -153,9 +153,9 @@
     <div class="w-full px-4 sm:px-6 md:px-[100px]">
 
       <div class="max-w-3xl">
-        <span class="text-accent text-sm font-bold tracking-widest uppercase">Incluido con la renta</span>
-        <h2 class="text-3xl font-black text-primary tracking-tight mt-1">Ficha Técnica del Teatro</h2>
-        <p class="text-gray-600 text-base mt-2 leading-relaxed">
+        <span id="cotpage-tech-badge" class="text-accent text-sm font-bold tracking-widest uppercase">Incluido con la renta</span>
+        <h2 id="cotpage-tech-title" class="text-3xl font-black text-primary tracking-tight mt-1">Ficha Técnica del Teatro</h2>
+        <p id="cotpage-tech-sub" class="text-gray-600 text-base mt-2 leading-relaxed">
           Infraestructura y equipamiento con el que cuenta el Teatro de la Ciudad y que forma parte de la renta del
           recinto.
         </p>
@@ -204,7 +204,7 @@
 
       </div>
 
-      <p class="mt-8 text-sm text-gray-500 max-w-3xl">
+      <p id="cotpage-tech-note" class="mt-8 text-sm text-gray-500 max-w-3xl">
         El uso del foso de orquesta, las conchas acústicas y la iluminación modular requiere montaje previo; indícalo en
         el formulario para planificarlo con anticipación.
       </p>
@@ -222,11 +222,11 @@
         <div class="lg:col-span-7 bg-white p-6 sm:p-10 rounded-3xl border border-gray-200 shadow-md space-y-8">
 
           <div class="border-b border-gray-100 pb-5">
-            <span class="text-accent text-sm font-bold tracking-widest uppercase">Solicitud Directa</span>
-            <h2 class="text-3xl font-black text-primary tracking-tight mt-1">
+            <span id="cotpage-form-badge" class="text-accent text-sm font-bold tracking-widest uppercase">Solicitud Directa</span>
+            <h2 id="cotpage-form-title" class="text-3xl font-black text-primary tracking-tight mt-1">
               Formulario de Cotización del Teatro de la Ciudad
             </h2>
-            <p class="text-gray-500 text-sm sm:text-base mt-1">
+            <p id="cotpage-form-sub" class="text-gray-500 text-sm sm:text-base mt-1">
               Completa los datos requeridos para tu evento. Recibirás disponibilidad formal de fechas y desglose
               presupuestal en menos de 24 horas hábiles.
             </p>
@@ -986,7 +986,38 @@
         }
       }
 
+      function syncCotizarWithAdminPanel() {
+        try {
+          const rawCms = localStorage.getItem('tc_admin_cms');
+          if (!rawCms) return;
+          const cms = JSON.parse(rawCms);
+          const map = [
+            ['cotpage-hero-title', 'cotpageHeroTitle'],
+            ['cotpage-hero-desc', 'cotpageHeroDesc'],
+            ['cotpage-faq-title', 'cotpageFaqTitle'],
+            ['cotpage-faq-p1', 'cotpageFaqP1'],
+            ['cotpage-faq-p2', 'cotpageFaqP2'],
+            ['cotpage-tech-badge', 'cotpageTechBadge'],
+            ['cotpage-tech-title', 'cotpageTechTitle'],
+            ['cotpage-tech-sub', 'cotpageTechSub'],
+            ['cotpage-tech-note', 'cotpageTechNote'],
+            ['cotpage-form-badge', 'cotpageFormBadge'],
+            ['cotpage-form-title', 'cotpageFormTitle'],
+            ['cotpage-form-sub', 'cotpageFormSub']
+          ];
+          map.forEach(([id, key]) => {
+            const el = document.getElementById(id);
+            if (el && cms[key]) el.textContent = cms[key];
+          });
+        } catch (err) {}
+      }
+
+      window.addEventListener('storage', (e) => {
+        if (e.key === 'tc_admin_cms') syncCotizarWithAdminPanel();
+      });
+
       syncAuthNavbar();
+      syncCotizarWithAdminPanel();
 
       // Inicializar
       updateSummary();

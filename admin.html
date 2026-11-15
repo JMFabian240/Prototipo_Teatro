@@ -26,14 +26,14 @@
     }
   </script>
 </head>
-<body class="bg-[#F1F5F9] text-base-text min-h-screen flex flex-col md:flex-row font-sans antialiased">
+<body class="bg-[#F1F5F9] text-base-text min-h-screen md:h-screen md:overflow-hidden flex flex-col md:flex-row font-sans antialiased">
 
   <!-- ========================================================================= -->
   <!-- 1. BARRA LATERAL (SIDEBAR DE NAVEGACIÓN ADMINISTRATIVA) -->
   <!-- ========================================================================= -->
-  <aside class="w-full md:w-72 bg-slate-950 text-white flex-shrink-0 flex flex-col justify-between border-r border-slate-800 shadow-xl z-30">
+  <aside class="w-full md:w-72 md:h-screen bg-slate-950 text-white flex-shrink-0 flex flex-col justify-between border-r border-slate-800 shadow-xl z-30">
     
-    <div>
+    <div class="flex-1 min-h-0 overflow-y-auto">
       <!-- Encabezado de la barra lateral -->
       <div class="p-6 border-b border-slate-800/80">
         <div class="flex items-center space-x-3">
@@ -101,8 +101,8 @@
       </nav>
     </div>
 
-    <!-- Pie del Sidebar: Usuario y Enlace al Portal Público -->
-    <div class="p-4 border-t border-slate-800 bg-slate-950/60">
+    <!-- Pie del Sidebar: Usuario y Enlace al Portal Público (Fijo en esquina inferior izquierda) -->
+    <div class="flex-shrink-0 p-4 border-t border-slate-800 bg-slate-950/60">
       <div class="flex items-center gap-3 mb-3 p-2 rounded-xl bg-slate-900/80 border border-slate-800">
         <div class="w-9 h-9 rounded-full bg-primary flex items-center justify-center font-bold text-white text-xs">
           AD
@@ -132,9 +132,9 @@
   </aside>
 
   <!-- ========================================================================= -->
-  <!-- 2. CONTENEDOR PRINCIPAL DEL PANEL (TOPBAR + VISTAS) -->
+  <!-- 2. CONTENEDOR PRINCIPAL DEL PANEL (TOPBAR + VISTAS CON SCROLL INDEPENDIENTE) -->
   <!-- ========================================================================= -->
-  <div class="flex-1 flex flex-col min-h-screen overflow-y-auto">
+  <div class="flex-1 min-w-0 flex flex-col min-h-screen md:min-h-0 md:h-screen overflow-y-auto">
 
     <!-- Topbar Superior del Admin -->
     <header class="bg-white sticky top-0 z-20 border-b border-gray-200 px-6 py-4 flex items-center justify-between shadow-sm">
@@ -397,6 +397,18 @@
           </div>
         </div>
 
+        <!-- Pestañas para elegir qué página editar (index.html vs cotizar.html) -->
+        <div class="flex flex-wrap items-center gap-2 bg-white p-2 rounded-2xl border border-gray-200 shadow-sm w-fit">
+          <button type="button" data-cms-tab="index"
+            class="cms-tab-btn active px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-primary text-white shadow-sm transition flex items-center gap-2">
+            <span>Página Principal (index.html)</span>
+          </button>
+          <button type="button" data-cms-tab="cotizar"
+            class="cms-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-gray-600 hover:text-primary hover:bg-gray-100 transition flex items-center gap-2">
+            <span>Página de Cotizar (cotizar.html)</span>
+          </button>
+        </div>
+
         <!-- Marco Simulador del Sitio Web (Vista Previa Editable) -->
         <div class="bg-white rounded-3xl border-2 border-gray-300 shadow-xl overflow-hidden">
           
@@ -407,11 +419,14 @@
               <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
               <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
             </div>
-            <div class="bg-slate-800 px-4 py-1 rounded-full text-[11px] font-mono text-gray-300">
+            <div id="cms-browser-url" class="bg-slate-800 px-4 py-1 rounded-full text-[11px] font-mono text-gray-300">
               vista-previa-editable • index.html
             </div>
             <span class="text-[11px] text-highlight font-semibold">Modo Edición Activo</span>
           </div>
+
+          <!-- PESTAÑA CMS 1: INDEX.HTML -->
+          <div id="cms-panel-index" class="cms-tab-panel">
 
           <!-- 1. SECCIÓN MURAL EDITABLE (CARRUSEL + DATOS CURIOSOS) -->
           <div class="relative overflow-hidden bg-slate-950 text-white py-12 px-6 sm:px-10 flex items-center min-h-[400px]">
@@ -577,6 +592,173 @@
             </div>
 
           </div>
+
+          <!-- 4. SECCIÓN COTIZACIÓN / RENTA DE TEATRO EDITABLE (SECCIÓN C) -->
+          <div class="p-6 sm:p-10 bg-base-bg border-t border-gray-200 space-y-4">
+            <div class="text-[11px] font-bold uppercase tracking-wider text-accent flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-accent"></span>
+              <span>Sección de Cotización y Renta del Teatro (Haz clic para editar)</span>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-gray-200 p-5 sm:p-6 grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
+              <!-- Foto lateral editable -->
+              <div class="relative rounded-2xl overflow-hidden border border-gray-200 h-60 bg-slate-900">
+                <img id="preview-cotizar-img" src="img/teatro-sala-interior.jpg" alt="Sala para eventos"
+                  class="w-full h-full object-cover object-center" />
+                <button type="button" id="btn-open-cotizar-img-modal"
+                  class="absolute top-3 left-3 bg-slate-950/85 hover:bg-primary text-white text-xs font-bold px-3.5 py-2 rounded-full border border-white/30 backdrop-blur-md shadow-lg flex items-center gap-2 transition hover:scale-105">
+                  <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  </svg>
+                  <span>Cambiar Foto de Sección</span>
+                </button>
+              </div>
+
+              <!-- Textos editables de la sección Cotizar -->
+              <div class="space-y-3 text-left">
+                <div>
+                  <span class="text-[10px] font-bold uppercase text-gray-400">Pregunta / Título Principal:</span>
+                  <h3 id="preview-cotizar-title" contenteditable="true"
+                    class="text-lg sm:text-xl font-extrabold text-primary outline-none border border-dashed border-gray-300 hover:border-primary focus:border-accent focus:bg-base-bg rounded-xl p-2 mt-0.5 cursor-text transition">
+                    ¿Es costoso realizar un evento en el Teatro de la Ciudad?
+                  </h3>
+                </div>
+                <div>
+                  <span class="text-[10px] font-bold uppercase text-gray-400">Párrafo Principal:</span>
+                  <p id="preview-cotizar-desc1" contenteditable="true"
+                    class="text-xs sm:text-sm text-gray-700 leading-relaxed outline-none border border-dashed border-gray-300 hover:border-primary focus:border-accent focus:bg-base-bg rounded-xl p-2 mt-0.5 cursor-text transition">
+                    No. Al ser un complejo público e institucional, contamos con tarifas accesibles y esquemas modulares que se adaptan a producciones culturales, artísticas, escolares, conciertos y congresos empresariales.
+                  </p>
+                </div>
+                <div>
+                  <span class="text-[10px] font-bold uppercase text-gray-400">Párrafo Secundario (Equipamiento incluido):</span>
+                  <p id="preview-cotizar-desc2" contenteditable="true"
+                    class="text-xs text-gray-600 leading-relaxed outline-none border border-dashed border-gray-300 hover:border-primary focus:border-accent focus:bg-base-bg rounded-xl p-2 mt-0.5 cursor-text transition">
+                    Cada contratación incluye equipamiento de audio profesional, iluminación computarizada, mecánica teatral, camerinos equipados y personal técnico de soporte en sitio.
+                  </p>
+                </div>
+                <div>
+                  <span class="text-[10px] font-bold uppercase text-gray-400">Teléfono de Vinculación y Eventos:</span>
+                  <div id="preview-cotizar-phone" contenteditable="true"
+                    class="text-xs font-bold text-primary outline-none border border-dashed border-gray-300 hover:border-primary focus:border-accent focus:bg-base-bg rounded-lg p-2 mt-0.5 cursor-text transition">
+                    (921) 210 6616
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          </div><!-- Fin #cms-panel-index -->
+
+          <!-- PESTAÑA CMS 2: COTIZAR.HTML -->
+          <div id="cms-panel-cotizar" class="cms-tab-panel hidden">
+            
+            <!-- 1. Hero de Cotización Editable -->
+            <div class="bg-gradient-to-b from-primary via-slate-900 to-slate-950 text-white p-6 sm:p-10 space-y-5">
+              <div class="text-[11px] font-bold uppercase tracking-wider text-highlight flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-accent"></span>
+                <span>Cabecera Principal de cotizar.html (Haz clic para editar)</span>
+              </div>
+
+              <div class="space-y-3 max-w-4xl">
+                <h2 id="preview-cotpage-hero-title" contenteditable="true"
+                  class="text-2xl sm:text-3xl font-black text-white leading-tight outline-none border border-dashed border-white/30 hover:border-highlight focus:border-accent focus:bg-slate-900/70 rounded-xl p-2 cursor-text transition">
+                  Cotiza tu Producción en el Teatro de la Ciudad de Coatzacoalcos
+                </h2>
+                <p id="preview-cotpage-hero-desc" contenteditable="true"
+                  class="text-sm sm:text-base text-gray-200 leading-relaxed outline-none border border-dashed border-white/30 hover:border-highlight focus:border-accent focus:bg-slate-900/70 rounded-xl p-2 cursor-text transition">
+                  Diseñado por el Arq. Abraham Zabludovsky, el Teatro de la Ciudad ofrece una infraestructura escénica de estándar internacional con aforo de 1,724 butacas numeradas para obras de teatro, danza clásica, conciertos, recitales sinfónicos y actos de graduación.
+                </p>
+              </div>
+
+              <div class="pt-2 border-t border-white/15 space-y-3 max-w-4xl">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-accent block">Bloque de Pregunta sobre Costos</span>
+                <h3 id="preview-cotpage-faq-title" contenteditable="true"
+                  class="text-lg sm:text-xl font-bold text-white outline-none border border-dashed border-white/30 hover:border-highlight focus:border-accent focus:bg-slate-900/70 rounded-xl p-2 cursor-text transition">
+                  ¿Es costoso realizar un evento en el Teatro de la Ciudad?
+                </h3>
+                <p id="preview-cotpage-faq-p1" contenteditable="true"
+                  class="text-xs sm:text-sm text-gray-200 leading-relaxed outline-none border border-dashed border-white/30 hover:border-highlight focus:border-accent focus:bg-slate-900/70 rounded-xl p-2 cursor-text transition">
+                  Esto es un mito, nuestra respuesta definitiva es NO, ya que cada evento se realiza en base a lo que el cliente requiere, por lo que el costo total está definido por las necesidades de su producción. La renta del Teatro de la Ciudad ya incluye su infraestructura escénica: tramoya de 67 varas contrapesadas, vestimenta teatral completa, 10 camerinos, andenes de carga a nivel de escenario y estacionamiento para 700 vehículos.
+                </p>
+                <p id="preview-cotpage-faq-p2" contenteditable="true"
+                  class="text-xs sm:text-sm text-gray-200 leading-relaxed outline-none border border-dashed border-white/30 hover:border-highlight focus:border-accent focus:bg-slate-900/70 rounded-xl p-2 cursor-text transition">
+                  No importa cuál sea el presupuesto para su evento, usted puede realizarlo en el Teatro de la Ciudad y tendrá el respaldo de nuestro personal técnico, que se preocupará porque su función sea un éxito.
+                </p>
+              </div>
+            </div>
+
+            <!-- 2. Ficha Técnica y Nota de Montaje de cotizar.html -->
+            <div class="p-6 sm:p-10 bg-base-bg border-b border-gray-200 space-y-3">
+              <div class="text-[11px] font-bold uppercase tracking-wider text-accent flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-accent"></span>
+                <span>Sección Ficha Técnica en cotizar.html (Haz clic para editar)</span>
+              </div>
+              <div class="bg-white rounded-2xl border border-gray-200 p-5 space-y-3">
+                <div>
+                  <span class="text-[10px] font-bold uppercase text-gray-400">Etiqueta Superior:</span>
+                  <div id="preview-cotpage-tech-badge" contenteditable="true"
+                    class="text-xs font-bold uppercase text-accent outline-none border border-dashed border-gray-300 hover:border-primary focus:border-accent rounded-lg p-1.5 mt-0.5 cursor-text w-fit">
+                    Incluido con la renta
+                  </div>
+                </div>
+                <div>
+                  <span class="text-[10px] font-bold uppercase text-gray-400">Título de Sección:</span>
+                  <h3 id="preview-cotpage-tech-title" contenteditable="true"
+                    class="text-xl font-black text-primary outline-none border border-dashed border-gray-300 hover:border-primary focus:border-accent rounded-xl p-2 mt-0.5 cursor-text">
+                    Ficha Técnica del Teatro
+                  </h3>
+                </div>
+                <div>
+                  <span class="text-[10px] font-bold uppercase text-gray-400">Subtítulo:</span>
+                  <p id="preview-cotpage-tech-sub" contenteditable="true"
+                    class="text-sm text-gray-600 outline-none border border-dashed border-gray-300 hover:border-primary focus:border-accent rounded-xl p-2 mt-0.5 cursor-text">
+                    Infraestructura y equipamiento con el que cuenta el Teatro de la Ciudad y que forma parte de la renta del recinto.
+                  </p>
+                </div>
+                <div>
+                  <span class="text-[10px] font-bold uppercase text-gray-400">Nota Inferior de Montaje Previo:</span>
+                  <p id="preview-cotpage-tech-note" contenteditable="true"
+                    class="text-xs text-gray-500 outline-none border border-dashed border-gray-300 hover:border-primary focus:border-accent rounded-xl p-2 mt-0.5 cursor-text">
+                    El uso del foso de orquesta, las conchas acústicas y la iluminación modular requiere montaje previo; indícalo en el formulario para planificarlo con anticipación.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Encabezado del Formulario de cotizar.html -->
+            <div class="p-6 sm:p-10 bg-white space-y-3">
+              <div class="text-[11px] font-bold uppercase tracking-wider text-accent flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-accent"></span>
+                <span>Encabezado del Formulario en cotizar.html (Haz clic para editar)</span>
+              </div>
+              <div class="bg-base-bg rounded-2xl border border-gray-200 p-5 space-y-3">
+                <div>
+                  <span class="text-[10px] font-bold uppercase text-gray-400">Etiqueta Superior:</span>
+                  <div id="preview-cotpage-form-badge" contenteditable="true"
+                    class="text-xs font-bold uppercase text-accent outline-none border border-dashed border-gray-300 hover:border-primary focus:border-accent rounded-lg p-1.5 mt-0.5 cursor-text bg-white w-fit">
+                    Solicitud Directa
+                  </div>
+                </div>
+                <div>
+                  <span class="text-[10px] font-bold uppercase text-gray-400">Título del Formulario:</span>
+                  <h3 id="preview-cotpage-form-title" contenteditable="true"
+                    class="text-xl font-black text-primary outline-none border border-dashed border-gray-300 hover:border-primary focus:border-accent rounded-xl p-2 mt-0.5 cursor-text bg-white">
+                    Formulario de Cotización del Teatro de la Ciudad
+                  </h3>
+                </div>
+                <div>
+                  <span class="text-[10px] font-bold uppercase text-gray-400">Descripción / Tiempo de Respuesta:</span>
+                  <p id="preview-cotpage-form-sub" contenteditable="true"
+                    class="text-sm text-gray-600 outline-none border border-dashed border-gray-300 hover:border-primary focus:border-accent rounded-xl p-2 mt-0.5 cursor-text bg-white">
+                    Completa los datos requeridos para tu evento. Recibirás disponibilidad formal de fechas y desglose presupuestal en menos de 24 horas hábiles.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- Fin #cms-panel-cotizar -->
 
         </div>
 
@@ -1492,7 +1674,24 @@
         specCamerinos: '4 Estelares + 2 Grupales (Capacidad 40 personas)',
         specEstacionamiento: '320 cajones exclusivos con vigilancia',
         contactPhone: '921 210 5500',
-        contactEmail: 'taquilla@teatrocoatzacoalcos.gob.mx'
+        contactEmail: 'taquilla@teatrocoatzacoalcos.gob.mx',
+        cotizarImg: 'img/teatro-sala-interior.jpg',
+        cotizarTitle: '¿Es costoso realizar un evento en el Teatro de la Ciudad?',
+        cotizarDesc1: 'No. Al ser un complejo público e institucional, contamos con tarifas accesibles y esquemas modulares que se adaptan a producciones culturales, artísticas, escolares, conciertos y congresos empresariales.',
+        cotizarDesc2: 'Cada contratación incluye equipamiento de audio profesional, iluminación computarizada, mecánica teatral, camerinos equipados y personal técnico de soporte en sitio.',
+        cotizarPhone: '(921) 210 6616',
+        cotpageHeroTitle: 'Cotiza tu Producción en el Teatro de la Ciudad de Coatzacoalcos',
+        cotpageHeroDesc: 'Diseñado por el Arq. Abraham Zabludovsky, el Teatro de la Ciudad ofrece una infraestructura escénica de estándar internacional con aforo de 1,724 butacas numeradas para obras de teatro, danza clásica, conciertos, recitales sinfónicos y actos de graduación.',
+        cotpageFaqTitle: '¿Es costoso realizar un evento en el Teatro de la Ciudad?',
+        cotpageFaqP1: 'Esto es un mito, nuestra respuesta definitiva es NO, ya que cada evento se realiza en base a lo que el cliente requiere, por lo que el costo total está definido por las necesidades de su producción. La renta del Teatro de la Ciudad ya incluye su infraestructura escénica: tramoya de 67 varas contrapesadas, vestimenta teatral completa, 10 camerinos, andenes de carga a nivel de escenario y estacionamiento para 700 vehículos.',
+        cotpageFaqP2: 'No importa cuál sea el presupuesto para su evento, usted puede realizarlo en el Teatro de la Ciudad y tendrá el respaldo de nuestro personal técnico, que se preocupará porque su función sea un éxito.',
+        cotpageTechBadge: 'Incluido con la renta',
+        cotpageTechTitle: 'Ficha Técnica del Teatro',
+        cotpageTechSub: 'Infraestructura y equipamiento con el que cuenta el Teatro de la Ciudad y que forma parte de la renta del recinto.',
+        cotpageTechNote: 'El uso del foso de orquesta, las conchas acústicas y la iluminación modular requiere montaje previo; indícalo en el formulario para planificarlo con anticipación.',
+        cotpageFormBadge: 'Solicitud Directa',
+        cotpageFormTitle: 'Formulario de Cotización del Teatro de la Ciudad',
+        cotpageFormSub: 'Completa los datos requeridos para tu evento. Recibirás disponibilidad formal de fechas y desglose presupuestal en menos de 24 horas hábiles.'
       };
 
       const cmsPreviewFields = [
@@ -1505,8 +1704,52 @@
         { id: 'preview-spec-camerinos', key: 'specCamerinos' },
         { id: 'preview-spec-estacionamiento', key: 'specEstacionamiento' },
         { id: 'preview-contact-phone', key: 'contactPhone' },
-        { id: 'preview-contact-email', key: 'contactEmail' }
+        { id: 'preview-contact-email', key: 'contactEmail' },
+        { id: 'preview-cotizar-title', key: 'cotizarTitle' },
+        { id: 'preview-cotizar-desc1', key: 'cotizarDesc1' },
+        { id: 'preview-cotizar-desc2', key: 'cotizarDesc2' },
+        { id: 'preview-cotizar-phone', key: 'cotizarPhone' },
+        { id: 'preview-cotpage-hero-title', key: 'cotpageHeroTitle' },
+        { id: 'preview-cotpage-hero-desc', key: 'cotpageHeroDesc' },
+        { id: 'preview-cotpage-faq-title', key: 'cotpageFaqTitle' },
+        { id: 'preview-cotpage-faq-p1', key: 'cotpageFaqP1' },
+        { id: 'preview-cotpage-faq-p2', key: 'cotpageFaqP2' },
+        { id: 'preview-cotpage-tech-badge', key: 'cotpageTechBadge' },
+        { id: 'preview-cotpage-tech-title', key: 'cotpageTechTitle' },
+        { id: 'preview-cotpage-tech-sub', key: 'cotpageTechSub' },
+        { id: 'preview-cotpage-tech-note', key: 'cotpageTechNote' },
+        { id: 'preview-cotpage-form-badge', key: 'cotpageFormBadge' },
+        { id: 'preview-cotpage-form-title', key: 'cotpageFormTitle' },
+        { id: 'preview-cotpage-form-sub', key: 'cotpageFormSub' }
       ];
+
+      // Cambio de sub-pestañas dentro del Editor Visual CMS (index.html vs cotizar.html)
+      document.querySelectorAll('.cms-tab-btn').forEach((tabBtn) => {
+        tabBtn.addEventListener('click', () => {
+          const targetTab = tabBtn.getAttribute('data-cms-tab');
+          document.querySelectorAll('.cms-tab-btn').forEach((b) => {
+            const isActive = b === tabBtn;
+            b.classList.toggle('active', isActive);
+            b.classList.toggle('bg-primary', isActive);
+            b.classList.toggle('text-white', isActive);
+            b.classList.toggle('shadow-sm', isActive);
+            b.classList.toggle('text-gray-600', !isActive);
+            b.classList.toggle('hover:text-primary', !isActive);
+            b.classList.toggle('hover:bg-gray-100', !isActive);
+          });
+          document.querySelectorAll('.cms-tab-panel').forEach((panel) => {
+            panel.classList.add('hidden');
+          });
+          const activePanel = document.getElementById(`cms-panel-${targetTab}`);
+          if (activePanel) activePanel.classList.remove('hidden');
+          const urlBar = document.getElementById('cms-browser-url');
+          if (urlBar) {
+            urlBar.textContent = targetTab === 'cotizar'
+              ? 'vista-previa-editable • cotizar.html'
+              : 'vista-previa-editable • index.html';
+          }
+        });
+      });
 
       let cmsSlides = JSON.parse(JSON.stringify(DEFAULT_CMS_SLIDES));
       let activeCmsSlideIdx = 0;
@@ -1610,6 +1853,11 @@
         }
         activeCmsSlideIdx = 0;
         renderActiveCmsSlide();
+
+        const previewCotizarImg = document.getElementById('preview-cotizar-img');
+        if (previewCotizarImg) {
+          previewCotizarImg.src = data.cotizarImg || DEFAULT_CMS.cotizarImg;
+        }
       }
 
       // Evitar saltos de línea HTML inesperados en títulos/campos cortos
@@ -1656,6 +1904,7 @@
       const modalChangeImage = document.getElementById('modal-change-image');
       const modalImageTitle = document.getElementById('modal-image-title');
       const btnOpenImageModal = document.getElementById('btn-open-image-modal');
+      const btnOpenCotizarImgModal = document.getElementById('btn-open-cotizar-img-modal');
       const btnAddSlideModal = document.getElementById('btn-add-slide-modal');
       const btnCloseImageModal = document.getElementById('btn-close-image-modal');
       const btnCancelImageModal = document.getElementById('btn-cancel-image-modal');
@@ -1692,6 +1941,19 @@
           imageModalMode = 'add';
           if (modalImageTitle) modalImageTitle.textContent = 'Agregar Nueva Foto al Carrusel';
           if (cmsImgUrlInput) cmsImgUrlInput.value = '';
+          pendingImgDataUrl = '';
+          modalChangeImage.classList.remove('hidden');
+        };
+      }
+
+      if (btnOpenCotizarImgModal && modalChangeImage) {
+        btnOpenCotizarImgModal.onclick = () => {
+          imageModalMode = 'cotizar';
+          if (modalImageTitle) modalImageTitle.textContent = 'Cambiar Foto de Sección Cotizar';
+          const previewCotizarImg = document.getElementById('preview-cotizar-img');
+          if (cmsImgUrlInput && previewCotizarImg) {
+            cmsImgUrlInput.value = previewCotizarImg.src.startsWith('data:') ? '' : previewCotizarImg.src;
+          }
           pendingImgDataUrl = '';
           modalChangeImage.classList.remove('hidden');
         };
@@ -1742,6 +2004,11 @@
             renderActiveCmsSlide();
             closeImageModal();
             showToast('Nueva foto agregada. Edita su dato curioso y pulsa "Publicar Cambios".');
+          } else if (imageModalMode === 'cotizar') {
+            const previewCotizarImg = document.getElementById('preview-cotizar-img');
+            if (previewCotizarImg) previewCotizarImg.src = nextImg;
+            closeImageModal();
+            showToast('Foto de Sección Cotizar actualizada. Pulsa "Publicar Cambios" para guardar.');
           } else {
             if (cmsSlides[activeCmsSlideIdx]) cmsSlides[activeCmsSlideIdx].img = nextImg;
             renderActiveCmsSlide();
@@ -1764,6 +2031,8 @@
           cmsData.muralImg = cmsSlides[0]?.img || DEFAULT_CMS.muralImg;
           cmsData.muralCaption = cmsSlides[0]?.caption || DEFAULT_CMS.muralCaption;
           cmsData.muralSub = cmsData.muralBadge;
+          const previewCotizarImg = document.getElementById('preview-cotizar-img');
+          cmsData.cotizarImg = previewCotizarImg ? previewCotizarImg.src : DEFAULT_CMS.cotizarImg;
 
           localStorage.setItem('tc_admin_cms', JSON.stringify(cmsData));
           showToast('Cambios del carrusel y del sitio publicados correctamente.');

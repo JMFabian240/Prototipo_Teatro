@@ -58,3 +58,4 @@ Prototipo_1/
 1. Clona o descarga este repositorio.
 2. Abre `index.html` en cualquier navegador moderno (o usa una extensión como *Live Server*).
 3. Para probar la edición en vivo, abre `admin.html` en otra pestaña, realiza cambios en la sección **Contenido del Sitio** y pulsa **Publicar Cambios en el Sitio** para verlos reflejados en `index.html`.
+

@@ -1095,7 +1095,8 @@
         <div class="w-full h-full flex items-center justify-center">
           <div
             class="w-full h-[340px] sm:h-[370px] lg:h-[390px] rounded-2xl overflow-hidden shadow-xl border border-gray-200/80 group">
-            <img src="teatro-sala-butacas.jpg" alt="Sala de Espectáculos del Teatro de la Ciudad Coatzacoalcos"
+            <img id="cotizar-sec-img" src="teatro-sala-butacas.jpg" alt="Sala de Espectáculos del Teatro de la Ciudad Coatzacoalcos"
+              onerror="this.src='img/teatro-sala-interior.jpg'"
               class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" />
           </div>
         </div>
@@ -1105,20 +1106,17 @@
           class="flex flex-col justify-center items-center text-center space-y-5 py-2 max-w-xl mx-auto lg:max-w-none">
 
           <!-- Pregunta Principal -->
-          <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-primary tracking-tight leading-tight">
+          <h2 id="cotizar-sec-title" class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-primary tracking-tight leading-tight">
             ¿Es costoso realizar un evento en el Teatro de la Ciudad?
           </h2>
 
           <!-- Respuesta breve y clara -->
-          <p class="text-gray-700 text-sm sm:text-base leading-relaxed">
-            <strong class="text-primary font-bold">No.</strong> Al ser un complejo público e institucional, contamos con
-            tarifas accesibles y esquemas modulares que se adaptan a producciones culturales, artísticas, escolares,
-            conciertos y congresos empresariales.
+          <p id="cotizar-sec-desc1" class="text-gray-700 text-sm sm:text-base leading-relaxed">
+            No. Al ser un complejo público e institucional, contamos con tarifas accesibles y esquemas modulares que se adaptan a producciones culturales, artísticas, escolares, conciertos y congresos empresariales.
           </p>
 
-          <p class="text-gray-500 text-xs sm:text-sm leading-relaxed">
-            Cada contratación incluye equipamiento de audio profesional, iluminación computarizada, mecánica teatral,
-            camerinos equipados y personal técnico de soporte en sitio.
+          <p id="cotizar-sec-desc2" class="text-gray-500 text-xs sm:text-sm leading-relaxed">
+            Cada contratación incluye equipamiento de audio profesional, iluminación computarizada, mecánica teatral, camerinos equipados y personal técnico de soporte en sitio.
           </p>
 
           <!-- Botón de llamado a la acción hacia la pantalla de cotización -->
@@ -1140,7 +1138,7 @@
                 d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 4V3z">
               </path>
             </svg>
-            <span>Vinculación y eventos: <strong class="text-primary font-bold">(921) 210 6616</strong></span>
+            <span>Vinculación y eventos: <strong id="cotizar-sec-phone" class="text-primary font-bold">(921) 210 6616</strong></span>
           </div>
 
         </div>
@@ -2215,6 +2213,16 @@
             if (cartHeadingEl && cms.carteleraHeading) cartHeadingEl.textContent = cms.carteleraHeading;
             if (cartSubEl && cms.carteleraSub) cartSubEl.textContent = cms.carteleraSub;
             if (phoneEl && cms.contactPhone) phoneEl.textContent = `Taquilla: ${cms.contactPhone}`;
+            const cotImgEl = document.getElementById('cotizar-sec-img');
+            const cotTitleEl = document.getElementById('cotizar-sec-title');
+            const cotDesc1El = document.getElementById('cotizar-sec-desc1');
+            const cotDesc2El = document.getElementById('cotizar-sec-desc2');
+            const cotPhoneEl = document.getElementById('cotizar-sec-phone');
+            if (cotImgEl && cms.cotizarImg) cotImgEl.src = cms.cotizarImg;
+            if (cotTitleEl && cms.cotizarTitle) cotTitleEl.textContent = cms.cotizarTitle;
+            if (cotDesc1El && cms.cotizarDesc1) cotDesc1El.textContent = cms.cotizarDesc1;
+            if (cotDesc2El && cms.cotizarDesc2) cotDesc2El.textContent = cms.cotizarDesc2;
+            if (cotPhoneEl && cms.cotizarPhone) cotPhoneEl.textContent = cms.cotizarPhone;
             if (Array.isArray(cms.muralSlides) && cms.muralSlides.length > 0) {
               customSlides = cms.muralSlides;
             }
