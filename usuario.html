@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Perfil | Teatro de la Ciudad de Coatzacoalcos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1E3A8A',     // Azul Golfo
+            secondary: '#D9CBB8',   // Arena Arquitectónica
+            accent: '#E58E26',      // Dorado Atardecer
+            highlight: '#38BDF8',   // Celeste Brisa
+            'base-bg': '#F8F9FA',   // Blanco Nube
+            'base-text': '#0F172A', // Carbón Pizarra
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-base-bg text-base-text min-h-screen flex flex-col font-sans antialiased selection:bg-highlight selection:text-primary">
+
+  <!-- A) NAVBAR INSTITUCIONAL -->
+  <nav class="bg-primary text-white sticky top-0 z-50 shadow-md border-b border-white/10">
+    <div class="w-full px-4 sm:px-6 md:px-[100px]">
+      <div class="flex items-center justify-between h-20">
+        <a href="index.html" class="flex items-center space-x-3.5 group">
+          <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-highlight/30 to-accent/30 border border-white/20 flex items-center justify-center text-accent shadow-inner group-hover:scale-105 transition-transform duration-200">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+            </svg>
+          </div>
+          <div>
+            <div class="font-extrabold text-lg sm:text-xl tracking-tight leading-none text-white">TEATRO DE LA CIUDAD</div>
+            <div class="text-[11px] sm:text-xs text-secondary tracking-wider uppercase font-medium">Coatzacoalcos, Veracruz</div>
+          </div>
+        </a>
+
+        <div class="hidden md:flex items-center space-x-8 text-sm font-semibold md:ml-auto">
+          <a href="index.html#mural" class="text-white hover:text-highlight transition-colors duration-200 py-1 border-b-2 border-transparent hover:border-highlight">Inicio</a>
+          <a href="index.html#cartelera" class="text-white hover:text-highlight transition-colors duration-200 py-1 border-b-2 border-transparent hover:border-highlight">Cartelera</a>
+          <a href="cotizar.html" class="text-white hover:text-highlight transition-colors duration-200 py-1 border-b-2 border-transparent hover:border-highlight">Cotizar Teatro</a>
+          <a href="usuario.html" class="text-highlight py-1 border-b-2 border-highlight">Mi Perfil</a>
+        </div>
+
+        <div id="nav-auth-container" class="flex items-center space-x-3 empty:hidden md:ml-8"></div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- B) CABECERA DEL PERFIL DE USUARIO -->
+  <header class="bg-gradient-to-r from-slate-950 via-primary to-slate-900 text-white py-10 border-b border-white/10">
+    <div class="w-full px-4 sm:px-6 md:px-[100px]">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div class="flex items-center gap-4 sm:gap-5">
+          <div id="user-avatar-initials" class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-accent text-white font-black text-2xl sm:text-3xl flex items-center justify-center shadow-xl border-2 border-white/20 shrink-0">
+            US
+          </div>
+          <div>
+            <span class="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-highlight">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              Cuenta Oficial de Usuario
+            </span>
+            <h1 id="header-user-name" class="text-2xl sm:text-3xl font-extrabold tracking-tight mt-0.5">Usuario del Portal</h1>
+            <p id="header-user-meta" class="text-xs sm:text-sm text-gray-300 mt-1 font-mono">correo@ejemplo.com · (921) 000 0000</p>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-3">
+          <a href="index.html#cartelera" class="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-xs sm:text-sm font-semibold text-white transition">
+            Explorar Cartelera
+          </a>
+          <a href="cotizar.html" class="px-5 py-2.5 rounded-full bg-accent hover:brightness-110 text-xs sm:text-sm font-bold text-white shadow-lg transition">
+            + Nueva Cotización
+          </a>
+          <button type="button" id="btn-header-logout" class="px-5 py-2.5 rounded-full bg-red-600/85 hover:bg-red-600 border border-red-400/30 text-xs sm:text-sm font-bold text-white shadow-lg transition flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+            </svg>
+            <span>Cerrar Sesión</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Pestañas de navegación del perfil -->
+      <div class="mt-8 flex flex-wrap items-center gap-2 border-t border-white/15 pt-5">
+        <button type="button" data-user-tab="datos" class="user-tab-btn active px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-white text-primary shadow-sm transition">
+          Mis Datos Personales
+        </button>
+        <button type="button" data-user-tab="boletos" class="user-tab-btn px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-white/80 hover:text-white hover:bg-white/10 transition flex items-center gap-2">
+          <span>Boletos Comprados</span>
+          <span id="tab-badge-tickets" class="bg-accent text-white text-[10px] px-2 py-0.5 rounded-full">2</span>
+        </button>
+        <button type="button" data-user-tab="cotizaciones" class="user-tab-btn px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-white/80 hover:text-white hover:bg-white/10 transition flex items-center gap-2">
+          <span>Mis Cotizaciones</span>
+          <span id="tab-badge-quotes" class="bg-highlight/20 text-highlight text-[10px] px-2 py-0.5 rounded-full">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- C) CONTENIDO PRINCIPAL -->
+  <main class="flex-1 py-10">
+    <div class="w-full px-4 sm:px-6 md:px-[100px]">
+
+      <!-- Alerta si no ha iniciado sesión -->
+      <div id="guest-notice" class="hidden mb-6 p-4 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div class="text-xs sm:text-sm">
+          <strong>Modo vista previa:</strong> Aún no has iniciado sesión. Inicia sesión o regístrate para vincular tus datos reales.
+        </div>
+        <a href="cuenta.html#login" class="shrink-0 px-4 py-2 rounded-full bg-primary text-white text-xs font-bold hover:brightness-110 transition text-center">
+          Iniciar Sesión
+        </a>
+      </div>
+
+      <!-- PESTAÑA 1: MIS DATOS PERSONALES -->
+      <section id="panel-datos" class="user-panel space-y-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <!-- Tarjeta resumen de datos -->
+          <div class="lg:col-span-5 bg-white p-6 sm:p-8 rounded-3xl border border-gray-200 shadow-sm space-y-5">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-accent">Información Registrada</span>
+              <h2 class="text-xl font-black text-primary tracking-tight mt-1">Datos de Contacto</h2>
+              <p class="text-xs text-gray-500 mt-1">Estos datos se utilizan para tus boletos digitales y seguimiento de cotizaciones.</p>
+            </div>
+
+            <div class="space-y-4 pt-2 border-t border-gray-100">
+              <div class="p-3.5 rounded-2xl bg-base-bg border border-gray-200/70">
+                <div class="text-[11px] font-bold uppercase text-gray-400">Nombre Completo</div>
+                <div id="card-user-name" class="text-sm sm:text-base font-bold text-gray-900 mt-0.5">—</div>
+              </div>
+              <div class="p-3.5 rounded-2xl bg-base-bg border border-gray-200/70">
+                <div class="text-[11px] font-bold uppercase text-gray-400">Correo Electrónico</div>
+                <div id="card-user-email" class="text-sm sm:text-base font-mono font-semibold text-primary mt-0.5">—</div>
+              </div>
+              <div class="p-3.5 rounded-2xl bg-base-bg border border-gray-200/70">
+                <div class="text-[11px] font-bold uppercase text-gray-400">Teléfono de Contacto</div>
+                <div id="card-user-phone" class="text-sm sm:text-base font-semibold text-gray-900 mt-0.5">—</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Formulario para actualizar datos -->
+          <div class="lg:col-span-7 bg-white p-6 sm:p-8 rounded-3xl border border-gray-200 shadow-sm space-y-5">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-accent">Configuración de Cuenta</span>
+              <h2 class="text-xl font-black text-primary tracking-tight mt-1">Actualizar Mis Datos</h2>
+              <p class="text-xs text-gray-500 mt-1">Modifica tu nombre, correo o número telefónico y guarda los cambios.</p>
+            </div>
+
+            <form id="form-profile" class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="space-y-1.5">
+                  <label for="prof-nombre" class="block text-xs font-bold uppercase tracking-wider text-gray-700">Nombre(s) *</label>
+                  <input type="text" id="prof-nombre" required class="w-full px-4 py-2.5 rounded-xl border border-gray-300 text-sm bg-base-bg focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+                <div class="space-y-1.5">
+                  <label for="prof-apellidos" class="block text-xs font-bold uppercase tracking-wider text-gray-700">Apellidos</label>
+                  <input type="text" id="prof-apellidos" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 text-sm bg-base-bg focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="space-y-1.5">
+                  <label for="prof-correo" class="block text-xs font-bold uppercase tracking-wider text-gray-700">Correo Electrónico *</label>
+                  <input type="email" id="prof-correo" required class="w-full px-4 py-2.5 rounded-xl border border-gray-300 text-sm bg-base-bg focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+                <div class="space-y-1.5">
+                  <label for="prof-tel" class="block text-xs font-bold uppercase tracking-wider text-gray-700">Teléfono *</label>
+                  <input type="tel" id="prof-tel" required placeholder="(921) 000 0000" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 text-sm bg-base-bg focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+              </div>
+
+              <div class="pt-2 flex items-center justify-end gap-3">
+                <button type="submit" class="px-6 py-2.5 rounded-full bg-accent hover:brightness-110 active:scale-95 text-white font-bold text-xs sm:text-sm shadow-md transition">
+                  Guardar Cambios
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- PESTAÑA 2: BOLETOS COMPRADOS (RECIENTES + HISTORIAL) -->
+      <section id="panel-boletos" class="user-panel hidden space-y-8">
+        <!-- Boletos Recientes -->
+        <div class="space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-accent">Próximas Funciones</span>
+              <h2 class="text-xl font-black text-primary tracking-tight">Boletos Recientes</h2>
+            </div>
+            <span class="text-xs text-gray-500">Presenta tu folio o pase digital en el acceso principal del Teatro.</span>
+          </div>
+
+          <div id="recent-tickets-grid" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
+        </div>
+
+        <!-- Historial de Boletos -->
+        <div class="space-y-4">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-gray-400">Registro Completo</span>
+            <h2 class="text-xl font-black text-primary tracking-tight">Historial de Boletos</h2>
+          </div>
+
+          <div class="bg-white rounded-3xl border border-gray-200 shadow-sm overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                <thead class="bg-slate-950 text-white text-[11px] uppercase tracking-wider font-bold">
+                  <tr>
+                    <th class="py-3.5 px-5">Folio</th>
+                    <th class="py-3.5 px-4">Espectáculo</th>
+                    <th class="py-3.5 px-4">Fecha y Horario</th>
+                    <th class="py-3.5 px-4">Zona / Asientos</th>
+                    <th class="py-3.5 px-4">Total</th>
+                    <th class="py-3.5 px-5 text-right">Estatus</th>
+                  </tr>
+                </thead>
+                <tbody id="history-tickets-body" class="divide-y divide-gray-100 font-medium text-gray-700"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PESTAÑA 3: MIS SOLICITUDES DE COTIZACIÓN -->
+      <section id="panel-cotizaciones" class="user-panel hidden space-y-6">
+        <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <h2 class="text-lg font-black text-primary tracking-tight">Mis Solicitudes de Cotización</h2>
+            <p class="text-xs text-gray-500">Consulta el estatus actualizado de tus solicitudes enviadas para eventos en el recinto.</p>
+          </div>
+          <a href="cotizar.html" class="px-5 py-2.5 rounded-full bg-accent hover:brightness-110 text-white font-bold text-xs shadow-sm transition text-center">
+            + Solicitar Nueva Cotización
+          </a>
+        </div>
+
+        <div class="bg-white rounded-3xl border border-gray-200 shadow-sm overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse text-xs sm:text-sm">
+              <thead class="bg-slate-950 text-white text-[11px] uppercase tracking-wider font-bold">
+                <tr>
+                  <th class="py-3.5 px-5">Folio</th>
+                  <th class="py-3.5 px-4">Nombre del Evento</th>
+                  <th class="py-3.5 px-4">Fechas y Horarios</th>
+                  <th class="py-3.5 px-4">Asistentes</th>
+                  <th class="py-3.5 px-4">Requerimientos</th>
+                  <th class="py-3.5 px-5 text-right">Estatus</th>
+                </tr>
+              </thead>
+              <tbody id="user-quotes-body" class="divide-y divide-gray-100 font-medium text-gray-700"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- MODAL: PASE DIGITAL DE BOLETO -->
+  <div id="modal-ticket" class="hidden fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl shadow-2xl border border-gray-200 max-w-md w-full overflow-hidden">
+      <div class="bg-primary text-white px-6 py-4 flex items-center justify-between">
+        <div>
+          <div class="text-[10px] uppercase tracking-widest text-highlight font-bold">Pase Digital Oficial</div>
+          <h3 id="mt-event" class="font-extrabold text-base mt-0.5">Nombre del Evento</h3>
+        </div>
+        <button type="button" id="btn-close-ticket-modal" class="p-1.5 rounded-lg hover:bg-white/10 text-white">✕</button>
+      </div>
+      <div class="p-6 space-y-4 text-center">
+        <div class="mx-auto w-36 h-36 rounded-2xl bg-slate-900 text-white flex flex-col items-center justify-center border-4 border-accent/40 shadow-inner">
+          <span class="text-xs font-mono text-highlight">QR VÁLIDO</span>
+          <span id="mt-folio" class="text-xs font-mono font-bold mt-1">TC-BOL-001</span>
+        </div>
+        <div class="grid grid-cols-2 gap-3 text-left text-xs bg-base-bg p-4 rounded-2xl border border-gray-200">
+          <div><span class="text-gray-400 block">Fecha y Hora:</span><strong id="mt-date" class="text-gray-900">—</strong></div>
+          <div><span class="text-gray-400 block">Zona / Butacas:</span><strong id="mt-seats" class="text-primary">—</strong></div>
+          <div><span class="text-gray-400 block">Titular:</span><strong id="mt-holder" class="text-gray-900">—</strong></div>
+          <div><span class="text-gray-400 block">Total Pagado:</span><strong id="mt-total" class="text-emerald-700">—</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div id="user-toast" class="hidden fixed bottom-6 right-6 z-50 bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-2xl border border-slate-700 text-xs sm:text-sm font-semibold flex items-center gap-3">
+    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+    <span id="user-toast-msg">Datos actualizados.</span>
+  </div>
+
+  <!-- D) FOOTER -->
+  <footer class="bg-primary text-white border-t border-white/10 py-8 mt-auto">
+    <div class="w-full px-4 sm:px-6 md:px-[100px] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-300">
+      <p>© 2026 Teatro de la Ciudad y Centro de Convenciones de Coatzacoalcos.</p>
+      <a href="index.html" class="text-highlight hover:underline font-semibold">Volver al Portal Principal</a>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const DEFAULT_USER_TICKETS = [
+        {
+          folio: 'TC-BOL-2026-412',
+          evento: 'El Cascanueces: Ballet Ruso Mary El',
+          fecha: '15 Dic 2026 · 19:00 hrs',
+          zona: 'Luneta Preferente · Fila F, Asientos 14 y 15',
+          cantidad: '2 boletos',
+          total: '$1,300 MXN',
+          estado: 'reciente'
+        },
+        {
+          folio: 'TC-BOL-2026-418',
+          evento: 'Gala Sinfónica de Invierno',
+          fecha: '19 Dic 2026 · 20:00 hrs',
+          zona: 'Platea Central · Fila C, Asiento 8',
+          cantidad: '1 boleto',
+          total: '$420 MXN',
+          estado: 'reciente'
+        },
+        {
+          folio: 'TC-BOL-2026-109',
+          evento: 'La Dama de Negro',
+          fecha: '21 Nov 2026 · 19:00 hrs',
+          zona: 'Luneta · Fila J, Asientos 5 y 6',
+          cantidad: '2 boletos',
+          total: '$800 MXN',
+          estado: 'historial'
+        },
+        {
+          folio: 'TC-BOL-2026-074',
+          evento: 'Concierto Acústico de Otoño',
+          fecha: '02 Oct 2026 · 20:30 hrs',
+          zona: 'Balcón 1 · Fila B, Asientos 11 y 12',
+          cantidad: '2 boletos',
+          total: '$700 MXN',
+          estado: 'historial'
+        }
+      ];
+
+      function getStoredUser() {
+        try {
+          const raw = localStorage.getItem('tc_usuario');
+          return raw ? JSON.parse(raw) : null;
+        } catch (e) {
+          return null;
+        }
+      }
+
+      function showToast(msg) {
+        const toast = document.getElementById('user-toast');
+        document.getElementById('user-toast-msg').textContent = msg;
+        toast.classList.remove('hidden');
+        setTimeout(() => toast.classList.add('hidden'), 2600);
+      }
+
+      function renderNavbar() {
+        const authContainer = document.getElementById('nav-auth-container');
+        const user = getStoredUser();
+        if (user) {
+          authContainer.innerHTML = '';
+        } else {
+          authContainer.innerHTML = `
+            <a href="cuenta.html#login" class="text-white hover:text-highlight text-xs sm:text-sm font-semibold px-3 py-2">Iniciar Sesión</a>
+            <a href="cuenta.html#registro" class="bg-accent hover:brightness-110 text-white font-bold text-xs sm:text-sm px-4 py-2 rounded-full">Registrarse</a>
+          `;
+        }
+      }
+
+      function renderProfileData() {
+        const stored = getStoredUser();
+        const guestNotice = document.getElementById('guest-notice');
+        if (guestNotice) guestNotice.classList.toggle('hidden', !!stored);
+
+        const user = stored || {
+          nombre: 'Usuario',
+          apellidos: 'Invitado',
+          email: 'usuario@teatrocoatza.gob.mx',
+          tel: '(921) 000 0000'
+        };
+
+        const fullName = `${user.nombre || 'Usuario'} ${user.apellidos || ''}`.trim();
+        const initials = fullName.split(' ').filter(Boolean).slice(0, 2).map(w => w[0].toUpperCase()).join('') || 'US';
+
+        document.getElementById('user-avatar-initials').textContent = initials;
+        document.getElementById('header-user-name').textContent = fullName;
+        document.getElementById('header-user-meta').textContent = `${user.email || 'Sin correo'} · ${user.tel || 'Sin teléfono'}`;
+
+        document.getElementById('card-user-name').textContent = fullName;
+        document.getElementById('card-user-email').textContent = user.email || 'Sin correo registrado';
+        document.getElementById('card-user-phone').textContent = user.tel || 'Sin teléfono registrado';
+
+        document.getElementById('prof-nombre').value = user.nombre || '';
+        document.getElementById('prof-apellidos').value = user.apellidos || '';
+        document.getElementById('prof-correo').value = user.email || '';
+        document.getElementById('prof-tel').value = user.tel || '';
+      }
+
+      function renderTickets() {
+        const tickets = JSON.parse(localStorage.getItem('tc_user_tickets')) || DEFAULT_USER_TICKETS;
+        const recent = tickets.filter(t => t.estado === 'reciente');
+        const history = tickets;
+
+        document.getElementById('tab-badge-tickets').textContent = recent.length;
+
+        const recentGrid = document.getElementById('recent-tickets-grid');
+        recentGrid.innerHTML = recent.map((t, idx) => `
+          <div class="bg-white rounded-3xl border border-gray-200 shadow-sm overflow-hidden flex flex-col justify-between">
+            <div class="p-6 space-y-3">
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-[11px] font-mono font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-md">${t.folio}</span>
+                <span class="text-[10px] font-bold uppercase px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800">Vigente</span>
+              </div>
+              <h3 class="text-lg font-extrabold text-primary leading-snug">${t.evento}</h3>
+              <div class="text-xs text-gray-600 space-y-1">
+                <div><strong>Fecha:</strong> ${t.fecha}</div>
+                <div><strong>Ubicación:</strong> ${t.zona}</div>
+                <div><strong>Cantidad:</strong> ${t.cantidad} · <strong class="text-primary">${t.total}</strong></div>
+              </div>
+            </div>
+            <div class="px-6 py-3.5 bg-base-bg border-t border-gray-200 flex items-center justify-between">
+              <span class="text-[11px] text-gray-500">Boleto Digital</span>
+              <button type="button" data-ticket-idx="${idx}" class="btn-open-ticket px-4 py-1.5 rounded-full bg-primary hover:bg-primary/90 text-white text-xs font-bold transition">Ver Pase QR</button>
+            </div>
+          </div>
+        `).join('');
+
+        document.querySelectorAll('.btn-open-ticket').forEach(btn => {
+          btn.onclick = () => {
+            const t = recent[Number(btn.getAttribute('data-ticket-idx'))];
+            const user = getStoredUser();
+            document.getElementById('mt-event').textContent = t.evento;
+            document.getElementById('mt-folio').textContent = t.folio;
+            document.getElementById('mt-date').textContent = t.fecha;
+            document.getElementById('mt-seats').textContent = t.zona;
+            document.getElementById('mt-holder').textContent = user ? `${user.nombre || ''} ${user.apellidos || ''}`.trim() : 'Titular';
+            document.getElementById('mt-total').textContent = t.total;
+            document.getElementById('modal-ticket').classList.remove('hidden');
+          };
+        });
+
+        document.getElementById('history-tickets-body').innerHTML = history.map(t => `
+          <tr class="hover:bg-gray-50/80 transition">
+            <td class="py-3.5 px-5 font-mono text-xs text-gray-500 font-bold">${t.folio}</td>
+            <td class="py-3.5 px-4 font-bold text-primary">${t.evento}</td>
+            <td class="py-3.5 px-4 text-xs">${t.fecha}</td>
+            <td class="py-3.5 px-4 text-xs">${t.zona} (${t.cantidad})</td>
+            <td class="py-3.5 px-4 font-semibold text-xs">${t.total}</td>
+            <td class="py-3.5 px-5 text-right">
+              <span class="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold ${t.estado === 'reciente' ? 'bg-emerald-100 text-emerald-800' : 'bg-gray-100 text-gray-600'}">
+                ${t.estado === 'reciente' ? 'PRÓXIMA FUNCIÓN' : 'ASISTIDO'}
+              </span>
+            </td>
+          </tr>
+        `).join('');
+      }
+
+      function renderUserQuotes() {
+        const user = getStoredUser();
+        const allQuotes = JSON.parse(localStorage.getItem('tc_admin_cotizaciones')) || [];
+        const userEmail = (user?.email || '').toLowerCase();
+        const userName = (user?.nombre || '').toLowerCase();
+
+        // Mostrar cotizaciones que coincidan con el usuario, o todas las enviadas si aún no coincide correo
+        let myQuotes = allQuotes.filter(q =>
+          (userEmail && (q.correo || '').toLowerCase() === userEmail) ||
+          (userName && (q.nombre || '').toLowerCase().includes(userName))
+        );
+        if (myQuotes.length === 0) {
+          myQuotes = allQuotes;
+        }
+
+        document.getElementById('tab-badge-quotes').textContent = myQuotes.length;
+        const tbody = document.getElementById('user-quotes-body');
+        if (myQuotes.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="6" class="py-8 text-center text-gray-400">Aún no tienes solicitudes de cotización registradas.</td></tr>`;
+          return;
+        }
+
+        tbody.innerHTML = myQuotes.map(q => `
+          <tr class="hover:bg-gray-50/80 transition">
+            <td class="py-3.5 px-5 font-mono text-xs text-gray-500 font-bold">${q.folio}</td>
+            <td class="py-3.5 px-4 font-bold text-primary">${q.evento}</td>
+            <td class="py-3.5 px-4 text-xs">
+              <div>${q.fechas}</div>
+              <div class="text-gray-400 text-[11px]">${q.horarios || ''}</div>
+            </td>
+            <td class="py-3.5 px-4 text-xs font-semibold">${q.personas}</td>
+            <td class="py-3.5 px-4 text-xs text-gray-600 max-w-xs">${q.servicios || 'Equipamiento base'}</td>
+            <td class="py-3.5 px-5 text-right">
+              <span class="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold ${q.status === 'pendiente' ? 'bg-amber-100 text-amber-800' : q.status === 'revision' ? 'bg-blue-100 text-blue-800' : q.status === 'aprobada' ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800'}">
+                ${(q.status || 'pendiente').toUpperCase()}
+              </span>
+            </td>
+          </tr>
+        `).join('');
+      }
+
+      // Cambio de pestañas
+      document.querySelectorAll('.user-tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const target = btn.getAttribute('data-user-tab');
+          document.querySelectorAll('.user-tab-btn').forEach(b => {
+            const active = b === btn;
+            b.classList.toggle('bg-white', active);
+            b.classList.toggle('text-primary', active);
+            b.classList.toggle('shadow-sm', active);
+            b.classList.toggle('text-white/80', !active);
+          });
+          document.querySelectorAll('.user-panel').forEach(p => p.classList.add('hidden'));
+          document.getElementById(`panel-${target}`).classList.remove('hidden');
+        });
+      });
+
+      document.getElementById('form-profile').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const updated = {
+          nombre: document.getElementById('prof-nombre').value.trim(),
+          apellidos: document.getElementById('prof-apellidos').value.trim(),
+          email: document.getElementById('prof-correo').value.trim(),
+          tel: document.getElementById('prof-tel').value.trim()
+        };
+        localStorage.setItem('tc_usuario', JSON.stringify(updated));
+        const btnHeaderLogout = document.getElementById('btn-header-logout');
+      if (btnHeaderLogout) {
+        btnHeaderLogout.onclick = () => {
+          localStorage.removeItem('tc_usuario');
+          window.location.href = 'index.html';
+        };
+      }
+
+      renderAll();
+        showToast('Tus datos personales se guardaron correctamente.');
+      });
+
+      document.getElementById('btn-close-ticket-modal').onclick = () => {
+        document.getElementById('modal-ticket').classList.add('hidden');
+      };
+
+      function renderAll() {
+        renderNavbar();
+        renderProfileData();
+        renderTickets();
+        renderUserQuotes();
+      }
+
+      window.addEventListener('storage', (e) => {
+        if (e.key === 'tc_usuario' || e.key === 'tc_admin_cotizaciones' || e.key === 'tc_user_tickets') {
+          const btnHeaderLogout = document.getElementById('btn-header-logout');
+      if (btnHeaderLogout) {
+        btnHeaderLogout.onclick = () => {
+          localStorage.removeItem('tc_usuario');
+          window.location.href = 'index.html';
+        };
+      }
+
+      renderAll();
+        }
+      });
+
+      const btnHeaderLogout = document.getElementById('btn-header-logout');
+      if (btnHeaderLogout) {
+        btnHeaderLogout.onclick = () => {
+          localStorage.removeItem('tc_usuario');
+          window.location.href = 'index.html';
+        };
+      }
+
+      renderAll();
+    });
+  </script>
+</body>
+</html>
