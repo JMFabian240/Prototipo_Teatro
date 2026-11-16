@@ -157,26 +157,8 @@
           El complejo del Centro de Convenciones y Teatro de la Ciudad fue diseñado con una arquitectura contemporánea emblemática frente al Golfo de México, convirtiéndose en el ícono cultural y de congresos más grande del sur de Veracruz.
         </p>
 
-        <!-- Referencia visual de la foto + indicadores del carrusel -->
-        <div class="mt-4 flex flex-wrap items-center justify-end gap-2.5">
-          <div
-            class="inline-flex items-center gap-2 text-xs text-secondary bg-slate-950/60 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/15">
-            <svg class="w-3.5 h-3.5 text-accent" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd"
-                d="M4 5a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V7a2 2 0 00-2-2H4zm12 2l-4.5 4.5a1 1 0 01-1.414 0L7 8.414 4.707 10.707a1 1 0 01-1.414-1.414l3-3a1 1 0 011.414 0l3.086 3.086L15.293 6.293A1 1 0 0116.707 7.707l-3 3a1 1 0 01-1.414 0L10 8.414l-2.293 2.293a1 1 0 01-1.414-1.414L9.586 6l3.707 3.707L16 7z"
-                clip-rule="evenodd" />
-            </svg>
-            <span id="mural-photo-caption">Fotografía Oficial: Fachada del Centro de Convenciones y Teatro de la Ciudad</span>
-          </div>
-
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-950/60 border border-white/15 backdrop-blur-md">
-            <div id="mural-carousel-dots" class="flex items-center gap-2"></div>
-            <span id="mural-slide-counter" class="text-[11px] font-mono text-gray-300 pl-1.5 border-l border-white/20">1 / 2</span>
-          </div>
-        </div>
-
-        <!-- Métricas destacadas en píldoras con backdrop blur pegadas a la derecha (Exclusivas del Teatro) -->
-        <div class="mt-8 grid grid-cols-3 gap-3 w-full max-w-lg pt-5 border-t border-white/20">
+        <!-- Métricas destacadas en píldoras con backdrop blur pegadas a la derecha (Solo visibles en la foto inicial) -->
+        <div id="mural-metrics-cards" class="mt-8 grid grid-cols-3 gap-3 w-full max-w-lg pt-5 border-t border-white/20">
           <div class="bg-slate-950/60 backdrop-blur-md rounded-xl p-3 border border-white/15 text-center">
             <div class="text-accent text-xl sm:text-2xl font-extrabold">1,724</div>
             <div class="text-gray-200 text-[11px] uppercase tracking-wider mt-0.5">Teatro Butacas</div>
@@ -193,6 +175,11 @@
 
       </div>
 
+    </div>
+
+    <!-- Indicadores (puntitos) del carrusel centrados en la parte inferior -->
+    <div class="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-20 inline-flex items-center px-3.5 py-2 rounded-full bg-slate-950/60 border border-white/15 backdrop-blur-md shadow-lg">
+      <div id="mural-carousel-dots" class="flex items-center gap-2"></div>
     </div>
   </header>
 
@@ -1183,7 +1170,7 @@
       <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-300 gap-3">
         <p>© 2026 Teatro de la Ciudad y Centro de Convenciones de Coatzacoalcos. Prototipo de Alta Fidelidad.</p>
         <div class="flex items-center space-x-4">
-          <a href="admin.html" class="text-white/80 hover:text-accent font-semibold transition flex items-center gap-1.5 bg-white/10 px-3 py-1 rounded-full border border-white/15">
+          <a href="admin/index.html" class="text-white/80 hover:text-accent font-semibold transition flex items-center gap-1.5 bg-white/10 px-3 py-1 rounded-full border border-white/15">
             <svg class="w-3.5 h-3.5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
             <span>Panel Admin</span>
           </a>
@@ -2124,6 +2111,11 @@
         if (mainDescEl) mainDescEl.textContent = slide.factText || '';
         if (captionEl) captionEl.textContent = slide.caption || '';
         if (counterEl) counterEl.textContent = `${currentMuralIndex + 1} / ${muralSlides.length}`;
+
+        const metricsEl = document.getElementById('mural-metrics-cards');
+        if (metricsEl) {
+          metricsEl.classList.toggle('hidden', currentMuralIndex !== 0);
+        }
       }
 
       function goToMuralSlide(idx) {
