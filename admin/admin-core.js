@@ -1,8 +1,20 @@
+if (!document.querySelector('link[data-tc-fonts]')) {
+  const fontLink = document.createElement('link');
+  fontLink.rel = 'stylesheet';
+  fontLink.dataset.tcFonts = '1';
+  fontLink.href = 'https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap';
+  document.head.appendChild(fontLink);
+}
+
 // Configuración de Tailwind CSS con la paleta de colores institucional
 window.tailwind = window.tailwind || {};
 window.tailwind.config = {
   theme: {
     extend: {
+      fontFamily: {
+        display: ['Cinzel', 'serif'],
+        sans: ['"DM Sans"', 'system-ui', 'sans-serif'],
+      },
       colors: {
         primary: '#1E3A8A',      // Azul Golfo
         secondary: '#D9CBB8',    // Arena Arquitectónica
