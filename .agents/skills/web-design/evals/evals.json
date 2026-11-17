@@ -1,0 +1,160 @@
+{
+  "skill": "web-design",
+  "version": "1.0.0",
+  "description": "Test cases para evaluar la skill web-design",
+  "test_cases": [
+    {
+      "id": "wd-001",
+      "name": "Design System Creation",
+      "prompt": "Necesito un design system completo para un SaaS de gestión de proyectos. Estética profesional pero moderna. Debe incluir dark mode.",
+      "expected_outputs": [
+        "Design system document con tokens de tipografía",
+        "Paleta de colores con al menos 6 tokens (background, surface, primary, accent, text, muted)",
+        "Dark mode variants definidos",
+        "Spacing system con base 4px u 8px",
+        "Justificación de cada decisión de diseño",
+        "Fuentes específicas con links a Google Fonts",
+        "No recomienda Inter/Roboto por defecto sin justificación"
+      ],
+      "assertions": [
+        {"type": "contains", "value": "Google Fonts"},
+        {"type": "contains", "value": "primary"},
+        {"type": "contains", "value": "dark mode"},
+        {"type": "not_contains", "value": "Inter como fuente principal (sin justificación)"}
+      ]
+    },
+    {
+      "id": "wd-002",
+      "name": "Typography Recommendation",
+      "prompt": "Estoy haciendo un portfolio de fotografía minimalista. ¿Qué combinación de fuentes me recomiendas?",
+      "expected_outputs": [
+        "2-3 opciones de font pairing",
+        "Justificación de cada opción",
+        "Links a Google Fonts para cada fuente",
+        "Escala tipográfica sugerida",
+        "Consideración del contexto (minimalista, fotografía)"
+      ],
+      "assertions": [
+        {"type": "contains", "value": "Google Fonts"},
+        {"type": "contains", "value": "serif o sans-serif con justificación"}
+      ]
+    },
+    {
+      "id": "wd-003",
+      "name": "Color Palette from Concept",
+      "prompt": "Quiero una paleta para un dashboard financiero. Debe sentirse confiable y moderno, no como un banco viejo.",
+      "expected_outputs": [
+        "Paleta completa con hex codes",
+        "Background, surface, primary, accent, text, muted",
+        "Justificación de cada color",
+        "Dark mode variant",
+        "Notas sobre WCAG contrast",
+        "Evita purple gradient genérico"
+      ],
+      "assertions": [
+        {"type": "contains", "value": "#"},
+        {"type": "contains", "value": "confiable"},
+        {"type": "not_contains", "value": "#6C63FF como primary sin contexto"}
+      ]
+    },
+    {
+      "id": "wd-004",
+      "name": "Design Audit",
+      "prompt": "Analiza el diseño de esta página y dime qué mejorar: [adjunta descripción de página con tipografía Inter, colores sin coherencia, espaciado inconsistente]",
+      "expected_outputs": [
+        "Evaluación honesta del estado actual",
+        "Problemas específicos identificados",
+        "Soluciones concretas propuestas",
+        "Quick wins priorizados",
+        "Dirección de rediseño sugerida"
+      ],
+      "assertions": [
+        {"type": "contains", "value": "problema"},
+        {"type": "contains", "value": "solución"},
+        {"type": "contains", "value": "Inter"},
+        {"type": "contains", "value": "alternativa"}
+      ]
+    },
+    {
+      "id": "wd-005",
+      "name": "Creative Direction Exploration",
+      "prompt": "Voy a hacer un sitio web para una marca de café specialty de Colombia. El público es joven, urbano, que aprecia el proceso artesanal. ¿Qué dirección visual me recomiendas?",
+      "expected_outputs": [
+        "2-3 opciones de dirección creativa",
+        "Cada opción con tipografía, paleta, mood",
+        "Referentes visuales (descripción)",
+        "Recomendación fundamentada",
+        "Evita propuestas genéricas"
+      ],
+      "assertions": [
+        {"type": "contains", "value": "opción"},
+        {"type": "contains", "value": "tipografía"},
+        {"type": "contains", "value": "paleta"},
+        {"type": "not_contains", "value": "Inter o Roboto sin justificación"}
+      ]
+    },
+    {
+      "id": "wd-006",
+      "name": "Edge Case - User Wants Code",
+      "prompt": "Dame el código CSS para un botón con gradiente y sombra.",
+      "expected_outputs": [
+        "Redirección a frontend-design skill",
+        "Explicación de que web-design es para decisiones de diseño, no código",
+        "Opcional: ofrece producir el design system que luego frontend-design puede implementar"
+      ],
+      "assertions": [
+        {"type": "contains", "value": "frontend-design"},
+        {"type": "contains", "value": "diseño"},
+        {"type": "not_contains", "value": "CSS directo sin contexto"}
+      ]
+    },
+    {
+      "id": "wd-007",
+      "name": "Edge Case - Generic Request",
+      "prompt": "Hazme algo simple y minimalista.",
+      "expected_outputs": [
+        "Minimalismo ejecutado con precisión",
+        "Tipografía con propósito",
+        "Espaciado generoso",
+        "Un detalle memorable",
+        "Justificación de por qué simple ≠ genérico"
+      ],
+      "assertions": [
+        {"type": "contains", "value": "espaci"},
+        {"type": "contains", "value": "tipografía"}
+      ]
+    }
+  ],
+  "grading_criteria": [
+    {
+      "criterion": "Especificidad",
+      "description": "Cada recomendación incluye nombres específicos, hex codes, o links",
+      "weight": 20
+    },
+    {
+      "criterion": "No-genérico",
+      "description": "No recomienda Inter/Roboto/Arial sin justificación clara",
+      "weight": 20
+    },
+    {
+      "criterion": "Paleta completa",
+      "description": "Incluye mínimo 6 tokens de color",
+      "weight": 15
+    },
+    {
+      "criterion": "Contraste WCAG",
+      "description": "Verifica o menciona contraste WCAG AA",
+      "weight": 15
+    },
+    {
+      "criterion": "Justificación",
+      "description": "Cada decisión tiene un 'por qué'",
+      "weight": 15
+    },
+    {
+      "criterion": "Coherencia",
+      "description": "Los elementos se sienten como parte del mismo proyecto",
+      "weight": 15
+    }
+  ]
+}
