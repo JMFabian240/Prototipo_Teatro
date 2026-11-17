@@ -8,6 +8,13 @@
       "skillPath": "skills/frontend-design/SKILL.md",
       "computedHash": "83485963700bcf11d5bf78118facb301676b69d918fee2e45a95e7f1a2840f6c"
     },
+    "git-version-control": {
+      "source": "pluginagentmarketplace/custom-plugin-data-engineer",
+      "commit": "0322b7c023bf4d0b882d547a6947da3e5a9f92a2",
+      "sourceType": "github",
+      "skillPath": "skills/git-version-control/SKILL.md",
+      "computedHash": "fba3e516ae0a367233756088ea8e86c27c8a65a39ad08459518b7c642a5f64e6"
+    },
     "skill-creator": {
       "source": "anthropics/skills",
       "commit": "e4bb5d960d87126ff3b3a8af1a104b7db67560ba",
