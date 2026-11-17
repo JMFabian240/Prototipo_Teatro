@@ -6,26 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Teatro de la Ciudad de Coatzacoalcos | Cartelera Oficial</title>
 
-  <!-- CDN de Tailwind CSS -->
+  <!-- CDN de Tailwind CSS y configuración compartida -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Extensión de Configuración de Tailwind CSS con la paleta de colores requerida -->
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: '#1E3A8A',     // Azul Golfo
-            secondary: '#D9CBB8',   // Arena Arquitectónica
-            accent: '#E58E26',      // Dorado Atardecer
-            highlight: '#38BDF8',   // Celeste Brisa
-            'base-bg': '#F8F9FA',   // Blanco Nube
-            'base-text': '#0F172A', // Carbón Pizarra
-          }
-        }
-      }
-    }
-  </script>
+  <script src="js/portal-core.js"></script>
 </head>
 
 <body
@@ -39,7 +22,7 @@
         <!-- Logo a la izquierda -->
         <a href="#mural" class="flex items-center space-x-3.5 group">
           <div
-            class="w-11 h-11 rounded-xl bg-gradient-to-br from-highlight/30 to-accent/30 border border-white/20 flex items-center justify-center text-accent shadow-inner group-hover:scale-105 transition-transform duration-200">
+            class="w-11 h-11 rounded-xl bg-highlight/30 border border-white/20 flex items-center justify-center text-accent shadow-inner group-hover:scale-105 transition-transform duration-200">
             <!-- Icono Mascaras Teatrales / Arquitectura -->
             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -73,24 +56,39 @@
             Teatro</a>
         </div>
 
-        <!-- Área de usuario: Iniciar Sesión / Registrarse o Cerrar Sesión si ya cuenta con sesión -->
-        <div id="nav-auth-container" class="flex items-center gap-2 sm:gap-3">
-          <a href="cuenta.html#login"
-            class="text-white hover:text-highlight text-xs sm:text-sm font-semibold px-2 sm:px-3 py-2 transition-colors duration-200">
-            Iniciar Sesión
-          </a>
-          <a href="cuenta.html#registro" id="btn-crear-cuenta"
-            class="bg-accent hover:brightness-110 active:scale-95 text-white font-bold text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-full shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-1.5">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z">
-              </path>
+        <!-- Área de usuario y botón menú móvil -->
+        <div class="flex items-center gap-2 sm:gap-3">
+          <div id="nav-auth-container" class="flex items-center gap-2 sm:gap-3">
+            <a href="cuenta.html#login"
+              class="text-white hover:text-highlight text-xs sm:text-sm font-semibold px-2 sm:px-3 py-2 transition-colors duration-200">
+              Iniciar Sesión
+            </a>
+            <a href="cuenta.html#registro" id="btn-crear-cuenta"
+              class="bg-accent hover:brightness-110 active:scale-95 text-white font-bold text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-full shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-1.5">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z">
+                </path>
+              </svg>
+              <span>Registrarse</span>
+            </a>
+          </div>
+          <button type="button" id="btn-mobile-menu" aria-label="Abrir menú" aria-expanded="false"
+            class="md:hidden p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/15 transition">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
             </svg>
-            <span>Registrarse</span>
-          </a>
+          </button>
         </div>
 
       </div>
+    </div>
+
+    <!-- Menú desplegable móvil -->
+    <div id="mobile-nav-menu" class="hidden md:hidden border-t border-white/15 bg-slate-950/95 px-4 py-3 space-y-1.5 text-sm font-semibold">
+      <a href="#mural" class="block px-3 py-2 rounded-xl text-white hover:bg-white/10">Inicio</a>
+      <a href="#cartelera" class="block px-3 py-2 rounded-xl text-white hover:bg-white/10">Cartelera</a>
+      <a href="cotizar.html" class="block px-3 py-2 rounded-xl text-white hover:bg-white/10">Cotizar Teatro</a>
     </div>
   </nav>
 
@@ -115,9 +113,9 @@
       <!-- Fondo azul transparentado un 90% (solo 10% opacidad del Azul Golfo #1E3A8A) -->
       <div class="absolute inset-0 bg-primary/10 pointer-events-none"></div>
 
-      <!-- Degradado sutil en el lateral derecho y base para garantizar máxima legibilidad -->
+      <!-- Overlay sólido sutil para garantizar legibilidad del texto -->
       <div
-        class="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-l from-slate-950/85 via-slate-950/45 to-slate-950/25 pointer-events-none">
+        class="absolute inset-0 bg-slate-950/45 pointer-events-none">
       </div>
     </div>
 
@@ -187,8 +185,6 @@
     <!-- Encabezado de la Sección de Cartelera -->
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-gray-200 gap-4">
       <div>
-        <div class="inline-flex items-center gap-2 text-accent text-xs font-bold tracking-widest uppercase">
-        </div>
         <h2 id="cartelera-heading" class="text-2xl sm:text-3xl font-extrabold text-primary tracking-tight mt-1">
           Cartelera y Próximos Espectáculos
         </h2>
@@ -436,13 +432,10 @@
           data-category="conciertos" data-title="Manuel Medrano Superior Tour Concierto" data-date="2026-11-13">
           <!-- Parte superior: div vacío de color bg-secondary o gris para simular la imagen -->
           <div class="h-44 bg-secondary relative overflow-hidden flex items-center justify-center">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+            <div class="absolute inset-0 bg-black/25"></div>
             <span
               class="absolute top-3 left-3 bg-primary text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">
               Concierto Pop
-            </span>
-            <span class="absolute bottom-2 right-3 text-white/90 text-xs font-medium drop-shadow">
-              Teatro de la Ciudad
             </span>
             <svg class="w-12 h-12 text-primary/30 group-hover:scale-110 transition-transform duration-300"
               fill="currentColor" viewBox="0 0 20 20">
@@ -485,13 +478,10 @@
           class="event-card bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden border border-gray-200/70 group hover:-translate-y-1"
           data-category="danza" data-title="El Cascanueces World Ballet Tour" data-date="2026-11-14">
           <div class="h-44 bg-slate-300 relative overflow-hidden flex items-center justify-center">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+            <div class="absolute inset-0 bg-black/25"></div>
             <span
               class="absolute top-3 left-3 bg-accent text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">
               Ballet Clásico
-            </span>
-            <span class="absolute bottom-2 right-3 text-white/90 text-xs font-medium drop-shadow">
-              Teatro de la Ciudad
             </span>
             <svg class="w-12 h-12 text-slate-500/40 group-hover:scale-110 transition-transform duration-300"
               fill="currentColor" viewBox="0 0 24 24">
@@ -531,13 +521,10 @@
           class="event-card bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden border border-gray-200/70 group hover:-translate-y-1"
           data-category="conciertos" data-title="Concierto de Marco Barrientos 40 Aniversario" data-date="2026-11-20">
           <div class="h-44 bg-secondary relative overflow-hidden flex items-center justify-center">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+            <div class="absolute inset-0 bg-black/25"></div>
             <span
               class="absolute top-3 left-3 bg-primary text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">
               Concierto Aniversario
-            </span>
-            <span class="absolute bottom-2 right-3 text-white/90 text-xs font-medium drop-shadow">
-              Teatro de la Ciudad
             </span>
             <svg class="w-12 h-12 text-primary/30 group-hover:scale-110 transition-transform duration-300"
               fill="currentColor" viewBox="0 0 20 20">
@@ -578,13 +565,10 @@
           class="event-card bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden border border-gray-200/70 group hover:-translate-y-1"
           data-category="teatro" data-title="La Dama de Negro Teatro Suspenso Terror" data-date="2026-11-21">
           <div class="h-44 bg-slate-800 relative overflow-hidden flex items-center justify-center">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+            <div class="absolute inset-0 bg-black/25"></div>
             <span
               class="absolute top-3 left-3 bg-accent text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">
               Teatro de Suspenso
-            </span>
-            <span class="absolute bottom-2 right-3 text-white/90 text-xs font-medium drop-shadow">
-              Teatro de la Ciudad
             </span>
             <svg class="w-12 h-12 text-slate-400/40 group-hover:scale-110 transition-transform duration-300"
               fill="currentColor" viewBox="0 0 20 20">
@@ -626,13 +610,10 @@
           class="event-card bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden border border-gray-200/70 group hover:-translate-y-1"
           data-category="teatro" data-title="Esquizofrenia Rafael Perrin Terror Psicologico" data-date="2026-11-27">
           <div class="h-44 bg-secondary relative overflow-hidden flex items-center justify-center">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+            <div class="absolute inset-0 bg-black/25"></div>
             <span
               class="absolute top-3 left-3 bg-primary text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">
               Psicoterror Inmersivo
-            </span>
-            <span class="absolute bottom-2 right-3 text-white/90 text-xs font-medium drop-shadow">
-              Teatro de la Ciudad
             </span>
             <svg class="w-12 h-12 text-primary/30 group-hover:scale-110 transition-transform duration-300"
               fill="currentColor" viewBox="0 0 20 20">
@@ -674,13 +655,10 @@
           class="event-card bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden border border-gray-200/70 group hover:-translate-y-1"
           data-category="danza" data-title="Manuhere El vuelo de un alma libre Tamure" data-date="2026-11-29">
           <div class="h-44 bg-slate-300 relative overflow-hidden flex items-center justify-center">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+            <div class="absolute inset-0 bg-black/25"></div>
             <span
               class="absolute top-3 left-3 bg-accent text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">
               Danza y Folclore
-            </span>
-            <span class="absolute bottom-2 right-3 text-white/90 text-xs font-medium drop-shadow">
-              Teatro de la Ciudad
             </span>
             <svg class="w-12 h-12 text-slate-500/40 group-hover:scale-110 transition-transform duration-300"
               fill="currentColor" viewBox="0 0 20 20">
@@ -721,13 +699,10 @@
           class="event-card bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden border border-gray-200/70 group hover:-translate-y-1"
           data-category="danza" data-title="Aladdin La Magia de la Danza CONARTE" data-date="2026-12-04">
           <div class="h-44 bg-secondary relative overflow-hidden flex items-center justify-center">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+            <div class="absolute inset-0 bg-black/25"></div>
             <span
               class="absolute top-3 left-3 bg-primary text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">
               Teatro Familiar
-            </span>
-            <span class="absolute bottom-2 right-3 text-white/90 text-xs font-medium drop-shadow">
-              Teatro de la Ciudad
             </span>
             <svg class="w-12 h-12 text-primary/30 group-hover:scale-110 transition-transform duration-300"
               fill="currentColor" viewBox="0 0 20 20">
@@ -768,13 +743,10 @@
           class="event-card bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden border border-gray-200/70 group hover:-translate-y-1"
           data-category="danza" data-title="El Cascanueces Yessel Ballet School" data-date="2026-12-06">
           <div class="h-44 bg-slate-300 relative overflow-hidden flex items-center justify-center">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+            <div class="absolute inset-0 bg-black/25"></div>
             <span
               class="absolute top-3 left-3 bg-accent text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">
               Ballet Escolar
-            </span>
-            <span class="absolute bottom-2 right-3 text-white/90 text-xs font-medium drop-shadow">
-              Teatro de la Ciudad
             </span>
             <svg class="w-12 h-12 text-slate-500/40 group-hover:scale-110 transition-transform duration-300"
               fill="currentColor" viewBox="0 0 20 20">
@@ -816,13 +788,10 @@
           class="event-card bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden border border-gray-200/70 group hover:-translate-y-1"
           data-category="danza" data-title="El Cascanueces Ballet Ruso Mary El Gala" data-date="2026-12-15">
           <div class="h-44 bg-secondary relative overflow-hidden flex items-center justify-center">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+            <div class="absolute inset-0 bg-black/25"></div>
             <span
               class="absolute top-3 left-3 bg-primary text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">
               Gala Rusa
-            </span>
-            <span class="absolute bottom-2 right-3 text-white/90 text-xs font-medium drop-shadow">
-              Teatro de la Ciudad
             </span>
             <svg class="w-12 h-12 text-primary/30 group-hover:scale-110 transition-transform duration-300"
               fill="currentColor" viewBox="0 0 24 24">
@@ -862,13 +831,10 @@
           class="event-card bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden border border-gray-200/70 group hover:-translate-y-1"
           data-category="conciertos" data-title="Erase Una Vez Concierto Navideno Beto Castillo" data-date="2026-12-16">
           <div class="h-44 bg-slate-300 relative overflow-hidden flex items-center justify-center">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+            <div class="absolute inset-0 bg-black/25"></div>
             <span
               class="absolute top-3 left-3 bg-accent text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">
               Concierto Navideño
-            </span>
-            <span class="absolute bottom-2 right-3 text-white/90 text-xs font-medium drop-shadow">
-              Teatro de la Ciudad
             </span>
             <svg class="w-12 h-12 text-slate-500/40 group-hover:scale-110 transition-transform duration-300"
               fill="currentColor" viewBox="0 0 20 20">
@@ -910,13 +876,10 @@
           class="event-card bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden border border-gray-200/70 group hover:-translate-y-1"
           data-category="conciertos" data-title="Gala Sinfonica de Invierno Orquesta Xalapa" data-date="2026-12-19">
           <div class="h-44 bg-secondary relative overflow-hidden flex items-center justify-center">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+            <div class="absolute inset-0 bg-black/25"></div>
             <span
               class="absolute top-3 left-3 bg-primary text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">
               Música Clásica
-            </span>
-            <span class="absolute bottom-2 right-3 text-white/90 text-xs font-medium drop-shadow">
-              Teatro de la Ciudad
             </span>
             <svg class="w-12 h-12 text-primary/30 group-hover:scale-110 transition-transform duration-300"
               fill="currentColor" viewBox="0 0 20 20">
@@ -958,13 +921,10 @@
           class="event-card bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden border border-gray-200/70 group hover:-translate-y-1"
           data-category="conciertos" data-title="Enjambre Danos Luz Tour Rock Concierto" data-date="2026-12-20">
           <div class="h-44 bg-slate-800 relative overflow-hidden flex items-center justify-center">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+            <div class="absolute inset-0 bg-black/25"></div>
             <span
               class="absolute top-3 left-3 bg-accent text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">
               Rock Nacional
-            </span>
-            <span class="absolute bottom-2 right-3 text-white/90 text-xs font-medium drop-shadow">
-              Teatro de la Ciudad
             </span>
             <svg class="w-12 h-12 text-accent/40 group-hover:scale-110 transition-transform duration-300"
               fill="currentColor" viewBox="0 0 20 20">
@@ -1047,9 +1007,8 @@
         <div class="w-full h-full flex items-center justify-center">
           <div
             class="w-full h-[340px] sm:h-[370px] lg:h-[390px] rounded-2xl overflow-hidden shadow-xl border border-gray-200/80 group">
-            <img id="cotizar-sec-img" src="teatro-sala-butacas.jpg"
+            <img id="cotizar-sec-img" src="img/teatro-sala-interior.jpg"
               alt="Sala de Espectáculos del Teatro de la Ciudad Coatzacoalcos"
-              onerror="this.src='img/teatro-sala-interior.jpg'"
               class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" />
           </div>
         </div>
@@ -1146,7 +1105,7 @@
           <div class="space-y-2 text-xs text-gray-200">
             <p><strong>Lunes a Viernes:</strong> 09:00 - 17:30 hrs</p>
             <p><strong>Sábados:</strong> 09:00 - 13:00 hrs</p>
-            <p><strong>Teléfono:</strong> (921) 210 6616</p>
+            <p><strong>Teléfono:</strong> <span id="footer-taquilla-phone">(921) 210 6616</span></p>
             <p><strong>Días de función:</strong> Taquilla abierta hasta 30 min iniciada la obra.</p>
           </div>
         </div>
@@ -1171,9 +1130,9 @@
 
       </div>
 
-      <!-- Pie inferior de copyright y paleta -->
+      <!-- Pie inferior de copyright -->
       <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-300 gap-3">
-        <p>© 2026 Teatro de la Ciudad y Centro de Convenciones de Coatzacoalcos. Prototipo de Alta Fidelidad.</p>
+        <p>© 2026 Teatro de la Ciudad y Centro de Convenciones de Coatzacoalcos.</p>
         <div class="flex items-center space-x-4">
           <a href="admin/index.html"
             class="text-white/80 hover:text-accent font-semibold transition flex items-center gap-1.5 bg-white/10 px-3 py-1 rounded-full border border-white/15">
@@ -1184,12 +1143,10 @@
             </svg>
             <span>Panel Admin</span>
           </a>
-          <span class="text-secondary hidden sm:inline">Paleta: Azul Golfo &bull; Arena &bull; Dorado &bull;
-            Celeste</span>
         </div>
       </div>
 
-      <!-- LO ÚLTIMO DEL FOOTER: Dirección oficial integrada de forma natural -->
+      <!-- Dirección oficial -->
       <div class="mt-6 pt-5 border-t border-white/10 text-center">
         <p class="inline-flex items-center justify-center flex-wrap gap-2 text-xs text-gray-300 leading-relaxed">
           <span class="inline-flex items-center gap-1.5 text-white font-medium">
@@ -1200,91 +1157,13 @@
             </svg>
             Av. Abraham Zabludovsky #201, Col. El Encanto, C.P. 96535, Coatzacoalcos, Veracruz, México
           </span>
-          <span class="text-white/30 hidden sm:inline">&bull;</span>
-          <span id="footer-taquilla-phone">Taquilla: (921) 210 6616</span>
-          <span class="text-white/30 hidden sm:inline">&bull;</span>
-          <span class="text-secondary">Horario: Lun - Vie 9:00 a 17:30 hrs | Sáb 9:00 a 13:00 hrs</span>
         </p>
       </div>
 
     </div>
   </footer>
 
-  <!-- MODAL: CREAR CUENTA -->
-  <div id="modal-crear-cuenta"
-    class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm transition-all duration-300">
-    <div
-      class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-gray-100 relative animate-fade-in space-y-5">
-      <!-- Botón cerrar modal -->
-      <button type="button" id="close-modal-cuenta"
-        class="absolute top-5 right-5 text-gray-400 hover:text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-full w-8 h-8 flex items-center justify-center transition">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
-      </button>
-
-      <!-- Cabecera del modal -->
-      <div class="text-center space-y-2">
-        <div class="w-12 h-12 rounded-2xl bg-primary/10 text-primary mx-auto flex items-center justify-center">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
-          </svg>
-        </div>
-        <h3 class="text-xl font-extrabold text-primary">Crea tu Cuenta Oficial</h3>
-        <p class="text-xs text-gray-500 max-w-xs mx-auto">
-          Accede a preventas exclusivas, reserva tus boletos y recibe avisos de la cartelera oficial de Coatzacoalcos.
-        </p>
-      </div>
-
-      <!-- Formulario de registro -->
-      <form id="form-crear-cuenta" class="space-y-4">
-        <div class="space-y-1">
-          <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider">Nombre Completo</label>
-          <input type="text" required placeholder="Ej. Mariana Morales"
-            class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition bg-base-bg">
-        </div>
-
-        <div class="space-y-1">
-          <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider">Correo Electrónico</label>
-          <input type="email" required placeholder="correo@ejemplo.com"
-            class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition bg-base-bg">
-        </div>
-
-        <div class="space-y-1">
-          <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider">Teléfono / WhatsApp</label>
-          <input type="tel" required placeholder="(921) 000 0000"
-            class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition bg-base-bg">
-        </div>
-
-        <div class="space-y-1">
-          <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider">Contraseña</label>
-          <input type="password" required placeholder="••••••••"
-            class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition bg-base-bg">
-        </div>
-
-        <div class="flex items-start gap-2 pt-1 text-xs text-gray-600">
-          <input type="checkbox" id="check-terms" required class="mt-0.5 rounded text-primary focus:ring-highlight">
-          <label for="check-terms">Acepto los términos del recinto y recibir notificaciones oficiales.</label>
-        </div>
-
-        <button type="submit"
-          class="w-full bg-accent hover:brightness-110 active:scale-95 text-white font-bold text-sm py-3 rounded-full shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2">
-          <span>Registrarme</span>
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-          </svg>
-        </button>
-
-        <div id="cuenta-success"
-          class="hidden p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs text-center font-medium">
-          🎉 ¡Cuenta creada con éxito! Bienvenido al Teatro de la Ciudad.
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- SCRIPT PARA INTERACTIVIDAD, FILTRO DE CATEGORÍAS, CALENDARIO TICKETMASTER Y MODAL -->
+  <!-- SCRIPT PARA INTERACTIVIDAD, FILTRO DE CATEGORÍAS, CALENDARIO Y CARRUSEL -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       const EVENTS_PER_PAGE = 10; // Máximo 10 eventos por página
@@ -1948,89 +1827,10 @@
       if (resetBtn) resetBtn.addEventListener('click', resetAll);
       if (emptyResetBtn) emptyResetBtn.addEventListener('click', resetAll);
 
-      // Control del Modal Crear Cuenta
-      const btnCrearCuenta = document.getElementById('btn-crear-cuenta');
-      const modalCrearCuenta = document.getElementById('modal-crear-cuenta');
-      const closeModalCuenta = document.getElementById('close-modal-cuenta');
-      const formCrearCuenta = document.getElementById('form-crear-cuenta');
-      const cuentaSuccess = document.getElementById('cuenta-success');
-
-      if (btnCrearCuenta && modalCrearCuenta) {
-        btnCrearCuenta.addEventListener('click', () => {
-          modalCrearCuenta.classList.remove('hidden');
-          modalCrearCuenta.classList.add('flex');
-        });
-      }
-
-      if (closeModalCuenta && modalCrearCuenta) {
-        closeModalCuenta.addEventListener('click', () => {
-          modalCrearCuenta.classList.add('hidden');
-          modalCrearCuenta.classList.remove('flex');
-        });
-      }
-
-      if (modalCrearCuenta) {
-        modalCrearCuenta.addEventListener('click', (e) => {
-          if (e.target === modalCrearCuenta) {
-            modalCrearCuenta.classList.add('hidden');
-            modalCrearCuenta.classList.remove('flex');
-          }
-        });
-      }
-
-      if (formCrearCuenta) {
-        formCrearCuenta.addEventListener('submit', (e) => {
-          e.preventDefault();
-          if (cuentaSuccess) {
-            cuentaSuccess.classList.remove('hidden');
-            setTimeout(() => {
-              modalCrearCuenta.classList.add('hidden');
-              modalCrearCuenta.classList.remove('flex');
-              cuentaSuccess.classList.add('hidden');
-              formCrearCuenta.reset();
-            }, 1800);
-          }
-        });
-      }
-
-      // Sincronizar estado de autenticación en la barra de navegación
       function syncAuthNavbar() {
-        const authContainer = document.getElementById('nav-auth-container');
-        if (!authContainer) return;
-        const userRaw = localStorage.getItem('tc_usuario');
-
-        if (userRaw) {
-          try {
-            JSON.parse(userRaw);
-            authContainer.innerHTML = `
-              <a href="usuario.html"
-                class="bg-white/10 hover:bg-white/20 active:scale-95 text-white font-bold text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-full border border-white/20 transition-all flex items-center gap-1.5">
-                <svg class="w-4 h-4 text-highlight" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-                <span>Perfil</span>
-              </a>
-            `;
-          } catch (e) {
-            localStorage.removeItem('tc_usuario');
-          }
-        } else {
-          authContainer.innerHTML = `
-            <a href="cuenta.html#login" class="text-white hover:text-highlight text-xs sm:text-sm font-semibold px-2 sm:px-3 py-2 transition-colors duration-200">
-              Iniciar Sesión
-            </a>
-            <a href="cuenta.html#registro"
-              class="bg-accent hover:brightness-110 active:scale-95 text-white font-bold text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-full shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-1.5">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z">
-                </path>
-              </svg>
-              <span>Registrarse</span>
-            </a>
-          `;
-        }
+        PortalCore.syncAuthNavbar();
       }
+      PortalCore.initMobileMenu();
 
       // =========================================================================
       // CARRUSEL DEL MURAL Y DATOS CURIOSOS DEL CENTRO DE CONVENCIONES
@@ -2163,7 +1963,7 @@
             if (badgeEl && cms.muralBadge) badgeEl.textContent = cms.muralBadge;
             if (cartHeadingEl && cms.carteleraHeading) cartHeadingEl.textContent = cms.carteleraHeading;
             if (cartSubEl && cms.carteleraSub) cartSubEl.textContent = cms.carteleraSub;
-            if (phoneEl && cms.contactPhone) phoneEl.textContent = `Taquilla: ${cms.contactPhone}`;
+            if (phoneEl && cms.contactPhone) phoneEl.textContent = cms.contactPhone;
             const cotImgEl = document.getElementById('cotizar-sec-img');
             const cotTitleEl = document.getElementById('cotizar-sec-title');
             const cotDesc1El = document.getElementById('cotizar-sec-desc1');
@@ -2218,14 +2018,11 @@
 
                 article.innerHTML = `
                   <div class="h-44 ${bgClass} relative overflow-hidden flex items-center justify-center">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent"></div>
+                    <div class="absolute inset-0 bg-black/25"></div>
                     <span class="absolute top-3 left-3 ${badgeBg} text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm">
                       ${ev.badge || ev.category}
                     </span>
                     ${isSoldOut ? '<span class="absolute top-3 right-3 bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-md shadow-sm uppercase">Agotado</span>' : ''}
-                    <span class="absolute bottom-2 right-3 text-white/90 text-xs font-medium drop-shadow">
-                      Teatro de la Ciudad
-                    </span>
                     <svg class="w-12 h-12 text-primary/30 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z"></path>
                     </svg>

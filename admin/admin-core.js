@@ -4,12 +4,13 @@ window.tailwind.config = {
   theme: {
     extend: {
       colors: {
-        primary: '#1E3A8A',     // Azul Golfo
-        secondary: '#D9CBB8',   // Arena Arquitectónica
-        accent: '#E58E26',      // Dorado Atardecer
-        highlight: '#38BDF8',   // Celeste Brisa
-        'base-bg': '#F8F9FA',   // Blanco Nube
-        'base-text': '#0F172A', // Carbón Pizarra
+        primary: '#1E3A8A',      // Azul Golfo
+        secondary: '#D9CBB8',    // Arena Arquitectónica
+        accent: '#E58E26',       // Dorado Atardecer
+        'accent-text': '#B45309',// Ámbar accesible sobre blanco
+        highlight: '#38BDF8',    // Celeste Brisa
+        'base-bg': '#F8F9FA',    // Blanco Nube
+        'base-text': '#0F172A',  // Carbón Pizarra
       }
     }
   }
@@ -249,7 +250,46 @@ window.AdminCore = (() => {
     if (badgeQuotes) badgeQuotes.textContent = `${pendingCount} Nuevas`;
   }
 
+  function initMobileSidebar() {
+    const sidebar = document.querySelector('aside');
+    const header = document.querySelector('header');
+    if (!sidebar || !header) return;
+
+    // Hacer el sidebar deslizable en móvil sin alterar escritorio (md:)
+    sidebar.classList.add(
+      'fixed', 'inset-y-0', 'left-0', 'transform', '-translate-x-full',
+      'md:static', 'md:translate-x-0', 'transition-transform', 'duration-200', 'z-40'
+    );
+
+    const backdrop = document.createElement('div');
+    backdrop.id = 'admin-sidebar-backdrop';
+    backdrop.className = 'hidden fixed inset-0 bg-slate-950/60 backdrop-blur-xs z-30 md:hidden';
+    document.body.appendChild(backdrop);
+
+    const titleWrap = header.querySelector('.min-w-0');
+    if (titleWrap) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.setAttribute('aria-label', 'Abrir menú de administración');
+      btn.className = 'md:hidden inline-flex items-center justify-center p-2 mr-2 rounded-xl border border-gray-200 text-primary hover:bg-gray-100 transition';
+      btn.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
+      const firstRow = titleWrap.querySelector('.flex');
+      if (firstRow) firstRow.prepend(btn);
+
+      const closeMenu = () => {
+        sidebar.classList.add('-translate-x-full');
+        backdrop.classList.add('hidden');
+      };
+      btn.addEventListener('click', () => {
+        sidebar.classList.remove('-translate-x-full');
+        backdrop.classList.remove('hidden');
+      });
+      backdrop.addEventListener('click', closeMenu);
+    }
+  }
+
   function initShell(options = {}) {
+    initMobileSidebar();
     updateSidebarBadges();
     const btnQuickNew = document.getElementById('btn-quick-new-event');
     if (btnQuickNew && !options.customQuickNew) {

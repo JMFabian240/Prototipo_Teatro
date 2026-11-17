@@ -5,22 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mi Perfil | Teatro de la Ciudad de Coatzacoalcos</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: '#1E3A8A',     // Azul Golfo
-            secondary: '#D9CBB8',   // Arena Arquitectónica
-            accent: '#E58E26',      // Dorado Atardecer
-            highlight: '#38BDF8',   // Celeste Brisa
-            'base-bg': '#F8F9FA',   // Blanco Nube
-            'base-text': '#0F172A', // Carbón Pizarra
-          }
-        }
-      }
-    }
-  </script>
+  <script src="js/portal-core.js"></script>
 </head>
 <body class="bg-base-bg text-base-text min-h-screen flex flex-col font-sans antialiased selection:bg-highlight selection:text-primary">
 
@@ -29,7 +14,7 @@
     <div class="w-full px-4 sm:px-6 md:px-[100px]">
       <div class="flex items-center justify-between h-20">
         <a href="index.html" class="flex items-center space-x-3.5 group">
-          <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-highlight/30 to-accent/30 border border-white/20 flex items-center justify-center text-accent shadow-inner group-hover:scale-105 transition-transform duration-200">
+          <div class="w-11 h-11 rounded-xl bg-highlight/30 border border-white/20 flex items-center justify-center text-accent shadow-inner group-hover:scale-105 transition-transform duration-200">
             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
             </svg>
@@ -47,13 +32,28 @@
           <a href="usuario.html" class="text-highlight py-1 border-b-2 border-highlight">Mi Perfil</a>
         </div>
 
-        <div id="nav-auth-container" class="flex items-center space-x-3 empty:hidden md:ml-8"></div>
+        <div class="flex items-center gap-2">
+          <div id="nav-auth-container" class="flex items-center space-x-3 empty:hidden md:ml-8"></div>
+          <button type="button" id="btn-mobile-menu" aria-label="Abrir menú" aria-expanded="false"
+            class="md:hidden p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/15 transition">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
       </div>
+    </div>
+
+    <div id="mobile-nav-menu" class="hidden md:hidden border-t border-white/15 bg-slate-950/95 px-4 py-3 space-y-1.5 text-sm font-semibold">
+      <a href="index.html#mural" class="block px-3 py-2 rounded-xl text-white hover:bg-white/10">Inicio</a>
+      <a href="index.html#cartelera" class="block px-3 py-2 rounded-xl text-white hover:bg-white/10">Cartelera</a>
+      <a href="cotizar.html" class="block px-3 py-2 rounded-xl text-white hover:bg-white/10">Cotizar Teatro</a>
+      <a href="usuario.html" class="block px-3 py-2 rounded-xl text-highlight bg-white/10">Mi Perfil</a>
     </div>
   </nav>
 
   <!-- B) CABECERA DEL PERFIL DE USUARIO -->
-  <header class="bg-gradient-to-r from-slate-950 via-primary to-slate-900 text-white py-10 border-b border-white/10">
+  <header class="bg-primary text-white py-10 border-b border-white/10">
     <div class="w-full px-4 sm:px-6 md:px-[100px]">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div class="flex items-center gap-4 sm:gap-5">
@@ -71,12 +71,6 @@
         </div>
 
         <div class="flex flex-wrap items-center gap-3">
-          <a href="index.html#cartelera" class="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-xs sm:text-sm font-semibold text-white transition">
-            Explorar Cartelera
-          </a>
-          <a href="cotizar.html" class="px-5 py-2.5 rounded-full bg-accent hover:brightness-110 text-xs sm:text-sm font-bold text-white shadow-lg transition">
-            + Nueva Cotización
-          </a>
           <button type="button" id="btn-header-logout" class="px-5 py-2.5 rounded-full bg-red-600/85 hover:bg-red-600 border border-red-400/30 text-xs sm:text-sm font-bold text-white shadow-lg transition flex items-center gap-1.5">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
@@ -119,37 +113,11 @@
 
       <!-- PESTAÑA 1: MIS DATOS PERSONALES -->
       <section id="panel-datos" class="user-panel space-y-6">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-          <!-- Tarjeta resumen de datos -->
-          <div class="lg:col-span-5 bg-white p-6 sm:p-8 rounded-3xl border border-gray-200 shadow-sm space-y-5">
+        <div class="max-w-2xl bg-white p-6 sm:p-8 rounded-3xl border border-gray-200 shadow-sm space-y-5">
             <div>
-              <span class="text-xs font-bold uppercase tracking-wider text-accent">Información Registrada</span>
-              <h2 class="text-xl font-black text-primary tracking-tight mt-1">Datos de Contacto</h2>
-              <p class="text-xs text-gray-500 mt-1">Estos datos se utilizan para tus boletos digitales y seguimiento de cotizaciones.</p>
-            </div>
-
-            <div class="space-y-4 pt-2 border-t border-gray-100">
-              <div class="p-3.5 rounded-2xl bg-base-bg border border-gray-200/70">
-                <div class="text-[11px] font-bold uppercase text-gray-400">Nombre Completo</div>
-                <div id="card-user-name" class="text-sm sm:text-base font-bold text-gray-900 mt-0.5">—</div>
-              </div>
-              <div class="p-3.5 rounded-2xl bg-base-bg border border-gray-200/70">
-                <div class="text-[11px] font-bold uppercase text-gray-400">Correo Electrónico</div>
-                <div id="card-user-email" class="text-sm sm:text-base font-mono font-semibold text-primary mt-0.5">—</div>
-              </div>
-              <div class="p-3.5 rounded-2xl bg-base-bg border border-gray-200/70">
-                <div class="text-[11px] font-bold uppercase text-gray-400">Teléfono de Contacto</div>
-                <div id="card-user-phone" class="text-sm sm:text-base font-semibold text-gray-900 mt-0.5">—</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Formulario para actualizar datos -->
-          <div class="lg:col-span-7 bg-white p-6 sm:p-8 rounded-3xl border border-gray-200 shadow-sm space-y-5">
-            <div>
-              <span class="text-xs font-bold uppercase tracking-wider text-accent">Configuración de Cuenta</span>
-              <h2 class="text-xl font-black text-primary tracking-tight mt-1">Actualizar Mis Datos</h2>
-              <p class="text-xs text-gray-500 mt-1">Modifica tu nombre, correo o número telefónico y guarda los cambios.</p>
+              <span class="text-xs font-bold uppercase tracking-wider text-accent-text">Configuración de Cuenta</span>
+              <h2 class="text-xl font-black text-primary tracking-tight mt-1">Mis Datos Personales</h2>
+              <p class="text-xs text-gray-500 mt-1">Consulta o actualiza tu nombre, correo y número telefónico para tus boletos y cotizaciones.</p>
             </div>
 
             <form id="form-profile" class="space-y-4">
@@ -181,7 +149,6 @@
                 </button>
               </div>
             </form>
-          </div>
         </div>
       </section>
 
@@ -191,7 +158,7 @@
         <div class="space-y-4">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div>
-              <span class="text-xs font-bold uppercase tracking-wider text-accent">Próximas Funciones</span>
+              <span class="text-xs font-bold uppercase tracking-wider text-accent-text">Próximas Funciones</span>
               <h2 class="text-xl font-black text-primary tracking-tight">Boletos Recientes</h2>
             </div>
             <span class="text-xs text-gray-500">Presenta tu folio o pase digital en el acceso principal del Teatro.</span>
@@ -269,7 +236,7 @@
           <div class="text-[10px] uppercase tracking-widest text-highlight font-bold">Pase Digital Oficial</div>
           <h3 id="mt-event" class="font-extrabold text-base mt-0.5">Nombre del Evento</h3>
         </div>
-        <button type="button" id="btn-close-ticket-modal" class="p-1.5 rounded-lg hover:bg-white/10 text-white">✕</button>
+        <button type="button" id="btn-close-ticket-modal" aria-label="Cerrar pase digital" class="p-1.5 rounded-lg hover:bg-white/10 text-white">✕</button>
       </div>
       <div class="p-6 space-y-4 text-center">
         <div class="mx-auto w-36 h-36 rounded-2xl bg-slate-900 text-white flex flex-col items-center justify-center border-4 border-accent/40 shadow-inner">
@@ -358,17 +325,9 @@
       }
 
       function renderNavbar() {
-        const authContainer = document.getElementById('nav-auth-container');
-        const user = getStoredUser();
-        if (user) {
-          authContainer.innerHTML = '';
-        } else {
-          authContainer.innerHTML = `
-            <a href="cuenta.html#login" class="text-white hover:text-highlight text-xs sm:text-sm font-semibold px-3 py-2">Iniciar Sesión</a>
-            <a href="cuenta.html#registro" class="bg-accent hover:brightness-110 text-white font-bold text-xs sm:text-sm px-4 py-2 rounded-full">Registrarse</a>
-          `;
-        }
+        PortalCore.syncAuthNavbar({ hideWhenLoggedIn: true });
       }
+      PortalCore.initMobileMenu();
 
       function renderProfileData() {
         const stored = getStoredUser();
@@ -388,10 +347,6 @@
         document.getElementById('user-avatar-initials').textContent = initials;
         document.getElementById('header-user-name').textContent = fullName;
         document.getElementById('header-user-meta').textContent = `${user.email || 'Sin correo'} · ${user.tel || 'Sin teléfono'}`;
-
-        document.getElementById('card-user-name').textContent = fullName;
-        document.getElementById('card-user-email').textContent = user.email || 'Sin correo registrado';
-        document.getElementById('card-user-phone').textContent = user.tel || 'Sin teléfono registrado';
 
         document.getElementById('prof-nombre').value = user.nombre || '';
         document.getElementById('prof-apellidos').value = user.apellidos || '';

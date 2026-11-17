@@ -90,31 +90,16 @@
       <div class="min-w-0 flex-1">
         <div class="flex items-center gap-3 flex-wrap">
           <h1 class="text-lg sm:text-xl font-black text-primary tracking-tight">Directorio de Usuarios y Productores</h1>
-          <span class="text-xs bg-emerald-50 text-emerald-700 font-bold px-2.5 py-1 rounded-full border border-emerald-200 flex items-center gap-1.5">
-            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            Sistema en Línea
-          </span>
         </div>
       </div>
       <div class="flex items-center gap-2.5 flex-nowrap shrink-0">
-        <button type="button" id="btn-quick-new-event" class="whitespace-nowrap bg-accent hover:brightness-110 active:scale-95 text-white font-bold text-xs sm:text-sm px-4 py-2 rounded-full shadow-sm hover:shadow-accent/40 transition flex items-center gap-1.5">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
-          <span>Nuevo Espectáculo</span>
-        </button>
+        <div class="text-xs bg-primary/10 text-primary font-bold px-3.5 py-2 rounded-full whitespace-nowrap">
+          Total registrados: <span id="users-count-tag">4</span>
+        </div>
       </div>
     </header>
 
     <main class="p-6 sm:p-8 flex-1 space-y-6 max-w-7xl mx-auto w-full">
-      <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex items-center justify-between">
-        <div>
-          <h2 class="text-lg font-black text-primary tracking-tight">Directorio de Productores y Clientes</h2>
-          <p class="text-xs text-gray-500">Cuentas creadas a través del portal para comprar boletos o solicitar fechas de renta.</p>
-        </div>
-        <div class="text-xs bg-primary/10 text-primary font-bold px-3 py-1.5 rounded-full">
-          Total registrados: <span id="users-count-tag">4</span>
-        </div>
-      </div>
-
       <div class="bg-white rounded-3xl border border-gray-200 shadow-sm overflow-hidden">
         <div class="overflow-x-auto">
           <table class="w-full text-left border-collapse text-xs sm:text-sm">
@@ -135,30 +120,110 @@
     </main>
   </div>
 
+  <!-- MODAL: GESTIONAR USUARIO -->
+  <div id="modal-user-detail" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl shadow-2xl border border-gray-200 w-full max-w-md p-6 sm:p-7 space-y-5 relative">
+      <button type="button" id="btn-close-user-modal" aria-label="Cerrar modal" class="absolute top-5 right-5 text-gray-400 hover:text-gray-700 p-1.5 rounded-full hover:bg-gray-100 transition">✕</button>
+      <div>
+        <span class="text-[11px] font-bold uppercase tracking-wider text-accent-text">Detalle de Cuenta</span>
+        <h3 id="ud-name" class="text-xl font-black text-primary mt-0.5">Nombre del Usuario</h3>
+        <p id="ud-email" class="text-xs font-mono text-gray-500 mt-0.5">correo@ejemplo.com</p>
+      </div>
+      <div class="space-y-3 text-xs bg-base-bg p-4 rounded-2xl border border-gray-200">
+        <div><span class="text-gray-400 block">Teléfono:</span><strong id="ud-phone" class="text-gray-900">—</strong></div>
+        <div class="grid grid-cols-2 gap-3 pt-1">
+          <div>
+            <label for="ud-role" class="block text-gray-500 font-semibold mb-1">Rol</label>
+            <select id="ud-role" class="w-full px-3 py-2 rounded-xl border border-gray-300 bg-white font-semibold">
+              <option value="Espectador">Espectador</option>
+              <option value="Productor">Productor</option>
+              <option value="Usuario">Usuario</option>
+              <option value="Administrador">Administrador</option>
+            </select>
+          </div>
+          <div>
+            <label for="ud-status" class="block text-gray-500 font-semibold mb-1">Estado</label>
+            <select id="ud-status" class="w-full px-3 py-2 rounded-xl border border-gray-300 bg-white font-semibold">
+              <option value="Activo">Activo</option>
+              <option value="Suspendido">Suspendido</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-end gap-2.5 pt-2 border-t border-gray-100">
+        <button type="button" id="btn-cancel-user-modal" class="px-4 py-2 rounded-full text-xs font-semibold text-gray-600 hover:bg-gray-100 transition">Cancelar</button>
+        <button type="button" id="btn-save-user-modal" class="px-5 py-2 rounded-full text-xs font-bold text-white bg-accent hover:brightness-110 transition">Guardar Cambios</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div id="admin-toast" class="hidden fixed bottom-6 right-6 z-50 bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-2xl border border-slate-700 text-xs sm:text-sm font-semibold flex items-center gap-3">
+    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+    <span id="toast-message">Cambios guardados con éxito.</span>
+  </div>
+
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      let currentUsers = [];
+      let editingIdx = null;
+      const modalUser = document.getElementById('modal-user-detail');
+
+      function openUserModal(idx) {
+        const u = currentUsers[idx];
+        if (!u) return;
+        editingIdx = idx;
+        document.getElementById('ud-name').textContent = u.nombre;
+        document.getElementById('ud-email').textContent = u.correo;
+        document.getElementById('ud-phone').textContent = u.telefono;
+        document.getElementById('ud-role').value = u.rol || 'Usuario';
+        document.getElementById('ud-status').value = u.status || 'Activo';
+        modalUser.classList.remove('hidden');
+      }
+
+      function closeUserModal() {
+        modalUser.classList.add('hidden');
+        editingIdx = null;
+      }
+
       function renderUsersTable() {
-        const users = AdminCore.getUsers();
-        document.getElementById('users-count-tag').textContent = users.length;
-        document.getElementById('table-users-body').innerHTML = users.map(u => `
+        currentUsers = AdminCore.getUsers();
+        document.getElementById('users-count-tag').textContent = currentUsers.length;
+        document.getElementById('table-users-body').innerHTML = currentUsers.map((u, idx) => `
           <tr class="hover:bg-gray-50/80 transition">
             <td class="py-3.5 px-5 font-bold text-gray-900">${u.nombre}</td>
             <td class="py-3.5 px-4 font-mono text-xs">${u.correo}</td>
             <td class="py-3.5 px-4 text-xs">${u.telefono}</td>
             <td class="py-3.5 px-4">
-              <span class="px-2.5 py-1 rounded-full text-[10px] font-bold ${u.rol === 'Administrador' ? 'bg-purple-100 text-purple-800' : u.rol === 'Productor' ? 'bg-accent/15 text-accent-800' : 'bg-gray-100 text-gray-700'}">${u.rol}</span>
+              <span class="px-2.5 py-1 rounded-full text-[10px] font-bold ${u.rol === 'Administrador' ? 'bg-purple-100 text-purple-800' : u.rol === 'Productor' ? 'bg-amber-100 text-amber-900' : 'bg-gray-100 text-gray-700'}">${u.rol}</span>
             </td>
             <td class="py-3.5 px-4">
-              <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-600">
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> ${u.status}
+              <span class="inline-flex items-center gap-1.5 text-xs font-semibold ${u.status === 'Suspendido' ? 'text-red-600' : 'text-emerald-600'}">
+                <span class="w-1.5 h-1.5 rounded-full ${u.status === 'Suspendido' ? 'bg-red-500' : 'bg-emerald-500'}"></span> ${u.status}
               </span>
             </td>
             <td class="py-3.5 px-5 text-right">
-              <button type="button" class="text-xs font-bold text-primary hover:underline" onclick="alert('Detalles de cuenta del usuario ${u.nombre}')">Gestionar</button>
+              <button type="button" class="btn-manage-user text-xs font-bold text-primary hover:underline" data-idx="${idx}">Gestionar</button>
             </td>
           </tr>
         `).join('');
+
+        document.querySelectorAll('.btn-manage-user').forEach(btn => {
+          btn.onclick = () => openUserModal(Number(btn.getAttribute('data-idx')));
+        });
       }
+
+      document.getElementById('btn-close-user-modal').onclick = closeUserModal;
+      document.getElementById('btn-cancel-user-modal').onclick = closeUserModal;
+      document.getElementById('btn-save-user-modal').onclick = () => {
+        if (editingIdx === null || !currentUsers[editingIdx]) return;
+        currentUsers[editingIdx].rol = document.getElementById('ud-role').value;
+        currentUsers[editingIdx].status = document.getElementById('ud-status').value;
+        localStorage.setItem('tc_admin_usuarios', JSON.stringify(currentUsers));
+        closeUserModal();
+        renderUsersTable();
+        AdminCore.showToast('Datos del usuario actualizados.');
+      };
 
       AdminCore.initShell({ onStorage: renderUsersTable });
       renderUsersTable();
