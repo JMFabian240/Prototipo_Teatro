@@ -2082,6 +2082,33 @@
         }
       });
 
+      // Navegación desde cualquier tarjeta de cartelera hacia la selección de butacas (boletos.html)
+      const eventsGridEl = document.getElementById('events-grid');
+      if (eventsGridEl) {
+        eventsGridEl.addEventListener('click', (e) => {
+          const btn = e.target.closest('.event-card button');
+          if (!btn) return;
+          const card = btn.closest('.event-card');
+          if (!card) return;
+          const title = card.querySelector('h3')?.textContent.trim() || card.getAttribute('data-title') || 'Evento';
+          const badge = card.querySelector('span.top-3.left-3')?.textContent.trim() || 'Espectáculo';
+          const dtText = card.querySelector('.text-accent span, .text-accent-text span')?.textContent.trim() || '';
+          const parts = dtText.split('•').map(s => s.trim());
+          const dateLabel = parts[0] || card.getAttribute('data-date') || '';
+          const timeLabel = parts[1] || '20:00 hrs';
+          const priceLabel = card.querySelector('.border-t span')?.textContent.trim() || 'Desde $350 MXN';
+
+          const qs = new URLSearchParams({
+            title,
+            badge,
+            date: dateLabel,
+            time: timeLabel,
+            price: priceLabel
+          });
+          window.location.href = `boletos.html?${qs.toString()}`;
+        });
+      }
+
       syncAuthNavbar();
       syncWithAdminPanel();
 

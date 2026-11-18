@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mapa de Butacas | Teatro de la Ciudad de Coatzacoalcos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="js/portal-core.js"></script>
+</head>
+<body class="bg-base-bg text-base-text min-h-screen flex flex-col font-sans antialiased selection:bg-highlight selection:text-primary">
+
+  <!-- A) NAVBAR -->
+  <nav class="bg-primary text-white sticky top-0 z-50 shadow-md border-b border-white/10">
+    <div class="w-full px-4 sm:px-6 md:px-[100px]">
+      <div class="flex items-center justify-between h-20">
+        <a href="index.html" class="flex items-center space-x-3.5 group">
+          <div class="w-11 h-11 rounded-xl bg-highlight/30 border border-white/20 flex items-center justify-center text-accent shadow-inner group-hover:scale-105 transition-transform duration-200">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+            </svg>
+          </div>
+          <div>
+            <div class="font-extrabold text-lg sm:text-xl tracking-tight leading-none text-white">TEATRO DE LA CIUDAD</div>
+            <div class="text-[11px] sm:text-xs text-secondary tracking-wider uppercase font-medium">Coatzacoalcos, Veracruz</div>
+          </div>
+        </a>
+
+        <div class="hidden md:flex items-center space-x-8 text-sm font-semibold md:ml-auto md:mr-8">
+          <a href="index.html#mural" class="text-white hover:text-highlight transition-colors duration-200 py-1 border-b-2 border-transparent hover:border-highlight">Inicio</a>
+          <a href="index.html#cartelera" class="text-highlight py-1 border-b-2 border-highlight">Cartelera</a>
+          <a href="cotizar.html" class="text-white hover:text-highlight transition-colors duration-200 py-1 border-b-2 border-transparent hover:border-highlight">Cotizar Teatro</a>
+        </div>
+
+        <div class="flex items-center gap-2 sm:gap-3">
+          <div id="nav-auth-container" class="flex items-center gap-2 sm:gap-3"></div>
+          <button type="button" id="btn-mobile-menu" aria-label="Abrir menú" aria-expanded="false"
+            class="md:hidden p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/15 transition">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="mobile-nav-menu" class="hidden md:hidden border-t border-white/15 bg-slate-950/95 px-4 py-3 space-y-1.5 text-sm font-semibold">
+      <a href="index.html#mural" class="block px-3 py-2 rounded-xl text-white hover:bg-white/10">Inicio</a>
+      <a href="index.html#cartelera" class="block px-3 py-2 rounded-xl text-highlight bg-white/10">Cartelera</a>
+      <a href="cotizar.html" class="block px-3 py-2 rounded-xl text-white hover:bg-white/10">Cotizar Teatro</a>
+    </div>
+  </nav>
+
+  <!-- B) CABECERA DEL ESPECTÁCULO -->
+  <header class="bg-primary text-white py-6 border-b border-white/10">
+    <div class="w-full px-4 sm:px-6 md:px-[100px]">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="space-y-1">
+          <a href="index.html#cartelera" class="inline-flex items-center gap-1.5 text-xs text-highlight hover:underline font-semibold">
+            <span>&larr; Volver a la Cartelera</span>
+          </a>
+          <h1 id="ev-title" class="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
+            Selección de Boletos y Butacas
+          </h1>
+          <div class="flex flex-wrap items-center gap-3 text-xs sm:text-sm text-gray-200">
+            <span id="ev-badge" class="bg-accent text-white text-[11px] font-bold px-2.5 py-0.5 rounded-md">Función Oficial</span>
+            <span id="ev-datetime" class="font-medium">Próxima fecha • Horario por confirmar</span>
+            <span class="text-white/40">•</span>
+            <span class="text-secondary">Gran Sala (1,730 localidades)</span>
+          </div>
+        </div>
+        <div class="text-xs bg-slate-950/50 border border-white/15 rounded-2xl px-4 py-3 text-gray-200">
+          <div class="font-bold text-white">Mapa Interactivo con Zoom</div>
+          <div class="mt-0.5">Haz clic en una zona o acerca con el zoom para ver y elegir cada asiento.</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- C) MAPA ÚNICO CON ZOOM SEMÁNTICO (IZQ) + RESUMEN DE COMPRA (DER) -->
+  <main class="flex-1 py-8">
+    <div class="w-full px-4 sm:px-6 md:px-[100px]">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+        <!-- MAPA INTERACTIVO UNIFICADO (8 COLS) -->
+        <section class="lg:col-span-8 bg-white rounded-3xl border border-gray-200 shadow-sm p-4 sm:p-6 space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-gray-100 pb-3">
+            <div>
+              <span class="text-[11px] font-bold uppercase tracking-wider text-accent-text">Plano Oficial Interactivo</span>
+              <h2 class="font-display text-lg sm:text-xl font-extrabold text-primary">Sala del Teatro de la Ciudad</h2>
+            </div>
+
+            <!-- Leyenda de estados de asientos -->
+            <div class="flex flex-wrap items-center gap-3 text-[11px] font-semibold text-gray-600">
+              <span class="inline-flex items-center gap-1.5"><span class="w-3.5 h-3.5 rounded bg-white border border-gray-400 inline-block"></span> Disponible</span>
+              <span class="inline-flex items-center gap-1.5"><span class="w-3.5 h-3.5 rounded bg-accent inline-block"></span> Seleccionado</span>
+              <span class="inline-flex items-center gap-1.5"><span class="w-3.5 h-3.5 rounded bg-gray-300 inline-block"></span> Ocupado</span>
+            </div>
+          </div>
+
+          <!-- Accesos rápidos para hacer auto-zoom a cualquier zona -->
+          <div id="zone-pills" class="flex flex-wrap gap-2"></div>
+
+          <!-- Viewport interactivo con zoom y arrastre -->
+          <div id="map-viewport" class="relative w-full h-[520px] sm:h-[640px] bg-base-bg rounded-2xl border border-gray-200 overflow-hidden cursor-grab active:cursor-grabbing select-none touch-none">
+
+            <!-- Controles flotantes de Zoom -->
+            <div class="absolute top-3 right-3 z-20 flex flex-col gap-1.5 bg-white/95 p-1.5 rounded-2xl border border-gray-200 shadow-md">
+              <button type="button" id="btn-zoom-in" aria-label="Acercar mapa" title="Acercar (Ver asientos)"
+                class="w-9 h-9 rounded-xl bg-base-bg hover:bg-primary hover:text-white text-primary font-black text-lg flex items-center justify-center transition">+</button>
+              <button type="button" id="btn-zoom-out" aria-label="Alejar mapa" title="Alejar"
+                class="w-9 h-9 rounded-xl bg-base-bg hover:bg-primary hover:text-white text-primary font-black text-lg flex items-center justify-center transition">−</button>
+              <button type="button" id="btn-zoom-reset" aria-label="Vista general" title="Vista general (1x)"
+                class="w-9 h-9 rounded-xl bg-base-bg hover:bg-slate-900 hover:text-white text-gray-700 font-bold text-[11px] flex items-center justify-center transition">1x</button>
+            </div>
+
+            <!-- Indicador flotante de estado / tooltip -->
+            <div id="map-hud-pill" class="absolute top-3 left-3 z-20 px-3.5 py-2 rounded-xl bg-slate-950/85 text-white text-xs font-semibold shadow-md pointer-events-none flex items-center gap-2">
+              <span id="hud-zoom-badge" class="px-2 py-0.5 rounded-md bg-accent text-white font-mono text-[10px] font-bold">1.0x</span>
+              <span id="hud-info-text">Haz clic en una zona o haz zoom para ver los asientos</span>
+            </div>
+
+            <!-- Tooltip flotante al pasar por una butaca -->
+            <div id="seat-tooltip" class="hidden absolute z-30 px-3 py-1.5 rounded-lg bg-slate-900 text-white text-[11px] font-semibold shadow-xl pointer-events-none whitespace-nowrap border border-white/15"></div>
+
+            <!-- Único SVG unificado: Vista base de zonas + 1,730 asientos al hacer zoom -->
+            <svg id="svg-teatro-map" viewBox="0 0 1100 940" class="w-full h-full">
+              <g id="map-world">
+
+                <!-- CAPA 1: BLOQUES DE ZONA (Estado base y fondo suave al acercar) -->
+                <g id="layer-zone-blocks">
+                  <!-- SEGUNDO NIVEL -->
+                  <g class="map-zone cursor-pointer" data-zone="segundo-nivel">
+                    <path class="zone-shape transition-all duration-200" d="M 155 48 Q 550 -8 945 48 L 932 228 Q 550 185 168 228 Z" fill="#7E22CE" stroke="#FFFFFF" stroke-width="3" />
+                    <g class="zone-label">
+                      <text x="550" y="130" text-anchor="middle" fill="#FFFFFF" font-size="22" font-weight="900">SEGUNDO NIVEL</text>
+                      <text x="550" y="154" text-anchor="middle" fill="#F3E8FF" font-size="14" font-weight="600">386 butacas · $300 MXN</text>
+                    </g>
+                  </g>
+
+                  <!-- PRIMER NIVEL -->
+                  <g class="map-zone cursor-pointer" data-zone="primer-nivel">
+                    <path class="zone-shape transition-all duration-200" d="M 185 245 Q 550 198 915 245 L 905 362 Q 550 320 195 362 Z" fill="#15803D" stroke="#FFFFFF" stroke-width="3" />
+                    <g class="zone-label">
+                      <text x="550" y="295" text-anchor="middle" fill="#FFFFFF" font-size="21" font-weight="900">PRIMER NIVEL</text>
+                      <text x="550" y="319" text-anchor="middle" fill="#DCFCE7" font-size="14" font-weight="600">287 butacas · $380 MXN</text>
+                    </g>
+                  </g>
+
+                  <!-- MEZZANINE -->
+                  <g class="map-zone cursor-pointer" data-zone="mezzanine">
+                    <path class="zone-shape transition-all duration-200" d="M 145 382 Q 550 335 955 382 L 945 498 Q 550 458 155 498 Z" fill="#1E3A8A" stroke="#FFFFFF" stroke-width="3" />
+                    <g class="zone-label">
+                      <text x="550" y="432" text-anchor="middle" fill="#FFFFFF" font-size="22" font-weight="900">MEZZANINE</text>
+                      <text x="550" y="456" text-anchor="middle" fill="#DBEAFE" font-size="14" font-weight="600">291 butacas · $480 MXN</text>
+                    </g>
+                  </g>
+
+                  <!-- PALCOS 2DO NIVEL (IZQ y DER) -->
+                  <g class="map-zone cursor-pointer" data-zone="palcos-2">
+                    <g transform="translate(88, 280) rotate(-28)">
+                      <rect class="zone-shape" x="-44" y="-85" width="88" height="205" rx="12" fill="#BE185D" stroke="#FFFFFF" stroke-width="3" />
+                      <g class="zone-label">
+                        <text x="0" y="10" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="900">PALCOS 2°</text>
+                        <text x="0" y="28" text-anchor="middle" fill="#FCE7F3" font-size="10" font-weight="700">12 · 13 · 14</text>
+                      </g>
+                    </g>
+                    <g transform="translate(1012, 280) rotate(28)">
+                      <rect class="zone-shape" x="-44" y="-85" width="88" height="205" rx="12" fill="#BE185D" stroke="#FFFFFF" stroke-width="3" />
+                      <g class="zone-label">
+                        <text x="0" y="10" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="900">PALCOS 2°</text>
+                        <text x="0" y="28" text-anchor="middle" fill="#FCE7F3" font-size="10" font-weight="700">9 · 10 · 11</text>
+                      </g>
+                    </g>
+                  </g>
+
+                  <!-- PLATEA (IZQ y DER) -->
+                  <g class="map-zone cursor-pointer" data-zone="platea">
+                    <path class="zone-shape transition-all duration-200" d="M 162 522 L 258 518 L 254 786 L 166 782 Z" fill="#EA580C" stroke="#FFFFFF" stroke-width="3" />
+                    <g class="zone-label">
+                      <text x="210" y="655" text-anchor="middle" fill="#FFFFFF" font-size="15" font-weight="900" transform="rotate(-90 210 655)">PLATEA IZQ. · $520</text>
+                    </g>
+                    <path class="zone-shape transition-all duration-200" d="M 842 518 L 938 522 L 934 782 L 846 786 Z" fill="#EA580C" stroke="#FFFFFF" stroke-width="3" />
+                    <g class="zone-label">
+                      <text x="890" y="655" text-anchor="middle" fill="#FFFFFF" font-size="15" font-weight="900" transform="rotate(90 890 655)">PLATEA DER. · $520</text>
+                    </g>
+                  </g>
+
+                  <!-- LUNETA -->
+                  <g class="map-zone cursor-pointer" data-zone="luneta">
+                    <path class="zone-shape transition-all duration-200" d="M 272 514 L 828 514 L 814 812 L 286 812 Z" fill="#DC2626" stroke="#FFFFFF" stroke-width="3" />
+                    <g class="zone-label">
+                      <text x="550" y="652" text-anchor="middle" fill="#FFFFFF" font-size="26" font-weight="900">LUNETA</text>
+                      <text x="550" y="678" text-anchor="middle" fill="#FEE2E2" font-size="15" font-weight="600">566 butacas · $650 MXN</text>
+                    </g>
+                  </g>
+
+                  <!-- PALCOS 1ER NIVEL (IZQ y DER) -->
+                  <g class="map-zone cursor-pointer" data-zone="palcos-1">
+                    <g transform="translate(86, 595) rotate(-28)">
+                      <rect class="zone-shape" x="-44" y="-120" width="88" height="255" rx="12" fill="#0284C7" stroke="#FFFFFF" stroke-width="3" />
+                      <g class="zone-label">
+                        <text x="0" y="-2" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="900">PALCOS 1°</text>
+                        <text x="0" y="16" text-anchor="middle" fill="#E0F2FE" font-size="10" font-weight="700">Palcos 5 y 8</text>
+                      </g>
+                    </g>
+                    <g transform="translate(1014, 595) rotate(28)">
+                      <rect class="zone-shape" x="-44" y="-120" width="88" height="255" rx="12" fill="#0284C7" stroke="#FFFFFF" stroke-width="3" />
+                      <g class="zone-label">
+                        <text x="0" y="-2" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="900">PALCOS 1°</text>
+                        <text x="0" y="16" text-anchor="middle" fill="#E0F2FE" font-size="10" font-weight="700">Palcos 1 a 4</text>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+
+                <!-- CAPA 2: LOS 1,730 ASIENTOS INDIVIDUALES (Se revelan al hacer zoom >= 1.75x) -->
+                <g id="layer-seats" style="display: none;"></g>
+
+                <!-- CAPA 3: ESCENARIO -->
+                <g id="layer-stage">
+                  <path d="M 300 835 L 800 835 L 835 865 L 775 925 L 325 925 L 265 865 Z" fill="#0F172A" stroke="#D9CBB8" stroke-width="3" />
+                  <circle cx="550" cy="922" r="24" fill="none" stroke="#64748B" stroke-width="1.5" stroke-dasharray="4 3" />
+                  <text x="550" y="886" text-anchor="middle" fill="#FFFFFF" font-size="22" font-weight="900" letter-spacing="4">ESCENARIO</text>
+                </g>
+
+              </g>
+            </svg>
+          </div>
+        </section>
+
+        <!-- RESUMEN DE COMPRA EN VIVO (4 COLS) -->
+        <aside class="lg:col-span-4 lg:sticky lg:top-24 bg-white rounded-3xl border border-gray-200 shadow-md p-6 space-y-5" id="ticket-summary-card">
+          <div class="border-b border-gray-100 pb-4">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-accent-text">Tu Reservación</span>
+            <h3 class="font-display text-xl font-extrabold text-primary mt-0.5">Resumen de Boletos</h3>
+            <p id="summary-event-name" class="text-xs font-semibold text-gray-600 mt-1">Evento seleccionado</p>
+          </div>
+
+          <div id="selected-seats-list" class="space-y-2.5 max-h-64 overflow-y-auto pr-1">
+            <div class="text-center py-6 text-xs text-gray-400 bg-base-bg rounded-2xl border border-dashed border-gray-200">
+              Acerca el mapa (o haz clic en una zona) y toca los asientos disponibles.
+            </div>
+          </div>
+
+          <div class="border-t border-gray-100 pt-4 space-y-2 text-xs sm:text-sm">
+            <div class="flex justify-between text-gray-600">
+              <span>Boletos seleccionados:</span>
+              <strong id="summary-count" class="text-gray-900">0 (máx. 8)</strong>
+            </div>
+            <div class="flex justify-between text-gray-600">
+              <span>Cargo por taquilla digital:</span>
+              <strong class="text-emerald-700">$0 MXN</strong>
+            </div>
+            <div class="flex justify-between items-center pt-2 border-t border-gray-100 text-base sm:text-lg font-black text-primary">
+              <span>Total a pagar:</span>
+              <span id="summary-total">$0 MXN</span>
+            </div>
+          </div>
+
+          <div id="limit-warning" class="hidden p-2.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs font-semibold text-center">
+            Máximo 8 boletos por compra en línea.
+          </div>
+
+          <button type="button" id="btn-confirm-purchase" disabled
+            class="w-full py-3.5 rounded-full bg-accent text-white font-bold text-sm shadow-lg transition disabled:opacity-40 disabled:cursor-not-allowed hover:brightness-110 active:scale-95">
+            Confirmar y Generar Boletos
+          </button>
+
+          <p class="text-[11px] text-gray-400 text-center leading-relaxed">
+            Tus boletos aparecerán al instante con su Pase QR en <strong>Mi Perfil</strong>.
+          </p>
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- MODAL: COMPRA CONFIRMADA -->
+  <div id="modal-purchase-ok" class="hidden fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl shadow-2xl border border-gray-200 max-w-md w-full p-6 sm:p-8 text-center space-y-5">
+      <div class="w-14 h-14 rounded-full bg-emerald-100 text-emerald-700 mx-auto flex items-center justify-center text-2xl font-black">✓</div>
+      <div>
+        <h3 class="font-display text-xl font-black text-primary">¡Boletos Generados!</h3>
+        <p id="purchase-ok-desc" class="text-xs sm:text-sm text-gray-600 mt-1.5 leading-relaxed"></p>
+      </div>
+      <div class="bg-base-bg p-4 rounded-2xl border border-gray-200 text-xs text-left space-y-1">
+        <div><strong>Folio asignado:</strong> <span id="purchase-ok-folio" class="font-mono text-primary font-bold">TC-BOL-...</span></div>
+        <div><strong>Ubicación:</strong> <span id="purchase-ok-seats">—</span></div>
+        <div><strong>Total:</strong> <span id="purchase-ok-total" class="font-bold text-emerald-700">—</span></div>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-2.5 pt-2">
+        <button type="button" id="btn-keep-buying" class="flex-1 py-2.5 rounded-full border border-gray-300 text-xs font-semibold text-gray-700 hover:bg-gray-100 transition">Seguir viendo sala</button>
+        <a href="usuario.html" class="flex-1 py-2.5 rounded-full bg-primary text-white text-xs font-bold hover:brightness-110 transition text-center">Ir a Mis Boletos (QR)</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-primary text-white border-t border-white/10 py-8 mt-auto">
+    <div class="w-full px-4 sm:px-6 md:px-[100px] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-300">
+      <p>© 2026 Teatro de la Ciudad y Centro de Convenciones de Coatzacoalcos.</p>
+      <a href="index.html#cartelera" class="text-highlight hover:underline font-semibold">Volver a la Cartelera</a>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      PortalCore.syncAuthNavbar();
+      PortalCore.initMobileMenu();
+
+      const params = new URLSearchParams(window.location.search);
+      const eventInfo = {
+        title: params.get('title') || 'El Cascanueces: Ballet Ruso Mary El',
+        badge: params.get('badge') || 'Espectáculo Oficial',
+        date: params.get('date') || '15 Dic 2026',
+        time: params.get('time') || '19:00 hrs'
+      };
+
+      document.getElementById('ev-title').textContent = eventInfo.title;
+      document.getElementById('ev-badge').textContent = eventInfo.badge;
+      document.getElementById('ev-datetime').textContent = `${eventInfo.date} • ${eventInfo.time}`;
+      document.getElementById('summary-event-name').textContent = `${eventInfo.title} (${eventInfo.date} · ${eventInfo.time})`;
+
+      function rangeDesc(from, to) {
+        const arr = [];
+        for (let n = from; n >= to; n--) arr.push(n);
+        return arr;
+      }
+
+      // 7 zonas fieles al Plano_Teatro.jpeg (1,730 localidades totales)
+      const ZONES = {
+        'luneta': {
+          id: 'luneta', name: 'Luneta', capacity: 566, price: 650, colorHex: '#DC2626',
+          focus: { x: 550, y: 660, scale: 2.3 },
+          rows: [
+            { label: 'Q', blocks: [null, rangeDesc(20, 7), null] },
+            { label: 'P', blocks: [rangeDesc(25, 22), rangeDesc(23, 8), rangeDesc(6, 1)] },
+            ...['O','N','M','L'].map(l => ({ label: l, blocks: [rangeDesc(30, 24), rangeDesc(23, 8), rangeDesc(7, 1)] })),
+            ...['K','J','I','H','G','F','E','D'].map(l => ({ label: l, blocks: [rangeDesc(32, 24), rangeDesc(23, 8), rangeDesc(7, 1)] })),
+            { label: 'C', blocks: [rangeDesc(34, 25), rangeDesc(24, 10), rangeDesc(9, 1)] },
+            { label: 'B', blocks: [rangeDesc(32, 24), rangeDesc(23, 9), rangeDesc(8, 1)] },
+            { label: 'A', blocks: [rangeDesc(30, 23), rangeDesc(22, 8), rangeDesc(7, 1)] },
+            { label: 'AA', blocks: [rangeDesc(28, 22), rangeDesc(21, 7), rangeDesc(6, 1)] },
+            { label: 'BB', blocks: [rangeDesc(26, 22), rangeDesc(21, 6), rangeDesc(5, 1)] }
+          ]
+        },
+        'platea': {
+          id: 'platea', name: 'Platea', capacity: 144, price: 520, colorHex: '#EA580C',
+          focus: { x: 240, y: 650, scale: 2.5 },
+          rows: [
+            ...['O','N','M','L','K','J','I','H','G','F','E','D','C'].map(l => ({
+              label: l, blocks: [rangeDesc(10, 6), rangeDesc(5, 1)]
+            })),
+            { label: 'B', blocks: [rangeDesc(8, 5), rangeDesc(4, 1)] },
+            { label: 'A', blocks: [rangeDesc(6, 4), rangeDesc(3, 1)] }
+          ]
+        },
+        'mezzanine': {
+          id: 'mezzanine', name: 'Mezzanine', capacity: 291, price: 480, colorHex: '#1E3A8A',
+          focus: { x: 550, y: 440, scale: 2.2 },
+          rows: [
+            { label: 'X', blocks: [rangeDesc(49, 1)] },
+            ...['W','V','U','T'].map(l => ({ label: l, blocks: [rangeDesc(45, 30), rangeDesc(29, 16), rangeDesc(15, 1)] })),
+            { label: 'S', blocks: [rangeDesc(31, 16), null, rangeDesc(15, 1)] },
+            { label: 'R', blocks: [rangeDesc(31, 16), null, rangeDesc(15, 1)] }
+          ]
+        },
+        'primer-nivel': {
+          id: 'primer-nivel', name: 'Primer Nivel', capacity: 287, price: 380, colorHex: '#15803D',
+          focus: { x: 550, y: 300, scale: 2.2 },
+          rows: ['G','F','E','D','C','B','A'].map(l => ({ label: l, blocks: [rangeDesc(41, 1)] }))
+        },
+        'segundo-nivel': {
+          id: 'segundo-nivel', name: 'Segundo Nivel', capacity: 386, price: 300, colorHex: '#7E22CE',
+          focus: { x: 550, y: 140, scale: 2.1 },
+          rows: [
+            { label: 'K', blocks: [null, null, rangeDesc(14, 1)] },
+            { label: 'J', blocks: [null, null, rangeDesc(16, 1)] },
+            { label: 'I', blocks: [null, rangeDesc(23, 1)] },
+            { label: 'H', blocks: [null, rangeDesc(30, 1)] },
+            { label: 'G', blocks: [rangeDesc(41, 3), rangeDesc(2, 1)] },
+            ...['F','E','D','C'].map(l => ({ label: l, blocks: [rangeDesc(45, 44), rangeDesc(43, 3), rangeDesc(2, 1)] })),
+            { label: 'B', blocks: [rangeDesc(41, 1)] },
+            { label: 'A', blocks: [rangeDesc(41, 1)] }
+          ]
+        },
+        'palcos-1': {
+          id: 'palcos-1', name: 'Palcos 1er Nivel', capacity: 28, price: 580, colorHex: '#0284C7',
+          focus: { x: 960, y: 590, scale: 2.8 },
+          rows: [
+            { label: 'P5-A', side: 'L', yOffset: -92, blocks: [rangeDesc(2, 1)] },
+            { label: 'P8-C', side: 'L', yOffset: 50, blocks: [rangeDesc(2, 1)] },
+            { label: 'P8-B', side: 'L', yOffset: 68, blocks: [rangeDesc(2, 1)] },
+            { label: 'P8-A', side: 'L', yOffset: 86, blocks: [rangeDesc(2, 1)] },
+            { label: 'P4-A', side: 'R', yOffset: -92, blocks: [rangeDesc(2, 1)] },
+            { label: 'P3-C', side: 'R', yOffset: -42, blocks: [rangeDesc(2, 1)] },
+            { label: 'P3-B', side: 'R', yOffset: -24, blocks: [rangeDesc(2, 1)] },
+            { label: 'P3-A', side: 'R', yOffset: -6, blocks: [rangeDesc(2, 1)] },
+            { label: 'P2-C', side: 'R', yOffset: 24, blocks: [rangeDesc(2, 1)] },
+            { label: 'P2-B', side: 'R', yOffset: 42, blocks: [rangeDesc(2, 1)] },
+            { label: 'P2-A', side: 'R', yOffset: 60, blocks: [rangeDesc(2, 1)] },
+            { label: 'P1-C', side: 'R', yOffset: 88, blocks: [rangeDesc(2, 1)] },
+            { label: 'P1-B', side: 'R', yOffset: 106, blocks: [rangeDesc(2, 1)] },
+            { label: 'P1-A', side: 'R', yOffset: 124, blocks: [rangeDesc(2, 1)] }
+          ]
+        },
+        'palcos-2': {
+          id: 'palcos-2', name: 'Palcos 2do Nivel', capacity: 28, price: 450, colorHex: '#BE185D',
+          focus: { x: 960, y: 280, scale: 2.8 },
+          rows: [
+            { label: 'P12-B', side: 'L', yOffset: -62, blocks: [rangeDesc(2, 1)] },
+            { label: 'P12-A', side: 'L', yOffset: -44, blocks: [rangeDesc(2, 1)] },
+            { label: 'P13-C', side: 'L', yOffset: -14, blocks: [[1]] },
+            { label: 'P13-B', side: 'L', yOffset: 4, blocks: [rangeDesc(2, 1)] },
+            { label: 'P13-A', side: 'L', yOffset: 22, blocks: [rangeDesc(2, 1)] },
+            { label: 'P14-C', side: 'L', yOffset: 52, blocks: [[1]] },
+            { label: 'P14-B', side: 'L', yOffset: 70, blocks: [rangeDesc(2, 1)] },
+            { label: 'P14-A', side: 'L', yOffset: 88, blocks: [rangeDesc(2, 1)] },
+            { label: 'P11-B', side: 'R', yOffset: -62, blocks: [rangeDesc(2, 1)] },
+            { label: 'P11-A', side: 'R', yOffset: -44, blocks: [rangeDesc(2, 1)] },
+            { label: 'P10-C', side: 'R', yOffset: -14, blocks: [[1]] },
+            { label: 'P10-B', side: 'R', yOffset: 4, blocks: [rangeDesc(2, 1)] },
+            { label: 'P10-A', side: 'R', yOffset: 22, blocks: [rangeDesc(2, 1)] },
+            { label: 'P9-C', side: 'R', yOffset: 52, blocks: [[1]] },
+            { label: 'P9-B', side: 'R', yOffset: 70, blocks: [rangeDesc(2, 1)] },
+            { label: 'P9-A', side: 'R', yOffset: 88, blocks: [rangeDesc(2, 1)] }
+          ]
+        }
+      };
+
+      const STORAGE_OCCUPIED_KEY = `tc_occupied_seats_${eventInfo.title.toLowerCase().replace(/\s+/g, '_')}`;
+      const DEFAULT_DEMO_OCCUPIED = ['luneta:F-14', 'luneta:F-15', 'luneta:E-12', 'luneta:E-13', 'mezzanine:T-20', 'mezzanine:T-21'];
+      let occupiedSeats = new Set(JSON.parse(localStorage.getItem(STORAGE_OCCUPIED_KEY)) || DEFAULT_DEMO_OCCUPIED);
+      let selectedSeats = [];
+
+      // Estado del Zoom Semántico (LOD)
+      const ZOOM_SEAT_THRESHOLD = 1.7;
+      let viewState = { scale: 1, tx: 0, ty: 0 };
+      let isDragging = false;
+      let dragMoved = false;
+      let dragStart = { x: 0, y: 0, tx: 0, ty: 0 };
+
+      const svgEl = document.getElementById('svg-teatro-map');
+      const worldEl = document.getElementById('map-world');
+      const layerSeats = document.getElementById('layer-seats');
+      const layerBlocks = document.getElementById('layer-zone-blocks');
+      const hudBadge = document.getElementById('hud-zoom-badge');
+      const hudText = document.getElementById('hud-info-text');
+      const seatTooltip = document.getElementById('seat-tooltip');
+
+      // Generar coordenadas SVG para todas las 1,730 butacas dentro de sus bloques reales
+      function buildAllSeatsSvg() {
+        const parts = [];
+        const seatW = 12, seatH = 11, dx = 14.2, dy = 14.5;
+
+        function seatMarkup(zone, rowLabel, num, x, y) {
+          const key = `${zone.id}:${rowLabel}-${num}`;
+          return `<g class="svg-seat cursor-pointer" data-key="${key}" data-zone="${zone.id}" data-label="Fila ${rowLabel} · Asiento ${num}" data-x="${x}" data-y="${y}" transform="translate(${x.toFixed(1)}, ${y.toFixed(1)})">` +
+            `<rect x="${-seatW/2}" y="${-seatH/2}" width="${seatW}" height="${seatH}" rx="2.5" stroke-width="1" />` +
+            `<text x="0" y="3" text-anchor="middle" font-size="6.5" font-weight="700">${num}</text>` +
+            `</g>`;
+        }
+
+        // 1. LUNETA (19 filas, 3 bloques, y=526..796)
+        ZONES.luneta.rows.forEach((row, rIdx) => {
+          const y = 528 + rIdx * 14.8;
+          const [leftB, centerB, rightB] = row.blocks;
+          // Centro centrado en x=550
+          if (centerB) {
+            const cw = centerB.length * dx;
+            const cxStart = 550 - cw / 2 + dx / 2;
+            centerB.forEach((num, i) => parts.push(seatMarkup(ZONES.luneta, row.label, num, cxStart + i * dx, y)));
+          }
+          if (leftB) {
+            const lxEnd = 425;
+            leftB.forEach((num, i) => {
+              const x = lxEnd - (leftB.length - 1 - i) * dx;
+              parts.push(seatMarkup(ZONES.luneta, row.label, num, x, y));
+            });
+          }
+          if (rightB) {
+            const rxStart = 675;
+            rightB.forEach((num, i) => parts.push(seatMarkup(ZONES.luneta, row.label, num, rxStart + i * dx, y)));
+          }
+        });
+
+        // 2. PLATEA (15 filas O..A, alas izquierda y derecha de Luneta)
+        ZONES.platea.rows.forEach((row, rIdx) => {
+          const y = 544 + rIdx * 15.8;
+          const [leftB, rightB] = row.blocks;
+          leftB.forEach((num, i) => parts.push(seatMarkup(ZONES.platea, row.label, num, 178 + i * 15.5, y)));
+          rightB.forEach((num, i) => parts.push(seatMarkup(ZONES.platea, row.label, num, 860 + i * 15.5, y)));
+        });
+
+        // 3. MEZZANINE (7 filas X..R, ligera curvatura arquitectónica)
+        ZONES.mezzanine.rows.forEach((row, rIdx) => {
+          const baseY = 392 + rIdx * 14.8;
+          const [b0, b1, b2] = row.blocks;
+          const arcY = (x) => baseY - 12 * (1 - Math.pow((x - 550) / 390, 2));
+          if (b0 && !b1 && !b2) {
+            const sx = 550 - ((b0.length - 1) * 15.2) / 2;
+            b0.forEach((num, i) => {
+              const x = sx + i * 15.2;
+              parts.push(seatMarkup(ZONES.mezzanine, row.label, num, x, arcY(x)));
+            });
+          } else {
+            if (b0) b0.forEach((num, i) => { const x = 185 + i * 14.2; parts.push(seatMarkup(ZONES.mezzanine, row.label, num, x, arcY(x))); });
+            if (b1) {
+              const sx = 550 - ((b1.length - 1) * 14.2) / 2;
+              b1.forEach((num, i) => { const x = sx + i * 14.2; parts.push(seatMarkup(ZONES.mezzanine, row.label, num, x, arcY(x))); });
+            }
+            if (b2) b2.forEach((num, i) => { const x = 716 + i * 14.2; parts.push(seatMarkup(ZONES.mezzanine, row.label, num, x, arcY(x))); });
+          }
+        });
+
+        // 4. PRIMER NIVEL (7 filas G..A, arco suave)
+        ZONES['primer-nivel'].rows.forEach((row, rIdx) => {
+          const baseY = 258 + rIdx * 14.5;
+          const nums = row.blocks[0];
+          const sx = 550 - ((nums.length - 1) * 16.5) / 2;
+          nums.forEach((num, i) => {
+            const x = sx + i * 16.5;
+            const y = baseY - 15 * (1 - Math.pow((x - 550) / 360, 2));
+            parts.push(seatMarkup(ZONES['primer-nivel'], row.label, num, x, y));
+          });
+        });
+
+        // 5. SEGUNDO NIVEL (11 filas K..A, arco suave)
+        ZONES['segundo-nivel'].rows.forEach((row, rIdx) => {
+          const baseY = 64 + rIdx * 14.5;
+          const flat = row.blocks.flat().filter(Boolean);
+          const rightAligned = ['K', 'J', 'I', 'H'].includes(row.label);
+          const sx = rightAligned ? (890 - (flat.length - 1) * 15.8) : (550 - ((flat.length - 1) * 15.8) / 2);
+          flat.forEach((num, i) => {
+            const x = sx + i * 15.8;
+            const y = baseY - 18 * (1 - Math.pow((x - 550) / 380, 2));
+            parts.push(seatMarkup(ZONES['segundo-nivel'], row.label, num, x, y));
+          });
+        });
+
+        // 6. PALCOS 1ER NIVEL (rotados ±28°)
+        const palcos1Left = [], palcos1Right = [];
+        ZONES['palcos-1'].rows.forEach(row => {
+          const nums = row.blocks[0];
+          const target = row.side === 'L' ? palcos1Left : palcos1Right;
+          nums.forEach((num, i) => target.push(seatMarkup(ZONES['palcos-1'], row.label, num, (i - 0.5) * 18, row.yOffset)));
+        });
+        parts.push(`<g transform="translate(86, 595) rotate(-28)">${palcos1Left.join('')}</g>`);
+        parts.push(`<g transform="translate(1014, 595) rotate(28)">${palcos1Right.join('')}</g>`);
+
+        // 7. PALCOS 2DO NIVEL (rotados ±28°)
+        const palcos2Left = [], palcos2Right = [];
+        ZONES['palcos-2'].rows.forEach(row => {
+          const nums = row.blocks[0];
+          const target = row.side === 'L' ? palcos2Left : palcos2Right;
+          nums.forEach((num, i) => target.push(seatMarkup(ZONES['palcos-2'], row.label, num, (i - (nums.length - 1) / 2) * 18, row.yOffset)));
+        });
+        parts.push(`<g transform="translate(88, 280) rotate(-28)">${palcos2Left.join('')}</g>`);
+        parts.push(`<g transform="translate(1012, 280) rotate(28)">${palcos2Right.join('')}</g>`);
+
+        layerSeats.innerHTML = parts.join('');
+        refreshSeatVisualStates();
+      }
+
+      function refreshSeatVisualStates() {
+        const selectedKeys = new Set(selectedSeats.map(s => s.key));
+        layerSeats.querySelectorAll('.svg-seat').forEach(g => {
+          const key = g.getAttribute('data-key');
+          const zId = g.getAttribute('data-zone');
+          const rect = g.querySelector('rect');
+          const text = g.querySelector('text');
+          const isOcc = occupiedSeats.has(key);
+          const isSel = selectedKeys.has(key);
+
+          if (isOcc) {
+            rect.setAttribute('fill', '#CBD5E1');
+            rect.setAttribute('stroke', '#94A3B8');
+            text.setAttribute('fill', '#64748B');
+            g.style.cursor = 'not-allowed';
+          } else if (isSel) {
+            rect.setAttribute('fill', '#E58E26');
+            rect.setAttribute('stroke', '#0F172A');
+            text.setAttribute('fill', '#FFFFFF');
+            g.style.cursor = 'pointer';
+          } else {
+            rect.setAttribute('fill', '#FFFFFF');
+            rect.setAttribute('stroke', ZONES[zId]?.colorHex || '#1E3A8A');
+            text.setAttribute('fill', '#0F172A');
+            g.style.cursor = 'pointer';
+          }
+        });
+      }
+
+      function applyMapTransform() {
+        // Limitar paneo para que el mapa no se pierda fuera de vista
+        const minTx = 1100 * (1 - viewState.scale) - 120;
+        const maxTx = 120;
+        const minTy = 940 * (1 - viewState.scale) - 120;
+        const maxTy = 120;
+        if (viewState.scale <= 1.01) {
+          viewState.tx = 0;
+          viewState.ty = 0;
+        } else {
+          viewState.tx = Math.min(maxTx, Math.max(minTx, viewState.tx));
+          viewState.ty = Math.min(maxTy, Math.max(minTy, viewState.ty));
+        }
+
+        worldEl.setAttribute('transform', `translate(${viewState.tx.toFixed(1)}, ${viewState.ty.toFixed(1)}) scale(${viewState.scale.toFixed(3)})`);
+
+        const showSeats = viewState.scale >= ZOOM_SEAT_THRESHOLD;
+        layerSeats.style.display = showSeats ? 'block' : 'none';
+
+        layerBlocks.querySelectorAll('.zone-shape').forEach(shape => {
+          shape.setAttribute('fill-opacity', showSeats ? '0.16' : '1');
+          shape.setAttribute('stroke-opacity', showSeats ? '0.65' : '1');
+        });
+        layerBlocks.querySelectorAll('.zone-label').forEach(lbl => {
+          lbl.style.display = showSeats ? 'none' : 'block';
+        });
+
+        hudBadge.textContent = `${viewState.scale.toFixed(1)}x`;
+        hudText.textContent = showSeats
+          ? 'Asientos visibles · Arrastra para moverte y haz clic en cualquier butaca'
+          : 'Haz clic en una zona o acerca (+) para ver los asientos individuales';
+      }
+
+      function zoomAtCenter(nextScale, focusX = 550, focusY = 470) {
+        const clamped = Math.min(4.5, Math.max(1, nextScale));
+        if (clamped <= 1.02) {
+          viewState = { scale: 1, tx: 0, ty: 0 };
+        } else {
+          viewState.scale = clamped;
+          viewState.tx = 550 - focusX * clamped;
+          viewState.ty = 470 - focusY * clamped;
+        }
+        applyMapTransform();
+      }
+
+      function renderZonePills() {
+        const container = document.getElementById('zone-pills');
+        container.innerHTML = Object.values(ZONES).map(z => `
+          <button type="button" data-zone-btn="${z.id}"
+            class="px-3 py-1.5 rounded-xl text-xs font-bold border border-gray-200 bg-white hover:border-primary text-gray-700 transition flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-sm inline-block" style="background:${z.colorHex}"></span>
+            <span>${z.name}</span>
+            <span class="text-[10px] text-gray-500">$${z.price}</span>
+          </button>
+        `).join('');
+
+        container.querySelectorAll('[data-zone-btn]').forEach(btn => {
+          btn.onclick = () => {
+            const z = ZONES[btn.getAttribute('data-zone-btn')];
+            if (z) zoomAtCenter(z.focus.scale, z.focus.x, z.focus.y);
+          };
+        });
+      }
+
+      // Interacción: clic en zonas del SVG hace zoom automático a esa zona
+      layerBlocks.querySelectorAll('.map-zone').forEach(g => {
+        g.addEventListener('click', () => {
+          if (dragMoved || viewState.scale >= ZOOM_SEAT_THRESHOLD) return;
+          const z = ZONES[g.getAttribute('data-zone')];
+          if (z) zoomAtCenter(z.focus.scale, z.focus.x, z.focus.y);
+        });
+      });
+
+      // Interacción: clic y tooltip sobre asientos individuales en el SVG
+      layerSeats.addEventListener('click', (e) => {
+        if (dragMoved) return;
+        const g = e.target.closest('.svg-seat');
+        if (!g) return;
+        const key = g.getAttribute('data-key');
+        const zId = g.getAttribute('data-zone');
+        const label = g.getAttribute('data-label');
+        if (occupiedSeats.has(key)) return;
+
+        const idx = selectedSeats.findIndex(s => s.key === key);
+        if (idx !== -1) {
+          selectedSeats.splice(idx, 1);
+        } else {
+          if (selectedSeats.length >= 8) {
+            const warn = document.getElementById('limit-warning');
+            warn.classList.remove('hidden');
+            setTimeout(() => warn.classList.add('hidden'), 2600);
+            return;
+          }
+          const z = ZONES[zId];
+          selectedSeats.push({ key, zoneId: zId, zoneName: z.name, label, price: z.price });
+        }
+        refreshSeatVisualStates();
+        renderSummary();
+      });
+
+      layerSeats.addEventListener('mousemove', (e) => {
+        const g = e.target.closest('.svg-seat');
+        if (!g) {
+          seatTooltip.classList.add('hidden');
+          return;
+        }
+        const z = ZONES[g.getAttribute('data-zone')];
+        const label = g.getAttribute('data-label');
+        const isOcc = occupiedSeats.has(g.getAttribute('data-key'));
+        seatTooltip.textContent = `${z.name} · ${label} · ${isOcc ? 'Ocupado' : '$' + z.price + ' MXN'}`;
+        const rect = document.getElementById('map-viewport').getBoundingClientRect();
+        seatTooltip.style.left = `${Math.min(rect.width - 210, Math.max(12, e.clientX - rect.left + 12))}px`;
+        seatTooltip.style.top = `${Math.max(12, e.clientY - rect.top - 32)}px`;
+        seatTooltip.classList.remove('hidden');
+      });
+      layerSeats.addEventListener('mouseleave', () => seatTooltip.classList.add('hidden'));
+
+      // Controles de Zoom (+, -, 1x, rueda del mouse y arrastre)
+      document.getElementById('btn-zoom-in').onclick = () => {
+        const cx = (550 - viewState.tx) / viewState.scale;
+        const cy = (470 - viewState.ty) / viewState.scale;
+        zoomAtCenter(viewState.scale * 1.4, cx, cy);
+      };
+      document.getElementById('btn-zoom-out').onclick = () => {
+        const cx = (550 - viewState.tx) / viewState.scale;
+        const cy = (470 - viewState.ty) / viewState.scale;
+        zoomAtCenter(viewState.scale / 1.4, cx, cy);
+      };
+      document.getElementById('btn-zoom-reset').onclick = () => zoomAtCenter(1);
+
+      const viewport = document.getElementById('map-viewport');
+      viewport.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        const pt = svgEl.createSVGPoint();
+        pt.x = e.clientX;
+        pt.y = e.clientY;
+        const svgCoords = pt.matrixTransform(svgEl.getScreenCTM().inverse());
+        const factor = e.deltaY < 0 ? 1.22 : 1 / 1.22;
+        const nextScale = Math.min(4.5, Math.max(1, viewState.scale * factor));
+        if (nextScale <= 1.02) {
+          viewState = { scale: 1, tx: 0, ty: 0 };
+        } else {
+          const worldX = (svgCoords.x - viewState.tx) / viewState.scale;
+          const worldY = (svgCoords.y - viewState.ty) / viewState.scale;
+          viewState.scale = nextScale;
+          viewState.tx = svgCoords.x - worldX * nextScale;
+          viewState.ty = svgCoords.y - worldY * nextScale;
+        }
+        applyMapTransform();
+      }, { passive: false });
+
+      viewport.addEventListener('pointerdown', (e) => {
+        if (e.target.closest('button')) return;
+        isDragging = true;
+        dragMoved = false;
+        dragStart = { x: e.clientX, y: e.clientY, tx: viewState.tx, ty: viewState.ty };
+      });
+      window.addEventListener('pointermove', (e) => {
+        if (!isDragging) return;
+        const dxScreen = e.clientX - dragStart.x;
+        const dyScreen = e.clientY - dragStart.y;
+        if (Math.abs(dxScreen) > 4 || Math.abs(dyScreen) > 4) dragMoved = true;
+        if (!dragMoved || viewState.scale <= 1.02) return;
+        const ctm = svgEl.getScreenCTM();
+        viewState.tx = dragStart.tx + dxScreen / ctm.a;
+        viewState.ty = dragStart.ty + dyScreen / ctm.d;
+        applyMapTransform();
+      });
+      window.addEventListener('pointerup', () => {
+        isDragging = false;
+        setTimeout(() => { dragMoved = false; }, 20);
+      });
+
+      function renderSummary() {
+        const listEl = document.getElementById('selected-seats-list');
+        const countEl = document.getElementById('summary-count');
+        const totalEl = document.getElementById('summary-total');
+        const btnConfirm = document.getElementById('btn-confirm-purchase');
+
+        countEl.textContent = `${selectedSeats.length} (máx. 8)`;
+        const total = selectedSeats.reduce((sum, s) => sum + s.price, 0);
+        totalEl.textContent = `$${total.toLocaleString('es-MX')} MXN`;
+        btnConfirm.disabled = selectedSeats.length === 0;
+
+        if (selectedSeats.length === 0) {
+          listEl.innerHTML = `<div class="text-center py-6 text-xs text-gray-400 bg-base-bg rounded-2xl border border-dashed border-gray-200">Acerca el mapa (o haz clic en una zona) y toca los asientos disponibles.</div>`;
+          return;
+        }
+
+        listEl.innerHTML = selectedSeats.map((s, idx) => `
+          <div class="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-base-bg border border-gray-200 text-xs">
+            <div class="min-w-0">
+              <div class="font-bold text-primary truncate">${s.zoneName}</div>
+              <div class="text-gray-600">${s.label}</div>
+            </div>
+            <div class="flex items-center gap-2 shrink-0">
+              <span class="font-bold text-gray-900">$${s.price}</span>
+              <button type="button" data-remove-seat="${idx}" aria-label="Quitar asiento" class="w-6 h-6 rounded-full hover:bg-red-100 text-red-500 font-bold">✕</button>
+            </div>
+          </div>
+        `).join('');
+
+        listEl.querySelectorAll('[data-remove-seat]').forEach(btn => {
+          btn.onclick = () => {
+            selectedSeats.splice(Number(btn.getAttribute('data-remove-seat')), 1);
+            refreshSeatVisualStates();
+            renderSummary();
+          };
+        });
+      }
+
+      document.getElementById('btn-confirm-purchase').onclick = () => {
+        if (selectedSeats.length === 0) return;
+        const total = selectedSeats.reduce((sum, s) => sum + s.price, 0);
+        const folio = `TC-BOL-2026-${Math.floor(100 + Math.random() * 899)}`;
+        const zonaResumen = selectedSeats.map(s => `${s.zoneName} (${s.label})`).join(' | ');
+
+        selectedSeats.forEach(s => occupiedSeats.add(s.key));
+        localStorage.setItem(STORAGE_OCCUPIED_KEY, JSON.stringify([...occupiedSeats]));
+
+        const existingTickets = JSON.parse(localStorage.getItem('tc_user_tickets')) || [];
+        existingTickets.unshift({
+          folio,
+          evento: eventInfo.title,
+          fecha: `${eventInfo.date} · ${eventInfo.time}`,
+          zona: zonaResumen,
+          cantidad: `${selectedSeats.length} ${selectedSeats.length === 1 ? 'boleto' : 'boletos'}`,
+          total: `$${total.toLocaleString('es-MX')} MXN`,
+          estado: 'reciente'
+        });
+        localStorage.setItem('tc_user_tickets', JSON.stringify(existingTickets));
+
+        document.getElementById('purchase-ok-desc').textContent = `Se confirmaron ${selectedSeats.length} lugar(es) para "${eventInfo.title}".`;
+        document.getElementById('purchase-ok-folio').textContent = folio;
+        document.getElementById('purchase-ok-seats').textContent = zonaResumen;
+        document.getElementById('purchase-ok-total').textContent = `$${total.toLocaleString('es-MX')} MXN`;
+        document.getElementById('modal-purchase-ok').classList.remove('hidden');
+
+        selectedSeats = [];
+        refreshSeatVisualStates();
+        renderSummary();
+      };
+
+      document.getElementById('btn-keep-buying').onclick = () => {
+        document.getElementById('modal-purchase-ok').classList.add('hidden');
+      };
+
+      renderZonePills();
+      buildAllSeatsSvg();
+      applyMapTransform();
+      renderSummary();
+    });
+  </script>
+</body>
+</html>
