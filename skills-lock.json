@@ -15,6 +15,13 @@
       "skillPath": "skills/git-version-control/SKILL.md",
       "computedHash": "fba3e516ae0a367233756088ea8e86c27c8a65a39ad08459518b7c642a5f64e6"
     },
+    "impeccable": {
+      "source": "pbakaus/impeccable",
+      "commit": "b49177d32788f2dc585c42831d845dacf1ebed2c",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/impeccable/SKILL.md",
+      "computedHash": "08bd5bf141cb507f46bd8347890cd985865606f15adf88295ed3a73bc9ad5d96"
+    },
     "skill-creator": {
       "source": "anthropics/skills",
       "commit": "e4bb5d960d87126ff3b3a8af1a104b7db67560ba",
