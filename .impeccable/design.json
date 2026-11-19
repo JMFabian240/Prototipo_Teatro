@@ -1,0 +1,161 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-19T10:58:20-06:00",
+  "title": "Design System: Teatro de la Ciudad de Coatzacoalcos",
+  "extensions": {
+    "colorMeta": {
+      "azul-golfo": {
+        "role": "primary",
+        "displayName": "Azul Golfo",
+        "canonical": "#1E3A8A",
+        "tonalRamp": ["#0A1538", "#112257", "#182E72", "#1E3A8A", "#2F50AD", "#5473C9", "#8DA6E2", "#DCE5F9"]
+      },
+      "dorado-atardecer": {
+        "role": "primary",
+        "displayName": "Dorado Atardecer",
+        "canonical": "#E58E26",
+        "tonalRamp": ["#4A2805", "#72400B", "#9D5A12", "#C4741B", "#E58E26", "#EEA954", "#F5C689", "#FDECD3"]
+      },
+      "arena-arquitectonica": {
+        "role": "secondary",
+        "displayName": "Arena Arquitectónica",
+        "canonical": "#D9CBB8",
+        "tonalRamp": ["#3D352B", "#5B5041", "#7B6D5A", "#9E8D76", "#BEA992", "#D9CBB8", "#E9E0D3", "#F6F2EC"]
+      },
+      "ambar-accesible": {
+        "role": "primary",
+        "displayName": "Ámbar Accesible",
+        "canonical": "#B45309",
+        "tonalRamp": ["#3E1A02", "#622A04", "#8A3E06", "#B45309", "#D97706", "#F59E0B", "#FBBF24", "#FEF3C7"]
+      },
+      "celeste-brisa": {
+        "role": "tertiary",
+        "displayName": "Celeste Brisa",
+        "canonical": "#38BDF8",
+        "tonalRamp": ["#083344", "#0C4A6E", "#0369A1", "#0284C7", "#38BDF8", "#7DD3FC", "#BAE6FD", "#E0F2FE"]
+      },
+      "blanco-nube": {
+        "role": "neutral",
+        "displayName": "Blanco Nube",
+        "canonical": "#F8F9FA",
+        "tonalRamp": ["#1E293B", "#334155", "#64748B", "#94A3B8", "#CBD5E1", "#E2E8F0", "#F1F5F9", "#F8F9FA"]
+      },
+      "blanco-puro": {
+        "role": "neutral",
+        "displayName": "Blanco Puro",
+        "canonical": "#FFFFFF",
+        "tonalRamp": ["#1E293B", "#475569", "#64748B", "#94A3B8", "#CBD5E1", "#E2E8F0", "#F8FAFC", "#FFFFFF"]
+      },
+      "carbon-pizarra": {
+        "role": "neutral",
+        "displayName": "Carbón Pizarra",
+        "canonical": "#0F172A",
+        "tonalRamp": ["#020617", "#0F172A", "#1E293B", "#334155", "#475569", "#64748B", "#94A3B8", "#E2E8F0"]
+      },
+      "pizarra-oscuro": {
+        "role": "neutral",
+        "displayName": "Pizarra Oscuro",
+        "canonical": "#020617",
+        "tonalRamp": ["#020617", "#0B1120", "#1E293B", "#334155", "#475569", "#64748B", "#94A3B8", "#CBD5E1"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display (Cinzel)", "purpose": "Titular principal del mural de temporada en portada." },
+      "headline": { "displayName": "Headline (Cinzel)", "purpose": "Encabezados de página y títulos de sección." },
+      "title": { "displayName": "Title (Manrope)", "purpose": "Títulos de tarjetas de espectáculo, paneles y grupos de formulario." },
+      "body": { "displayName": "Body (Manrope)", "purpose": "Sinopsis, descripciones, preguntas frecuentes y lectura operativa." },
+      "label": { "displayName": "Label (Manrope)", "purpose": "Etiquetas superiores, fechas, precios, insignias y controles." }
+    },
+    "shadows": [
+      { "name": "surface-sm", "value": "0 1px 2px 0 rgba(15, 23, 42, 0.05)", "purpose": "Contenedores de mapa, acordeones FAQ y avisos." },
+      { "name": "surface-md", "value": "0 4px 6px -1px rgba(15, 23, 42, 0.1), 0 2px 4px -2px rgba(15, 23, 42, 0.1)", "purpose": "Tarjetas de cartelera en reposo, barra sticky, resumen y botones." },
+      { "name": "elevated-xl", "value": "0 20px 25px -5px rgba(15, 23, 42, 0.1), 0 8px 10px -6px rgba(15, 23, 42, 0.1)", "purpose": "Hover de tarjetas, desplegables y modales." }
+    ],
+    "motion": [
+      { "name": "transition-ui", "value": "150ms cubic-bezier(0.4, 0, 0.2, 1)", "purpose": "Transición contenida para botones, inputs y hover de enlaces." },
+      { "name": "transition-card", "value": "300ms cubic-bezier(0.4, 0, 0.2, 1)", "purpose": "Elevación sutil en tarjetas de cartelera." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Action Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Botón principal de acción en cápsula para registro, compra de boletos y envío de cotización.",
+      "html": "<button type=\"button\" class=\"ds-btn-primary\"><span>Confirmar Boletos</span></button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #E58E26; color: #FFFFFF; font-family: 'Manrope', system-ui, sans-serif; font-size: 0.875rem; font-weight: 700; padding: 10px 20px; border: none; border-radius: 9999px; box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.12); cursor: pointer; transition: filter 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease; } .ds-btn-primary:hover { filter: brightness(1.1); box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.16); } .ds-btn-primary:active { transform: scale(0.95); } .ds-btn-primary:focus-visible { outline: 2px solid #38BDF8; outline-offset: 2px; }"
+    },
+    {
+      "name": "Secondary Surface Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Botón secundario sobre fondo claro para acciones complementarias o cancelar.",
+      "html": "<button type=\"button\" class=\"ds-btn-secondary\">Seguir viendo sala</button>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; justify-content: center; background: #FFFFFF; color: #1E3A8A; font-family: 'Manrope', system-ui, sans-serif; font-size: 0.75rem; font-weight: 600; padding: 10px 18px; border: 1px solid #D1D5DB; border-radius: 9999px; cursor: pointer; transition: background-color 0.2s ease, border-color 0.2s ease; } .ds-btn-secondary:hover { background: #F8F9FA; border-color: #1E3A8A; } .ds-btn-secondary:focus-visible { outline: 2px solid #1E3A8A; outline-offset: 2px; }"
+    },
+    {
+      "name": "Category Badge",
+      "kind": "chip",
+      "refersTo": "badge-category",
+      "description": "Insignia compacta para clasificar espectáculos dentro de tarjetas y cabeceras.",
+      "html": "<span class=\"ds-badge-category\">Ballet Clásico</span>",
+      "css": ".ds-badge-category { display: inline-block; background: #1E3A8A; color: #FFFFFF; font-family: 'Manrope', system-ui, sans-serif; font-size: 0.6875rem; font-weight: 700; padding: 4px 10px; border-radius: 6px; box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08); }"
+    },
+    {
+      "name": "Text Input Field",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Campo estándar de formulario sobre Blanco Nube con enfoque en Azul Golfo.",
+      "html": "<div class=\"ds-field\"><label class=\"ds-field-label\" for=\"ds-sample-input\">Nombre del Evento *</label><input id=\"ds-sample-input\" type=\"text\" class=\"ds-input\" placeholder=\"Ej. Gala Sinfónica de Otoño\" /></div>",
+      "css": ".ds-field { display: flex; flex-direction: column; gap: 6px; font-family: 'Manrope', system-ui, sans-serif; } .ds-field-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #374151; } .ds-input { width: 100%; background: #F8F9FA; color: #0F172A; font-family: inherit; font-size: 1rem; padding: 12px 16px; border: 1px solid #D1D5DB; border-radius: 12px; box-shadow: inset 0 2px 4px rgba(15, 23, 42, 0.04); transition: box-shadow 0.15s ease, border-color 0.15s ease; } .ds-input:focus { outline: none; border-color: transparent; box-shadow: 0 0 0 2px #1E3A8A; }"
+    },
+    {
+      "name": "Event Card",
+      "kind": "card",
+      "refersTo": "card-surface",
+      "description": "Tarjeta estándar de espectáculo en la cartelera con cabecera de categoría, fecha, sinopsis y acción.",
+      "html": "<article class=\"ds-card\"><div class=\"ds-card-media\"><span class=\"ds-card-badge\">Teatro de Suspenso</span></div><div class=\"ds-card-body\"><div class=\"ds-card-date\"><svg width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z\"/></svg><span>21 Nov 2026 • 19:00 hrs</span></div><h3 class=\"ds-card-title\">La Dama de Negro</h3><p class=\"ds-card-desc\">La célebre puesta en escena en su gira oficial en el Teatro de la Ciudad.</p><div class=\"ds-card-footer\"><span class=\"ds-card-price\">Desde $400 MXN</span><button type=\"button\" class=\"ds-card-btn\">Ver más</button></div></div></article>",
+      "css": ".ds-card { display: flex; flex-direction: column; overflow: hidden; background: #FFFFFF; border: 1px solid rgba(229, 231, 235, 0.85); border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.1); font-family: 'Manrope', system-ui, sans-serif; transition: transform 0.3s ease, box-shadow 0.3s ease; max-width: 340px; } .ds-card:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.12); } .ds-card-media { position: relative; height: 140px; background: #D9CBB8; } .ds-card-badge { position: absolute; top: 12px; left: 12px; background: #1E3A8A; color: #FFFFFF; font-size: 0.6875rem; font-weight: 700; padding: 4px 10px; border-radius: 6px; } .ds-card-body { padding: 20px; display: flex; flex-direction: column; gap: 10px; } .ds-card-date { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 700; color: #B45309; } .ds-card-title { margin: 0; font-size: 1.05rem; font-weight: 700; color: #0F172A; line-height: 1.35; } .ds-card-desc { margin: 0; font-size: 0.75rem; color: #4B5563; line-height: 1.5; } .ds-card-footer { margin-top: 4px; padding-top: 12px; border-top: 1px solid #F3F4F6; display: flex; align-items: center; justify-content: space-between; } .ds-card-price { font-size: 0.75rem; font-weight: 500; color: #6B7280; } .ds-card-btn { background: #E58E26; color: #FFFFFF; border: none; border-radius: 9999px; font-size: 0.75rem; font-weight: 700; padding: 8px 16px; cursor: pointer; } .ds-card-btn:hover { filter: brightness(1.1); }"
+    },
+    {
+      "name": "Institutional Navbar",
+      "kind": "nav",
+      "refersTo": "button-primary",
+      "description": "Barra superior fija institucional en Azul Golfo con marca del teatro, enlaces activos y acceso a cuenta.",
+      "html": "<nav class=\"ds-nav\"><div class=\"ds-nav-brand\"><div class=\"ds-nav-logo\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#0F172A\" stroke-width=\"2\"><path d=\"M3 21h18M5 21V7l7-4 7 4v14M9 21v-5h6v5\"/></svg></div><div><div class=\"ds-nav-title\">TEATRO DE LA CIUDAD</div><div class=\"ds-nav-sub\">Coatzacoalcos, Veracruz</div></div></div><div class=\"ds-nav-links\"><a href=\"#\" class=\"ds-nav-link is-active\">Cartelera</a><a href=\"#\" class=\"ds-nav-link\">Cotizar Teatro</a></div></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; justify-content: space-between; height: 72px; padding: 0 24px; background: #1E3A8A; color: #FFFFFF; border-bottom: 1px solid rgba(255, 255, 255, 0.12); font-family: 'Manrope', system-ui, sans-serif; } .ds-nav-brand { display: flex; align-items: center; gap: 12px; } .ds-nav-logo { width: 42px; height: 42px; border-radius: 12px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; } .ds-nav-title { font-weight: 800; font-size: 1rem; letter-spacing: -0.02em; line-height: 1; } .ds-nav-sub { font-size: 0.6875rem; color: #D9CBB8; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 3px; } .ds-nav-links { display: flex; align-items: center; gap: 24px; font-size: 0.875rem; font-weight: 600; } .ds-nav-link { color: #FFFFFF; text-decoration: none; padding: 4px 0; border-bottom: 2px solid transparent; transition: color 0.15s ease, border-color 0.15s ease; } .ds-nav-link:hover, .ds-nav-link.is-active { color: #38BDF8; border-bottom-color: #38BDF8; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "El Foro Monumental",
+    "overview": "La identidad visual del portal traduce la presencia cívica y arquitectónica del recinto diseñado por el Arq. Abraham Zabludovsky a una experiencia digital cálida, cercana y cultural. El sistema equilibra la solemnidad de una institución pública con la vitalidad de una sala abierta a la ciudad: encabezados clásicos en serif romana (`Cinzel`) marcan los hitos del recinto, mientras que la tipografía geométrica humanista (`Manrope`) sostiene con claridad la lectura de cartelera, horarios, precios y formularios.\n\nLa composición prioriza el contenido real —fotografías del teatro, fichas de espectáculos y el plano interactivo de 1,730 butacas— sobre una arquitectura de capas sólidas y sobrias. Los controles son discretos, con transiciones contenidas y acentos dorados reservados exclusivamente para guiar la acción del público hacia la compra de boletos o la solicitud de renta.",
+    "keyCharacteristics": [
+      "Jerarquía editorial clara entre títulos monumentales (`Cinzel`) y lectura operativa (`Manrope`).",
+      "Superficies luminosas (`#F8F9FA` y `#FFFFFF`) enmarcadas por bloques institucionales en Azul Golfo (`#1E3A8A`).",
+      "Acentos cálidos (`#E58E26`) acotados a llamadas a la acción y estados activos, con variante accesible (`#B45309`) sobre fondos claros.",
+      "Componentes sobrios y contenidos que ceden el protagonismo a la cartelera y al mapa de sala."
+    ],
+    "rules": [
+      { "name": "The Contrast-Aware Amber Rule", "body": "Usa Dorado Atardecer en botones con texto blanco y sobre fondos oscuros, pero cambia siempre a Ámbar Accesible cuando el texto de acento vaya sobre Blanco Puro o Blanco Nube.", "section": "colors" },
+      { "name": "The Solid Surface Priority Rule", "body": "Los bloques estructurales y tarjetas se apoyan en colores sólidos y bordes limpios. Evita fondos con gradientes pesados o desenfoques invasivos (blur-3xl) que compitan con las fotografías del teatro o la legibilidad del mapa.", "section": "colors" },
+      { "name": "The Bilingual Hierarchy Rule", "body": "Reserva Cinzel exclusivamente para títulos de espectáculo, encabezados principales (h1, h2) y marcas de sección; nunca la uses en párrafos largos, tablas, inputs ni botones.", "section": "typography" },
+      { "name": "The Quiet Rest Rule", "body": "Las superficies descansan con sombra mínima (sm o md) y borde de 1px. La elevación pronunciada aparece únicamente en respuesta al puntero (hover), menús superpuestos o modales activos.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do usar Ámbar Accesible (#B45309) en textos de acento y etiquetas sobre fondos blancos o Blanco Nube, manteniendo Dorado Atardecer (#E58E26) en botones y fondos oscuros.",
+      "Do mantener Cinzel para titulares y Manrope para cuerpo, datos numéricos, formularios y navegación.",
+      "Do usar img/LOGO.svg dentro de un contenedor blanco redondeado (12px en navbar, 8px en footer) sobre superficies oscuras.",
+      "Do indicar estados de butaca y formulario con forma, icono o etiqueta de texto además del color."
+    ],
+    "donts": [
+      "Don't introducir gradientes decorativos llamativos ni desenfoques pesados (blur-3xl) que compitan con las fotografías del recinto o generen ruido visual.",
+      "Don't usar Cinzel en textos largos, inputs, tablas de precios ni etiquetas de botones.",
+      "Don't alterar las 7 zonas oficiales ni el total de 1,730 localidades en el mapa de butacas, ni mezclar estilos de boleteras externas."
+    ]
+  }
+}
