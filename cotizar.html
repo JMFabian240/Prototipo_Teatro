@@ -21,19 +21,19 @@
       <div class="flex items-center justify-between h-20">
 
         <!-- Logo a la izquierda con enlace a index.html -->
-        <a href="index.html" class="flex items-center space-x-3.5 group">
+        <a href="index.html" class="flex items-center space-x-2.5 sm:space-x-3.5 group min-w-0">
           <img src="img/LOGO.svg" alt="Logo Teatro de la Ciudad"
-            class="w-11 h-11 rounded-xl bg-white object-contain p-0.5 border border-white/25 shadow-sm group-hover:scale-105 transition-transform duration-200">
-          <div>
-            <div class="font-extrabold text-lg sm:text-xl tracking-tight leading-none text-white">TEATRO DE LA CIUDAD
-            </div>
-            <div class="text-[11px] sm:text-xs text-secondary tracking-wider uppercase font-medium">Coatzacoalcos,
-              Veracruz</div>
+            class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white object-contain p-0.5 border border-white/25 shadow-sm group-hover:scale-105 transition-transform duration-200 shrink-0">
+          <div class="min-w-0">
+            <div class="font-extrabold text-[13px] sm:text-xl tracking-tight leading-[1.1] text-white">TEATRO DE LA
+              CIUDAD</div>
+            <div class="hidden sm:block text-[11px] sm:text-xs text-secondary tracking-wider uppercase font-medium">
+              Coatzacoalcos, Veracruz</div>
           </div>
         </a>
 
         <!-- Enlaces a la derecha: Mismos del index (Inicio, Formulario, Preguntas Frecuentes) -->
-        <div class="hidden md:flex items-center space-x-8 text-sm font-semibold md:ml-auto md:mr-8">
+        <div class="hidden md:flex items-center space-x-8 text-sm font-semibold md:ml-auto md:mr-8 shrink-0">
           <a href="index.html#mural"
             class="text-white hover:text-highlight transition-colors duration-200 py-1 border-b-2 border-transparent hover:border-highlight flex items-center gap-1.5">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -51,14 +51,14 @@
         </div>
 
         <!-- Área de usuario y botón menú móvil -->
-        <div class="flex items-center gap-2 sm:gap-3">
-          <div id="nav-auth-container" class="flex items-center gap-2 sm:gap-3">
+        <div class="flex items-center gap-1.5 sm:gap-3 shrink-0">
+          <div id="nav-auth-container" class="flex items-center gap-1.5 sm:gap-3 whitespace-nowrap">
             <a href="cuenta.html#login"
               class="text-white hover:text-highlight text-xs sm:text-sm font-semibold px-2 sm:px-3 py-2 transition-colors duration-200">
               Iniciar Sesión
             </a>
             <a href="cuenta.html#registro" id="btn-crear-cuenta"
-              class="bg-accent hover:brightness-110 active:scale-95 text-white font-bold text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-full shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-1.5">
+              class="bg-accent hover:brightness-110 active:scale-95 text-white font-bold text-xs sm:text-sm px-3 sm:px-5 py-2 sm:py-2.5 rounded-full shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-1.5">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
@@ -97,9 +97,9 @@
           Cotiza tu Producción en el Teatro de la Ciudad de Coatzacoalcos
         </h1>
 
-        <p id="cotpage-hero-desc" class="text-base sm:text-lg text-gray-200 leading-relaxed max-w-3xl font-light">
+        <p id="cotpage-hero-desc" class="text-base sm:text-lg text-slate-200 leading-relaxed max-w-2xl font-normal">
           Diseñado por el Arq. Abraham Zabludovsky, el Teatro de la Ciudad ofrece una infraestructura escénica de
-          estándar internacional con aforo de <strong class="text-white font-semibold">1,724 butacas numeradas</strong>
+          estándar internacional con aforo de <strong class="text-white font-semibold">1,730 butacas numeradas</strong>
           para obras de teatro, danza clásica, conciertos, recitales sinfónicos y actos de graduación.
         </p>
 
@@ -112,14 +112,12 @@
   <section id="ficha-tecnica" class="pt-14 pb-4">
     <div class="w-full px-4 sm:px-6 md:px-[100px]">
 
-      <div class="max-w-3xl">
-        <span id="cotpage-tech-badge" class="text-accent-text text-sm font-bold tracking-widest uppercase">Incluido con
-          la renta</span>
-        <h2 id="cotpage-tech-title" class="font-display text-3xl font-black text-primary tracking-tight mt-1">Ficha
-          Técnica del Teatro</h2>
-        <p id="cotpage-tech-sub" class="text-gray-600 text-base mt-2 leading-relaxed">
-          Infraestructura y equipamiento con el que cuenta el Teatro de la Ciudad y que forma parte de la renta del
-          recinto.
+      <div class="max-w-2xl">
+        <h2 id="cotpage-tech-title" class="font-display text-3xl font-black text-primary tracking-tight">Ficha Técnica
+          del Teatro</h2>
+        <p id="cotpage-tech-sub" class="text-gray-600 text-base mt-2 leading-relaxed [text-wrap:pretty]">
+          <span id="cotpage-tech-badge" class="text-accent-text font-bold">Incluido con la renta:</span>
+          infraestructura y equipamiento base del recinto disponibles para tu&nbsp;producción.
         </p>
       </div>
 
@@ -184,18 +182,17 @@
         <div class="lg:col-span-7 bg-white p-6 sm:p-10 rounded-3xl border border-gray-200 shadow-md space-y-8">
 
           <div class="border-b border-gray-100 pb-5">
-            <span id="cotpage-form-badge" class="text-accent-text text-sm font-bold tracking-widest uppercase">Solicitud
-              Directa</span>
-            <h2 id="cotpage-form-title" class="font-display text-3xl font-black text-primary tracking-tight mt-1">
+            <h2 id="cotpage-form-title" class="font-display text-3xl font-black text-primary tracking-tight">
               Formulario de Cotización del Teatro de la Ciudad
             </h2>
-            <p id="cotpage-form-sub" class="text-gray-500 text-sm sm:text-base mt-1">
-              Completa los datos requeridos para tu evento. Recibirás disponibilidad formal de fechas y desglose
-              presupuestal en menos de 24 horas hábiles.
+            <p id="cotpage-form-sub" class="text-gray-600 text-sm sm:text-base mt-2 max-w-2xl leading-relaxed">
+              <span id="cotpage-form-badge" class="text-accent-text font-bold">Solicitud directa:</span>
+              completa los datos de tu evento para recibir disponibilidad de calendario y desglose en menos de 24 horas
+              hábiles.
             </p>
           </div>
 
-          <form id="full-quote-form" class="space-y-6">
+          <form id="full-quote-form" class="space-y-6" novalidate>
 
             <!-- Grupo 1: Datos a Quien se Dirige la Cotización -->
             <div class="space-y-4">
@@ -208,30 +205,30 @@
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <!-- 1. Nombre Completo a quien irá dirigida su cotización -->
                 <div class="space-y-1.5 sm:col-span-2">
-                  <label class="block text-sm font-bold uppercase tracking-wider text-gray-700">
+                  <label for="input-recipient" class="block text-sm font-bold uppercase tracking-wider text-gray-700">
                     Nombre Completo a quien irá dirigida su cotización *
                   </label>
-                  <input type="text" id="input-recipient" required
+                  <input type="text" id="input-recipient" required autocomplete="name"
                     placeholder="Nombre y apellidos del titular, productor(a) o razón social"
-                    class="w-full px-4 py-3 rounded-xl border border-gray-300 text-base focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition shadow-inner bg-base-bg">
+                    class="w-full px-4 py-3 rounded-xl border border-gray-300 text-base text-base-text placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition shadow-inner bg-base-bg">
                 </div>
 
                 <!-- 2. Número telefónico de contacto directo o alterno -->
                 <div class="space-y-1.5">
-                  <label class="block text-sm font-bold uppercase tracking-wider text-gray-700">
+                  <label for="input-phone" class="block text-sm font-bold uppercase tracking-wider text-gray-700">
                     Número telefónico de contacto directo o alterno *
                   </label>
-                  <input type="tel" id="input-phone" required placeholder="Ej. (921) 123 4567 / Alterno (921) 987 6543"
-                    class="w-full px-4 py-3 rounded-xl border border-gray-300 text-base focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition shadow-inner bg-base-bg">
+                  <input type="tel" id="input-phone" required autocomplete="tel" placeholder="Ej. (921) 123 4567"
+                    class="w-full px-4 py-3 rounded-xl border border-gray-300 text-base text-base-text placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition shadow-inner bg-base-bg">
                 </div>
 
                 <!-- 3. Correo electrónico -->
                 <div class="space-y-1.5">
-                  <label class="block text-sm font-bold uppercase tracking-wider text-gray-700">
+                  <label for="input-email" class="block text-sm font-bold uppercase tracking-wider text-gray-700">
                     Correo electrónico *
                   </label>
-                  <input type="email" id="input-email" required placeholder="correo@ejemplo.com"
-                    class="w-full px-4 py-3 rounded-xl border border-gray-300 text-base focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition shadow-inner bg-base-bg">
+                  <input type="email" id="input-email" required autocomplete="email" placeholder="correo@ejemplo.com"
+                    class="w-full px-4 py-3 rounded-xl border border-gray-300 text-base text-base-text placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition shadow-inner bg-base-bg">
                 </div>
               </div>
             </div>
@@ -248,89 +245,91 @@
 
                 <!-- 4. Nombre de evento -->
                 <div class="space-y-1.5 sm:col-span-2">
-                  <label class="block text-sm font-bold uppercase tracking-wider text-gray-700">
+                  <label for="input-event-name" class="block text-sm font-bold uppercase tracking-wider text-gray-700">
                     Nombre de evento *
                   </label>
                   <input type="text" id="input-event-name" required
-                    placeholder="Ej. Obra 'La Dama de Negro' / Concierto Sinfónico de Gala / Graduación 2026"
-                    class="w-full px-4 py-3 rounded-xl border border-gray-300 text-base focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition shadow-inner bg-base-bg">
+                    placeholder="Ej. Obra 'La Dama de Negro' / Concierto Sinfónico de Gala"
+                    class="w-full px-4 py-3 rounded-xl border border-gray-300 text-base text-base-text placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition shadow-inner bg-base-bg">
                 </div>
 
                 <!-- 5. Fecha/as estimadas de su evento -->
                 <div class="space-y-1.5">
-                  <label class="block text-sm font-bold uppercase tracking-wider text-gray-700">
+                  <label for="input-event-dates" class="block text-sm font-bold uppercase tracking-wider text-gray-700">
                     Fecha / Fechas estimadas de su evento *
                   </label>
                   <input type="text" id="input-event-dates" required
-                    placeholder="Ej. 24 de Octubre de 2026 (o del 15 al 18 de Noviembre)"
-                    class="w-full px-4 py-3 rounded-xl border border-gray-300 text-base focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition shadow-inner bg-base-bg">
+                    placeholder="Ej. 24 de Oct 2026 (o del 15 al 18 de Nov)"
+                    class="w-full px-4 py-3 rounded-xl border border-gray-300 text-base text-base-text placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition shadow-inner bg-base-bg">
                 </div>
 
                 <!-- 6. Horarios de su evento -->
                 <div class="space-y-1.5">
-                  <label class="block text-sm font-bold uppercase tracking-wider text-gray-700">
+                  <label for="input-event-schedule"
+                    class="block text-sm font-bold uppercase tracking-wider text-gray-700">
                     Horarios de su evento *
                   </label>
                   <input type="text" id="input-event-schedule" required
-                    placeholder="Ej. 17:00 a 22:00 hrs (Horario de acceso 18:30 hrs)"
-                    class="w-full px-4 py-3 rounded-xl border border-gray-300 text-base focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition shadow-inner bg-base-bg">
-                </div>
-
-                <!-- 7. Cantidad de personas estimadas -->
-                <div class="space-y-1.5">
-                  <label class="block text-sm font-bold uppercase tracking-wider text-gray-700">
-                    Cantidad de personas estimadas *
-                  </label>
-                  <input type="number" id="input-capacity" min="20" max="1724" required
-                    placeholder="Ej. 850 (Máx. 1,724 butacas)"
-                    class="w-full px-4 py-3 rounded-xl border border-gray-300 text-base focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition shadow-inner bg-base-bg">
+                    placeholder="Ej. 17:00 a 22:00 hrs (Acceso 18:30 hrs)"
+                    class="w-full px-4 py-3 rounded-xl border border-gray-300 text-base text-base-text placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition shadow-inner bg-base-bg">
                 </div>
 
                 <!-- Modalidad de Uso del Teatro -->
                 <div class="space-y-1.5">
-                  <label class="block text-sm font-bold uppercase tracking-wider text-gray-700">
+                  <label for="select-venue" class="block text-sm font-bold uppercase tracking-wider text-gray-700">
                     Modalidad de Uso del Teatro *
                   </label>
                   <select id="select-venue" required
-                    class="w-full px-4 py-3 rounded-xl border border-gray-300 text-base focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition shadow-inner bg-base-bg">
-                    <option value="teatro" data-name="Teatro Completo (1,724 butacas)" selected>Teatro Completo (1,724
-                      butacas - Todos los niveles)</option>
-                    <option value="teatro-planta-baja" data-name="Teatro - Luneta y Platea (710 butacas)">Teatro -
-                      Luneta y Platea (710 butacas)</option>
-                    <option value="teatro-ensayos" data-name="Teatro - Ensayos Técnicos / Montaje">Jornada de Ensayos
-                      Técnicos / Montaje de Escenario</option>
-                    <option value="teatro-academico" data-name="Teatro - Ceremonia de Graduación / Escolar">Ceremonia de
-                      Graduación / Acto Académico</option>
+                    class="w-full px-3.5 py-3 rounded-xl border border-gray-300 text-sm sm:text-base text-base-text focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition shadow-inner bg-base-bg">
+                    <option value="teatro" data-name="Teatro Completo (1,730 butacas)" selected>Teatro Completo (1,730)
+                    </option>
+                    <option value="teatro-planta-baja" data-name="Luneta y Platea (710 butacas)">Luneta y Platea (710)
+                    </option>
+                    <option value="teatro-ensayos" data-name="Ensayos Técnicos / Montaje">Ensayos y Montaje</option>
+                    <option value="teatro-academico" data-name="Ceremonia / Acto Académico">Acto Académico / Escolar
+                    </option>
                   </select>
+                </div>
+
+                <!-- 7. Cantidad de personas estimadas -->
+                <div class="space-y-1.5">
+                  <label for="input-capacity" class="block text-sm font-bold uppercase tracking-wider text-gray-700">
+                    Cantidad de personas estimadas *
+                  </label>
+                  <input type="number" id="input-capacity" min="20" max="1730" required
+                    placeholder="Ej. 850 (Máx. 1,730 butacas)"
+                    class="w-full px-4 py-3 rounded-xl border border-gray-300 text-base text-base-text placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition shadow-inner bg-base-bg">
+                  <p id="capacity-validation-msg" role="alert" class="hidden text-xs font-semibold text-red-700 mt-1">
+                  </p>
                 </div>
 
                 <!-- Turno de referencia -->
                 <div class="space-y-1.5">
-                  <label class="block text-sm font-bold uppercase tracking-wider text-gray-700">
+                  <label for="select-shift" class="block text-sm font-bold uppercase tracking-wider text-gray-700">
                     Turno base *
                   </label>
                   <select id="select-shift" required
-                    class="w-full px-4 py-3 rounded-xl border border-gray-300 text-base focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition shadow-inner bg-base-bg">
-                    <option value="matutino">Turno Matutino (8:00 a 14:00 hrs)</option>
-                    <option value="vespertino" selected>Turno Vespertino (15:00 a 22:00 hrs)</option>
-                    <option value="completo">Jornada Completa (Día completo)</option>
-                    <option value="multidias">Múltiples Días consecutivos</option>
+                    class="w-full px-3.5 py-3 rounded-xl border border-gray-300 text-sm sm:text-base text-base-text focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition shadow-inner bg-base-bg">
+                    <option value="matutino">Matutino (8:00–14:00 hrs)</option>
+                    <option value="vespertino" selected>Vespertino (15:00–22:00)</option>
+                    <option value="completo">Jornada Completa</option>
+                    <option value="multidias">Múltiples Días</option>
                   </select>
                 </div>
 
                 <!-- Giro o Género Escénico -->
                 <div class="space-y-1.5">
-                  <label class="block text-sm font-bold uppercase tracking-wider text-gray-700">
+                  <label for="select-type" class="block text-sm font-bold uppercase tracking-wider text-gray-700">
                     Giro o Género Escénico
                   </label>
                   <select id="select-type"
-                    class="w-full px-4 py-3 rounded-xl border border-gray-300 text-base focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition shadow-inner bg-base-bg">
-                    <option value="">Selecciona el giro (opcional)</option>
-                    <option value="cultural">Obra de Teatro / Artes Escénicas</option>
-                    <option value="danza">Danza Clásica / Ballet / Folclore</option>
-                    <option value="concierto">Concierto / Presentación Musical</option>
-                    <option value="graduacion">Graduación / Ceremonia Escolar</option>
-                    <option value="conferencia">Conferencia / Acto Protocolario</option>
+                    class="w-full px-3.5 py-3 rounded-xl border border-gray-300 text-sm sm:text-base text-base-text focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition shadow-inner bg-base-bg">
+                    <option value="">Giro escénico (opcional)</option>
+                    <option value="cultural">Obra de Teatro / Escénicas</option>
+                    <option value="danza">Danza Clásica / Ballet</option>
+                    <option value="concierto">Concierto / Musical</option>
+                    <option value="graduacion">Graduación / Escolar</option>
+                    <option value="conferencia">Conferencia / Protocolario</option>
                   </select>
                 </div>
 
@@ -344,24 +343,25 @@
                   class="w-7 h-7 rounded-full bg-primary text-white text-sm flex items-center justify-center font-bold">3</span>
                 <span>Requerimientos Técnicos de Montaje</span>
               </h3>
-              <p class="text-sm text-gray-500">
-                Marca el equipamiento del teatro que utilizará tu producción para programar su montaje.
+              <p class="text-sm text-gray-600 [text-wrap:pretty]">
+                Marca el equipamiento del teatro que utilizará tu producción para programar su montaje&nbsp;previo.
               </p>
 
               <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm text-gray-700">
-                <label
+                <label for="srv-foso"
                   class="flex items-center gap-2.5 p-3 rounded-xl border border-gray-200 hover:bg-base-bg cursor-pointer transition">
-                  <input type="checkbox" id="srv-foso" class="w-4 h-4 rounded text-primary focus:ring-highlight">
+                  <input type="checkbox" id="srv-foso" class="w-4 h-4 rounded accent-[#1E3A8A] focus:ring-primary">
                   <span>Foso de orquesta</span>
                 </label>
-                <label
+                <label for="srv-conchas"
                   class="flex items-center gap-2.5 p-3 rounded-xl border border-gray-200 hover:bg-base-bg cursor-pointer transition">
-                  <input type="checkbox" id="srv-conchas" class="w-4 h-4 rounded text-primary focus:ring-highlight">
+                  <input type="checkbox" id="srv-conchas" class="w-4 h-4 rounded accent-[#1E3A8A] focus:ring-primary">
                   <span>Conchas acústicas</span>
                 </label>
-                <label
+                <label for="srv-iluminacion"
                   class="flex items-center gap-2.5 p-3 rounded-xl border border-gray-200 hover:bg-base-bg cursor-pointer transition">
-                  <input type="checkbox" id="srv-iluminacion" class="w-4 h-4 rounded text-primary focus:ring-highlight">
+                  <input type="checkbox" id="srv-iluminacion"
+                    class="w-4 h-4 rounded accent-[#1E3A8A] focus:ring-primary">
                   <span>Iluminación modular</span>
                 </label>
               </div>
@@ -369,33 +369,57 @@
 
             <!-- Grupo 4: Comentarios Adicionales -->
             <div class="space-y-1.5 pt-4 border-t border-gray-100">
-              <label class="block text-sm font-bold uppercase tracking-wider text-gray-700">Requerimientos Especiales o
+              <label for="input-notes"
+                class="block text-sm font-bold uppercase tracking-wider text-gray-700">Requerimientos Especiales o
                 Sinopsis</label>
               <textarea id="input-notes" rows="3"
                 placeholder="Indica si requieres tiempos de ensayo, catering, medidas especiales de escenografía..."
-                class="w-full px-4 py-3 rounded-xl border border-gray-300 text-base focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition shadow-inner bg-base-bg"></textarea>
+                class="w-full px-4 py-3 rounded-xl border border-gray-300 text-base text-base-text placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition shadow-inner bg-base-bg"></textarea>
             </div>
+
+            <!-- Error inline global de validación al enviar -->
+            <div id="form-error-banner" role="alert"
+              class="hidden p-4 rounded-xl bg-red-50 border border-red-200 text-red-800 text-sm font-semibold"></div>
+
+            <!-- Ficha rápida colapsable en móvil (< 1024px) antes de enviar -->
+            <details id="mobile-summary-drawer" class="lg:hidden rounded-2xl bg-primary text-white p-4 space-y-3">
+              <summary class="flex items-center justify-between gap-2 cursor-pointer list-none font-bold text-sm">
+                <span>Ficha de solicitud antes de enviar</span>
+                <span id="mobile-summary-status"
+                  class="text-xs px-2.5 py-0.5 rounded-full bg-white/15 text-amber-200 whitespace-nowrap shrink-0"></span>
+              </summary>
+              <div id="mobile-summary-content" class="pt-3 border-t border-white/15 text-xs text-slate-200 space-y-1.5">
+              </div>
+            </details>
 
             <!-- Botón de Envío -->
             <div class="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div class="text-sm text-gray-500">
-                🔒 Tus datos se gestionan de forma confidencial para fines exclusivos de cotización.
+              <div class="flex items-center gap-2 text-sm text-gray-600">
+                <svg class="w-4 h-4 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
+                  </path>
+                </svg>
+                <span>Tus datos se gestionan confidencialmente para fines de cotización.</span>
               </div>
-              <button type="submit"
-                class="w-full sm:w-auto bg-accent hover:brightness-110 active:scale-95 text-white font-bold text-base px-8 py-4 rounded-full shadow-lg hover:shadow-accent/40 transition-all flex items-center justify-center gap-2">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <button type="submit" id="btn-submit-quote"
+                class="w-full sm:w-auto shrink-0 whitespace-nowrap bg-accent-text hover:bg-[#92400E] active:scale-95 text-white font-bold text-sm sm:text-base px-6 sm:px-7 py-3.5 rounded-full shadow-lg transition-all flex items-center justify-center gap-2">
+                <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                     d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
-                <span>Generar Solicitud de Cotización</span>
+                <span>Generar Solicitud</span>
               </button>
             </div>
 
             <!-- Feedback de Éxito Interactivo -->
-            <div id="quote-success-banner"
-              class="hidden p-6 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900 space-y-2 shadow-sm animate-fade-in">
+            <div id="quote-success-banner" aria-live="polite"
+              class="hidden p-6 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900 space-y-3 shadow-sm">
               <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold">✓
+                <div class="w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center shrink-0">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+                  </svg>
                 </div>
                 <h4 class="font-bold text-lg">¡Solicitud de Cotización Registrada!</h4>
               </div>
@@ -403,88 +427,136 @@
                 Hemos recibido tu solicitud. Nuestro coordinador del Teatro de la Ciudad se pondrá en contacto contigo
                 en tu teléfono y correo con la disponibilidad de calendario y la cotización formal desglosada.
               </p>
-              <div class="pt-2 text-sm font-semibold text-emerald-900">
-                Folio preliminar generado: <span id="folio-number"
-                  class="font-mono font-bold bg-emerald-100 px-2.5 py-1 rounded text-sm">TC-2026-9481</span>
+              <div
+                class="pt-1 flex flex-wrap items-center justify-between gap-3 text-sm font-semibold text-emerald-900">
+                <div>
+                  Folio preliminar generado: <span id="folio-number"
+                    class="font-mono font-bold bg-emerald-100 px-2.5 py-1 rounded text-sm">TC-COT-2026-000</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <button type="button" id="btn-copy-folio"
+                    class="px-3 py-1.5 rounded-full border border-emerald-700/30 bg-white hover:bg-emerald-100 text-emerald-900 text-xs font-bold transition">
+                    Copiar folio
+                  </button>
+                  <button type="button" id="btn-new-quote"
+                    class="px-3.5 py-1.5 rounded-full bg-primary hover:brightness-110 text-white text-xs font-bold transition">
+                    Cotizar otro evento
+                  </button>
+                </div>
               </div>
+              <p id="quote-storage-warning"
+                class="hidden text-xs font-semibold text-amber-800 bg-amber-100 px-3 py-2 rounded-lg"></p>
             </div>
 
           </form>
 
         </div>
 
-        <!-- Columna Derecha: Tarjeta Resumen en Vivo (5 Cols) -->
-        <div class="lg:col-span-5 space-y-6 lg:sticky lg:top-28">
+        <!-- Columna Derecha: Ficha Oficial de Solicitud en Vivo (5 Cols, escritorio) -->
+        <aside class="hidden lg:block lg:col-span-5 lg:sticky lg:top-24" aria-label="Ficha de solicitud en tiempo real">
 
-          <!-- Resumen de Cotización en Tiempo Real (Color sólido sin degradado) -->
-          <div class="bg-primary text-white p-6 sm:p-8 rounded-3xl shadow-xl space-y-6">
+          <div id="summary-card" aria-live="polite" class="bg-primary text-white p-6 rounded-3xl shadow-xl space-y-4">
 
-            <div class="space-y-4">
-              <div class="flex items-center justify-between pb-3 border-b border-white/15">
-                <span class="text-sm uppercase font-bold tracking-wider text-accent">Resumen de Propuesta</span>
-                <span class="text-xs bg-white/10 px-3 py-1 rounded-full text-gray-200">En tiempo real</span>
-              </div>
+            <div class="flex items-center justify-between gap-2 pb-3 border-b border-white/15">
+              <h2 id="summary-heading" class="text-sm uppercase font-bold tracking-wider text-amber-200">Ficha de
+                Solicitud</h2>
+              <span id="summary-status-badge"
+                class="text-xs font-semibold bg-white/15 px-3 py-1 rounded-full text-white whitespace-nowrap">
+                Faltan 7 datos
+              </span>
+            </div>
 
+            <div class="space-y-3 text-sm">
               <div>
-                <div class="text-xs text-gray-300">Evento:</div>
-                <div id="summary-event" class="text-lg font-bold text-white mt-0.5 truncate">Producción por definir
+                <div class="text-xs text-slate-200">Evento:</div>
+                <div id="summary-event" class="text-lg font-bold text-white mt-0.5 break-words">Producción por definir
                 </div>
-                <div id="summary-recipient" class="text-xs text-secondary mt-0.5 truncate hidden"></div>
+                <div id="summary-recipient" class="text-xs text-secondary mt-0.5 break-words hidden"></div>
               </div>
 
-              <div>
-                <div class="text-xs text-gray-300">Recinto:</div>
-                <div id="summary-venue" class="text-lg font-extrabold text-white mt-0.5">Teatro Completo (1,724 butacas)
+              <div class="pt-3 border-t border-white/15 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3">
+                <div>
+                  <div class="text-xs text-slate-200">Modalidad de recinto:</div>
+                  <div id="summary-venue" class="text-sm font-bold text-white mt-0.5 break-words">Teatro Completo (1,730
+                    butacas)</div>
+                </div>
+                <div>
+                  <div class="text-xs text-slate-200">Fechas estimadas:</div>
+                  <div id="summary-dates" class="text-sm font-bold text-white mt-0.5 break-words">Por definir</div>
+                </div>
+                <div>
+                  <div class="text-xs text-slate-200">Turno base:</div>
+                  <div id="summary-shift" class="text-sm font-bold text-sky-200 mt-0.5 break-words">Vespertino (15:00 a
+                    22:00 hrs)</div>
+                </div>
+                <div>
+                  <div class="text-xs text-slate-200">Horarios específicos:</div>
+                  <div id="summary-schedule" class="text-sm font-semibold text-white mt-0.5 break-words">Por definir
+                  </div>
+                </div>
+                <div>
+                  <div class="text-xs text-slate-200">Aforo estimado:</div>
+                  <div id="summary-capacity" class="text-sm font-bold text-amber-200 mt-0.5 break-words">Cupo máx. 1,730
+                    personas</div>
+                </div>
+                <div id="summary-type-row" class="hidden">
+                  <div class="text-xs text-slate-200">Giro escénico:</div>
+                  <div id="summary-type" class="text-sm font-semibold text-white mt-0.5 break-words">—</div>
                 </div>
               </div>
 
-              <div class="grid grid-cols-2 gap-3 pt-1">
-                <div class="p-3 rounded-xl bg-white/10 border border-white/15">
-                  <div class="text-xs text-gray-300">Horarios:</div>
-                  <div id="summary-shift" class="text-sm font-bold text-highlight mt-0.5 break-words">Vespertino</div>
-                </div>
-                <div class="p-3 rounded-xl bg-white/10 border border-white/15">
-                  <div class="text-xs text-gray-300">Aforo:</div>
-                  <div id="summary-capacity" class="text-sm font-bold text-accent mt-0.5">Hasta 1,724 p</div>
-                </div>
-              </div>
-
-              <div class="space-y-2.5 pt-3 border-t border-white/15 text-sm text-gray-200">
-                <div class="font-bold text-white">Beneficios escénicos incluidos:</div>
-                <div class="flex items-center gap-2">✓ Tramoya de 67 varas contrapesadas (1 ton)</div>
-                <div class="flex items-center gap-2">✓ 10 camerinos equipados (hasta 50 actores)</div>
-                <div class="flex items-center gap-2">✓ Vestimenta teatral completa y ciclorama</div>
-                <div class="flex items-center gap-2">✓ Andenes de carga a nivel de escenario</div>
-                <div class="flex items-center gap-2">✓ Estacionamiento para 700 vehículos</div>
-              </div>
-
-              <!-- Requerimientos Técnicos de Montaje en Tiempo Real -->
-              <div class="space-y-2.5 pt-3 border-t border-white/15 text-sm text-gray-200">
-                <div class="flex items-center justify-between">
-                  <span class="font-bold text-white">Requerimientos de montaje:</span>
+              <!-- Requerimientos Técnicos de Montaje -->
+              <div class="space-y-2 pt-3 border-t border-white/15">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-bold text-white text-sm">Requerimientos de montaje:</span>
                   <span id="summary-services-count"
-                    class="text-xs bg-accent/20 border border-accent/40 text-accent font-bold px-2.5 py-0.5 rounded-full">0
+                    class="text-xs bg-white/15 text-amber-200 font-bold px-2.5 py-0.5 rounded-full whitespace-nowrap">0
                     seleccionados</span>
                 </div>
-                <div id="summary-services-list" class="space-y-2 pt-1">
+                <div id="summary-services-list" class="space-y-1.5">
                   <!-- Se actualiza dinámicamente con los checkboxes seleccionados -->
                 </div>
               </div>
 
-              <div
-                class="p-4 rounded-xl bg-white/10 border border-white/15 text-sm text-amber-200 flex items-start gap-3">
-                <svg class="w-5 h-5 text-accent flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd"
-                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                    clip-rule="evenodd"></path>
-                </svg>
-                <span>Las tarifas oficiales del recinto están normadas conforme a la Ley de Ingresos del Municipio de
-                  Coatzacoalcos, garantizando total transparencia y precios públicos.</span>
+              <!-- Notas o sinopsis cuando existan -->
+              <div id="summary-notes-row" class="hidden pt-3 border-t border-white/15">
+                <div class="text-xs text-slate-200">Notas / Sinopsis:</div>
+                <div id="summary-notes" class="text-xs text-white mt-0.5 break-words line-clamp-2"></div>
+              </div>
+
+              <!-- Conceptos a cotizar y enlace único a la ficha técnica -->
+              <div class="pt-3 border-t border-white/15 space-y-2 text-xs text-slate-200 leading-relaxed">
+                <div class="text-white font-semibold">
+                  Conceptos a cotizar: <span id="summary-scope" class="font-normal text-slate-200">Renta base del
+                    recinto + turno seleccionado.</span>
+                </div>
+                <div class="flex items-start gap-2">
+                  <svg class="w-4 h-4 text-amber-200 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                  <span>
+                    Tarifas reguladas por la Ley de Ingresos de Coatzacoalcos.
+                    <a href="#ficha-tecnica" class="text-sky-200 hover:underline font-semibold whitespace-nowrap">Ver
+                      equipamiento incluido &uarr;</a>
+                  </span>
+                </div>
               </div>
             </div>
+
+            <div id="summary-submitted-actions"
+              class="hidden pt-3 border-t border-white/15 flex items-center justify-between gap-2 text-xs">
+              <span class="text-emerald-200 font-semibold">Resumen guardado para tu respaldo</span>
+              <button type="button" id="btn-summary-reset"
+                class="px-3 py-1.5 rounded-full bg-white text-primary font-bold hover:bg-slate-100 transition">
+                Nueva cotización
+              </button>
+            </div>
+
           </div>
 
-        </div>
+        </aside>
 
       </div>
 
@@ -496,10 +568,11 @@
     <div class="w-full px-4 sm:px-6 md:px-[100px]">
 
       <div class="max-w-2xl mx-auto text-center mb-10">
-        <span class="text-accent text-xs font-bold tracking-widest uppercase">Dudas Comunes</span>
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-primary tracking-tight mt-1">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-primary tracking-tight [text-wrap:balance]">
           Preguntas Frecuentes sobre la Renta del Recinto
         </h2>
+        <p class="text-sm text-gray-600 mt-2">Respuestas sobre costos, apartados de fecha, taquilla y equipamiento
+          técnico.</p>
       </div>
 
       <div class="max-w-3xl mx-auto space-y-4">
@@ -507,17 +580,17 @@
         <details open class="group bg-white p-5 rounded-2xl border border-gray-200 shadow-sm transition">
           <summary class="font-bold text-sm text-primary flex items-center justify-between cursor-pointer list-none">
             <span id="cotpage-faq-title">¿Es costoso realizar un evento en el Teatro de la Ciudad?</span>
-            <span class="text-accent transition-transform group-open:rotate-180 font-bold">&darr;</span>
+            <span class="text-accent-text transition-transform group-open:rotate-180 font-bold">&darr;</span>
           </summary>
-          <div class="space-y-2.5 mt-3 text-xs sm:text-sm text-gray-600 leading-relaxed">
-            <p id="cotpage-faq-p1">
+          <div class="space-y-2.5 mt-3 max-w-[65ch] text-xs sm:text-sm text-gray-700 leading-relaxed">
+            <p id="cotpage-faq-p1" class="max-w-[65ch]">
               <strong>Esto es un mito, nuestra respuesta definitiva es NO</strong>, ya que cada evento se realiza en
               base a lo que el cliente requiere, por lo que el costo total está definido por las necesidades de su
               producción. La renta del Teatro de la Ciudad ya incluye su infraestructura escénica: tramoya de 67 varas
               contrapesadas, vestimenta teatral completa, 10 camerinos, andenes de carga a nivel de escenario y
               estacionamiento para 700 vehículos.
             </p>
-            <p id="cotpage-faq-p2">
+            <p id="cotpage-faq-p2" class="max-w-[65ch]">
               No importa cuál sea el presupuesto para su evento, usted puede realizarlo en el Teatro de la Ciudad y
               tendrá el respaldo de nuestro personal técnico, que se preocupará porque su función sea un éxito.
             </p>
@@ -527,9 +600,9 @@
         <details class="group bg-white p-5 rounded-2xl border border-gray-200 shadow-sm transition">
           <summary class="font-bold text-sm text-primary flex items-center justify-between cursor-pointer list-none">
             <span>¿Con cuánto tiempo de anticipación se debe apartar una fecha?</span>
-            <span class="text-accent transition-transform group-open:rotate-180 font-bold">&darr;</span>
+            <span class="text-accent-text transition-transform group-open:rotate-180 font-bold">&darr;</span>
           </summary>
-          <p class="text-xs sm:text-sm text-gray-600 mt-3 leading-relaxed">
+          <p class="text-xs sm:text-sm text-gray-700 mt-3 max-w-2xl leading-relaxed">
             Recomendamos realizar la solicitud con al menos <strong>30 a 60 días de anticipación</strong> para eventos
             escolares o locales, y de <strong>3 a 6 meses</strong> para giras artísticas, conciertos o congresos
             nacionales, con el fin de garantizar disponibilidad en el calendario cultural.
@@ -539,9 +612,9 @@
         <details class="group bg-white p-5 rounded-2xl border border-gray-200 shadow-sm transition">
           <summary class="font-bold text-sm text-primary flex items-center justify-between cursor-pointer list-none">
             <span>¿Puedo vender boletos en la taquilla del Teatro?</span>
-            <span class="text-accent transition-transform group-open:rotate-180 font-bold">&darr;</span>
+            <span class="text-accent-text transition-transform group-open:rotate-180 font-bold">&darr;</span>
           </summary>
-          <p class="text-xs sm:text-sm text-gray-600 mt-3 leading-relaxed">
+          <p class="text-xs sm:text-sm text-gray-700 mt-3 max-w-2xl leading-relaxed">
             <strong>Sí.</strong> El recinto cuenta con taquillas físicas operativas con sistema de cómputo, cobro con
             terminal bancaria y efectivo, además de convenio para vincular boleteras electrónicas oficiales.
           </p>
@@ -550,9 +623,9 @@
         <details class="group bg-white p-5 rounded-2xl border border-gray-200 shadow-sm transition">
           <summary class="font-bold text-sm text-primary flex items-center justify-between cursor-pointer list-none">
             <span>¿Incluye el servicio de iluminación y sonido?</span>
-            <span class="text-accent transition-transform group-open:rotate-180 font-bold">&darr;</span>
+            <span class="text-accent-text transition-transform group-open:rotate-180 font-bold">&darr;</span>
           </summary>
-          <p class="text-xs sm:text-sm text-gray-600 mt-3 leading-relaxed">
+          <p class="text-xs sm:text-sm text-gray-700 mt-3 max-w-2xl leading-relaxed">
             El Teatro de la Ciudad dispone de rider técnico de iluminación general y sistema de sonido base para
             conferencias y actos protocolares. Para producciones con especificaciones de artistas específicos, se
             permite el ingreso de equipo complementario con supervisión de nuestra jefatura técnica.
@@ -573,22 +646,23 @@
         <!-- Columna 1: Identidad -->
         <div class="space-y-4 md:col-span-1">
           <div class="flex items-center space-x-3">
-            <img src="img/LOGO.svg" alt="Logo Teatro de la Ciudad" class="w-9 h-9 rounded-lg bg-white object-contain p-0.5 shadow-sm">
+            <img src="img/LOGO.svg" alt="Logo Teatro de la Ciudad"
+              class="w-9 h-9 rounded-lg bg-white object-contain p-0.5 shadow-sm">
             <div>
               <div class="font-bold text-base tracking-tight text-white leading-tight">TEATRO DE LA CIUDAD</div>
               <div class="text-[11px] text-secondary">Coatzacoalcos, Veracruz</div>
             </div>
           </div>
-          <p class="text-xs text-gray-200 leading-relaxed">
+          <p class="text-xs text-slate-200 leading-relaxed">
             El recinto teatral y cultural más emblemático del sur de Veracruz. Obra maestra del Arq. Abraham Zabludovsky
-            con 1,724 butacas.
+            con 1,730 butacas.
           </p>
         </div>
 
         <!-- Columna 2: Enlaces Rápidos -->
         <div class="space-y-3">
-          <h4 class="text-xs font-bold uppercase tracking-wider text-accent">Navegación</h4>
-          <ul class="space-y-2 text-xs text-gray-300">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-amber-200">Navegación</h4>
+          <ul class="space-y-2 text-xs text-slate-200">
             <li><a href="index.html" class="hover:text-highlight transition">Inicio</a></li>
             <li><a href="index.html#cartelera" class="hover:text-highlight transition">Cartelera de Espectáculos</a>
             </li>
@@ -600,9 +674,9 @@
 
         <!-- Columna 3: Información de Recintos -->
         <div class="space-y-3">
-          <h4 class="text-xs font-bold uppercase tracking-wider text-accent">Instalaciones del Teatro</h4>
-          <ul class="space-y-2 text-xs text-gray-300">
-            <li>Aforo Total: 1,724 Butacas Numeradas</li>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-amber-200">Instalaciones del Teatro</h4>
+          <ul class="space-y-2 text-xs text-slate-200">
+            <li>Aforo Total: 1,730 Butacas Numeradas</li>
             <li>Planta Baja: 710 Asientos (Luneta y Platea)</li>
             <li>Tramoya: 67 Varas Contrapesadas (1 ton)</li>
             <li>Foso de Orquesta y 10 Camerinos</li>
@@ -611,14 +685,14 @@
 
         <!-- Columna 4: Contacto de Vinculación -->
         <div class="space-y-3">
-          <h4 class="text-xs font-bold uppercase tracking-wider text-accent">Taquilla y Producción</h4>
-          <p class="text-xs text-gray-300">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-amber-200">Taquilla y Producción</h4>
+          <p class="text-xs text-slate-200">
             Teléfono: (921) 210 6616<br>
             Correo: taquilla@teatrodelaciudadcoatza.gob.mx
           </p>
           <div class="pt-2">
             <a href="index.html#cartelera"
-              class="inline-flex items-center gap-1.5 text-xs text-highlight hover:underline font-bold">
+              class="inline-flex items-center gap-1.5 text-xs text-sky-200 hover:underline font-bold">
               <span>&larr; Volver a Cartelera de Eventos</span>
             </a>
           </div>
@@ -626,7 +700,7 @@
 
       </div>
 
-      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-300 gap-3">
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-200 gap-3">
         <p>© 2026 Teatro de la Ciudad de Coatzacoalcos.</p>
         <span class="text-secondary">Portal Oficial de Cotizaciones</span>
       </div>
@@ -634,39 +708,76 @@
     </div>
   </footer>
 
-  <!-- SCRIPT PARA INTERACTIVIDAD DE ESTIMACIÓN DEL TEATRO -->
+  <!-- SCRIPT PARA FICHA DE SOLICITUD EN TIEMPO REAL Y VALIDACIÓN -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
+      const DRAFT_KEY = 'tc_quote_draft';
       const selectVenue = document.getElementById('select-venue');
       const selectShift = document.getElementById('select-shift');
+      const selectType = document.getElementById('select-type');
       const inputCapacity = document.getElementById('input-capacity');
       const inputRecipient = document.getElementById('input-recipient');
+      const inputPhone = document.getElementById('input-phone');
+      const inputEmail = document.getElementById('input-email');
       const inputEventName = document.getElementById('input-event-name');
       const inputEventDates = document.getElementById('input-event-dates');
       const inputEventSchedule = document.getElementById('input-event-schedule');
+      const inputNotes = document.getElementById('input-notes');
+
+      const capacityMsg = document.getElementById('capacity-validation-msg');
+      const formErrorBanner = document.getElementById('form-error-banner');
+      const summaryStatusBadge = document.getElementById('summary-status-badge');
       const summaryVenue = document.getElementById('summary-venue');
+      const summaryDates = document.getElementById('summary-dates');
       const summaryShift = document.getElementById('summary-shift');
+      const summarySchedule = document.getElementById('summary-schedule');
       const summaryCapacity = document.getElementById('summary-capacity');
+      const summaryTypeRow = document.getElementById('summary-type-row');
+      const summaryType = document.getElementById('summary-type');
       const summaryEvent = document.getElementById('summary-event');
       const summaryRecipient = document.getElementById('summary-recipient');
       const summaryServicesList = document.getElementById('summary-services-list');
       const summaryServicesCount = document.getElementById('summary-services-count');
+      const summaryNotesRow = document.getElementById('summary-notes-row');
+      const summaryNotes = document.getElementById('summary-notes');
+      const summaryScope = document.getElementById('summary-scope');
+      const summarySubmittedActions = document.getElementById('summary-submitted-actions');
+
+      const mobileSummaryStatus = document.getElementById('mobile-summary-status');
+      const mobileSummaryContent = document.getElementById('mobile-summary-content');
       const serviceCheckboxes = document.querySelectorAll('input[id^="srv-"]');
       const form = document.getElementById('full-quote-form');
+      const btnSubmit = document.getElementById('btn-submit-quote');
       const successBanner = document.getElementById('quote-success-banner');
+      const folioEl = document.getElementById('folio-number');
+      const btnCopyFolio = document.getElementById('btn-copy-folio');
+      const btnNewQuote = document.getElementById('btn-new-quote');
+      const btnSummaryReset = document.getElementById('btn-summary-reset');
+      const storageWarning = document.getElementById('quote-storage-warning');
+
+      let isSubmittedFrozen = false;
+      let submittedFolio = '';
 
       const venueNames = {
-        'teatro': 'Teatro Completo (1,724 butacas)',
-        'teatro-planta-baja': 'Teatro - Luneta y Platea (710 butacas)',
-        'teatro-ensayos': 'Teatro - Ensayos Técnicos / Montaje',
-        'teatro-academico': 'Teatro - Ceremonia de Graduación / Escolar'
+        'teatro': 'Teatro Completo (1,730 butacas)',
+        'teatro-planta-baja': 'Luneta y Platea (710 butacas)',
+        'teatro-ensayos': 'Ensayos Técnicos / Montaje',
+        'teatro-academico': 'Ceremonia / Acto Académico'
       };
 
       const shiftNames = {
-        'matutino': 'Turno Matutino (8:00 - 14:00)',
-        'vespertino': 'Turno Vespertino (15:00 - 22:00)',
-        'completo': 'Jornada Completa',
-        'multidias': 'Múltiples Días'
+        'matutino': 'Matutino (8:00–14:00 hrs)',
+        'vespertino': 'Vespertino (15:00–22:00 hrs)',
+        'completo': 'Jornada Completa (Día completo)',
+        'multidias': 'Múltiples Días consecutivos'
+      };
+
+      const typeNames = {
+        'cultural': 'Obra de Teatro / Artes Escénicas',
+        'danza': 'Danza Clásica / Ballet / Folclore',
+        'concierto': 'Concierto / Presentación Musical',
+        'graduacion': 'Graduación / Ceremonia Escolar',
+        'conferencia': 'Conferencia / Acto Protocolario'
       };
 
       const serviceNames = {
@@ -675,15 +786,152 @@
         'srv-iluminacion': 'Iluminación modular'
       };
 
-      // Actualizar resumen al cambiar controles
-      function updateSummary() {
-        if (inputEventName && summaryEvent) {
-          const evt = inputEventName.value.trim();
-          summaryEvent.textContent = evt || 'Producción por definir';
+      function getMaxCapacityForVenue() {
+        return selectVenue && selectVenue.value === 'teatro-planta-baja' ? 710 : 1730;
+      }
+
+      function validateCapacityField() {
+        if (!inputCapacity) return true;
+        const maxCap = getMaxCapacityForVenue();
+        inputCapacity.max = String(maxCap);
+        inputCapacity.placeholder = maxCap === 710
+          ? 'Ej. 450 (Máx. 710 butacas)'
+          : 'Ej. 850 (Máx. 1,730 butacas)';
+
+        const raw = inputCapacity.value.trim();
+        if (!raw) {
+          if (capacityMsg) {
+            capacityMsg.textContent = '';
+            capacityMsg.classList.add('hidden');
+          }
+          inputCapacity.classList.remove('border-red-500');
+          return true;
         }
 
-        if (inputRecipient && summaryRecipient) {
-          const recip = inputRecipient.value.trim();
+        const cap = Number(raw);
+        let msg = '';
+        if (Number.isNaN(cap) || cap < 20) {
+          msg = 'El aforo mínimo para cotizar es de 20 personas.';
+        } else if (cap > maxCap) {
+          msg = `Excede el cupo de ${venueNames[selectVenue.value] || 'la modalidad'} (máximo ${maxCap.toLocaleString('es-MX')} personas).`;
+        }
+
+        if (capacityMsg) {
+          capacityMsg.textContent = msg;
+          capacityMsg.classList.toggle('hidden', !msg);
+        }
+        inputCapacity.classList.toggle('border-red-500', Boolean(msg));
+        return !msg;
+      }
+
+      function countMissingRequired() {
+        const requiredValues = [
+          inputRecipient ? inputRecipient.value.trim() : '',
+          inputPhone ? inputPhone.value.trim() : '',
+          inputEmail ? inputEmail.value.trim() : '',
+          inputEventName ? inputEventName.value.trim() : '',
+          inputEventDates ? inputEventDates.value.trim() : '',
+          inputEventSchedule ? inputEventSchedule.value.trim() : ''
+        ];
+        let missing = requiredValues.filter(v => !v).length;
+        const capVal = inputCapacity ? Number(inputCapacity.value) : 0;
+        const capOk = capVal >= 20 && capVal <= getMaxCapacityForVenue();
+        if (!capOk) missing += 1;
+        return missing;
+      }
+
+      function saveDraft() {
+        if (isSubmittedFrozen) return;
+        try {
+          const selectedSrvs = [];
+          serviceCheckboxes.forEach(cb => { if (cb.checked) selectedSrvs.push(cb.id); });
+          localStorage.setItem(DRAFT_KEY, JSON.stringify({
+            recipient: inputRecipient ? inputRecipient.value : '',
+            phone: inputPhone ? inputPhone.value : '',
+            email: inputEmail ? inputEmail.value : '',
+            eventName: inputEventName ? inputEventName.value : '',
+            eventDates: inputEventDates ? inputEventDates.value : '',
+            eventSchedule: inputEventSchedule ? inputEventSchedule.value : '',
+            capacity: inputCapacity ? inputCapacity.value : '',
+            venue: selectVenue ? selectVenue.value : 'teatro',
+            shift: selectShift ? selectShift.value : 'vespertino',
+            type: selectType ? selectType.value : '',
+            notes: inputNotes ? inputNotes.value : '',
+            services: selectedSrvs
+          }));
+        } catch (_err) { /* ignore storage quota errors on draft */ }
+      }
+
+      function restoreDraftAndProfile() {
+        let restored = false;
+        try {
+          const rawDraft = localStorage.getItem(DRAFT_KEY);
+          if (rawDraft) {
+            const d = JSON.parse(rawDraft);
+            if (d && typeof d === 'object') {
+              if (inputRecipient && d.recipient) inputRecipient.value = d.recipient;
+              if (inputPhone && d.phone) inputPhone.value = d.phone;
+              if (inputEmail && d.email) inputEmail.value = d.email;
+              if (inputEventName && d.eventName) inputEventName.value = d.eventName;
+              if (inputEventDates && d.eventDates) inputEventDates.value = d.eventDates;
+              if (inputEventSchedule && d.eventSchedule) inputEventSchedule.value = d.eventSchedule;
+              if (inputCapacity && d.capacity) inputCapacity.value = d.capacity;
+              if (selectVenue && d.venue && venueNames[d.venue]) selectVenue.value = d.venue;
+              if (selectShift && d.shift && shiftNames[d.shift]) selectShift.value = d.shift;
+              if (selectType && d.type !== undefined) selectType.value = d.type;
+              if (inputNotes && d.notes) inputNotes.value = d.notes;
+              if (Array.isArray(d.services)) {
+                serviceCheckboxes.forEach(cb => { cb.checked = d.services.includes(cb.id); });
+              }
+              restored = true;
+            }
+          }
+        } catch (_err) { /* ignore malformed draft */ }
+
+        // Pre-llenar datos de contacto si hay sesión iniciada y están vacíos
+        try {
+          const rawUser = localStorage.getItem('tc_usuario');
+          if (rawUser) {
+            const u = JSON.parse(rawUser);
+            if (inputRecipient && !inputRecipient.value.trim() && u.nombre) inputRecipient.value = u.nombre;
+            if (inputPhone && !inputPhone.value.trim() && u.telefono) inputPhone.value = u.telefono;
+            if (inputEmail && !inputEmail.value.trim() && u.email) inputEmail.value = u.email;
+          }
+        } catch (_err) { /* ignore user parse errors */ }
+
+        return restored;
+      }
+
+      function escapeHtml(text) {
+        return String(text)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;');
+      }
+
+      // Actualizar ficha de solicitud al cambiar controles
+      function updateSummary() {
+        if (isSubmittedFrozen) return;
+
+        const maxCap = getMaxCapacityForVenue();
+        const capValid = validateCapacityField();
+        const missing = countMissingRequired();
+
+        if (summaryStatusBadge) {
+          summaryStatusBadge.textContent = missing === 0 ? 'Lista para enviar' : `Faltan ${missing} datos`;
+          summaryStatusBadge.className = missing === 0
+            ? 'text-xs font-semibold bg-emerald-700 px-3 py-1 rounded-full text-white whitespace-nowrap'
+            : 'text-xs font-semibold bg-white/15 px-3 py-1 rounded-full text-white whitespace-nowrap';
+        }
+        if (mobileSummaryStatus) {
+          mobileSummaryStatus.textContent = missing === 0 ? 'Lista' : `Faltan ${missing}`;
+        }
+
+        const evt = inputEventName ? inputEventName.value.trim() : '';
+        if (summaryEvent) summaryEvent.textContent = evt || 'Producción por definir';
+
+        const recip = inputRecipient ? inputRecipient.value.trim() : '';
+        if (summaryRecipient) {
           if (recip) {
             summaryRecipient.textContent = `Cotización para: ${recip}`;
             summaryRecipient.classList.remove('hidden');
@@ -692,97 +940,185 @@
           }
         }
 
-        if (selectVenue && summaryVenue) {
-          const venueVal = selectVenue.value;
-          summaryVenue.textContent = venueNames[venueVal] || 'Teatro Completo (1,724 butacas)';
-        }
+        const venueText = (selectVenue && venueNames[selectVenue.value]) || 'Teatro Completo (1,730 butacas)';
+        if (summaryVenue) summaryVenue.textContent = venueText;
 
-        if (summaryShift) {
-          const customSchedule = inputEventSchedule ? inputEventSchedule.value.trim() : '';
-          if (customSchedule) {
-            summaryShift.textContent = customSchedule;
-          } else if (selectShift) {
-            summaryShift.textContent = shiftNames[selectShift.value] || 'Vespertino';
+        const datesText = (inputEventDates && inputEventDates.value.trim()) || 'Por definir';
+        if (summaryDates) summaryDates.textContent = datesText;
+
+        const shiftText = (selectShift && shiftNames[selectShift.value]) || 'Vespertino (15:00–22:00 hrs)';
+        if (summaryShift) summaryShift.textContent = shiftText;
+
+        const schedText = (inputEventSchedule && inputEventSchedule.value.trim()) || 'Por definir';
+        if (summarySchedule) summarySchedule.textContent = schedText;
+
+        const capNum = inputCapacity ? Number(inputCapacity.value) : 0;
+        let capSummaryText = `Cupo máx. ${maxCap.toLocaleString('es-MX')} personas`;
+        if (summaryCapacity) {
+          if (inputCapacity && inputCapacity.value.trim() && capNum > 0) {
+            capSummaryText = capValid
+              ? `${capNum.toLocaleString('es-MX')} personas estimadas`
+              : `${capNum.toLocaleString('es-MX')} personas (excede máx. ${maxCap.toLocaleString('es-MX')})`;
           }
+          summaryCapacity.textContent = capSummaryText;
+          summaryCapacity.className = capValid
+            ? 'text-sm font-bold text-amber-200 mt-0.5 break-words'
+            : 'text-sm font-bold text-red-200 mt-0.5 break-words';
         }
 
-        if (inputCapacity && summaryCapacity) {
-          const cap = inputCapacity.value;
-          if (cap && cap > 0) {
-            summaryCapacity.textContent = `${cap} personas aprox.`;
+        const typeVal = selectType ? selectType.value : '';
+        if (summaryTypeRow && summaryType) {
+          if (typeVal && typeNames[typeVal]) {
+            summaryType.textContent = typeNames[typeVal];
+            summaryTypeRow.classList.remove('hidden');
           } else {
-            summaryCapacity.textContent = 'Hasta 1,724 p';
+            summaryTypeRow.classList.add('hidden');
           }
+        }
+
+        const selected = [];
+        serviceCheckboxes.forEach(cb => {
+          if (cb.checked && serviceNames[cb.id]) {
+            selected.push(serviceNames[cb.id]);
+          }
+        });
+
+        if (summaryServicesCount) {
+          summaryServicesCount.textContent = `${selected.length} seleccionado${selected.length === 1 ? '' : 's'}`;
         }
 
         if (summaryServicesList) {
-          const selected = [];
-          serviceCheckboxes.forEach(cb => {
-            if (cb.checked && serviceNames[cb.id]) {
-              selected.push(serviceNames[cb.id]);
-            }
-          });
-
-          if (summaryServicesCount) {
-            summaryServicesCount.textContent = `${selected.length} seleccionado${selected.length === 1 ? '' : 's'}`;
-          }
-
           if (selected.length > 0) {
             summaryServicesList.innerHTML = selected.map(item => `
-              <div class="flex items-center gap-2.5 text-sm">
-                <svg class="w-4 h-4 text-accent flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                </svg>
-                <span>${item}</span>
+              <div class="flex items-center justify-between gap-2 text-sm text-white">
+                <span class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-amber-200 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>${escapeHtml(item)}</span>
+                </span>
+                <span class="text-[11px] text-sky-200 whitespace-nowrap">Montaje previo</span>
               </div>
             `).join('');
           } else {
             summaryServicesList.innerHTML = `
-              <div class="text-gray-400 italic text-sm py-0.5">Ningún requerimiento seleccionado</div>
+              <div class="text-slate-200 text-xs py-0.5">Ningún requerimiento adicional seleccionado</div>
             `;
           }
         }
+
+        const notesText = inputNotes ? inputNotes.value.trim() : '';
+        if (summaryNotesRow && summaryNotes) {
+          if (notesText) {
+            summaryNotes.textContent = notesText;
+            summaryNotesRow.classList.remove('hidden');
+          } else {
+            summaryNotesRow.classList.add('hidden');
+          }
+        }
+
+        if (summaryScope) {
+          summaryScope.textContent = selected.length > 0
+            ? 'Renta por modalidad + turno seleccionado + montaje técnico previo.'
+            : 'Renta por modalidad + turno seleccionado.';
+        }
+
+        if (mobileSummaryContent) {
+          mobileSummaryContent.innerHTML = `
+            <div><strong>Evento:</strong> ${escapeHtml(evt || 'Por definir')}</div>
+            <div><strong>Fechas:</strong> ${escapeHtml(datesText)} · <strong>Turno:</strong> ${escapeHtml(shiftText)}</div>
+            <div><strong>Recinto:</strong> ${escapeHtml(venueText)} · <strong>Aforo:</strong> ${escapeHtml(capSummaryText)}</div>
+            <div><strong>Montaje:</strong> ${escapeHtml(selected.length > 0 ? selected.join(', ') : 'Equipamiento base')}</div>
+          `;
+        }
       }
 
-      if (selectVenue) selectVenue.addEventListener('change', updateSummary);
-      if (selectShift) selectShift.addEventListener('change', updateSummary);
-      if (inputCapacity) inputCapacity.addEventListener('input', updateSummary);
-      if (inputEventName) inputEventName.addEventListener('input', updateSummary);
-      if (inputRecipient) inputRecipient.addEventListener('input', updateSummary);
-      if (inputEventSchedule) inputEventSchedule.addEventListener('input', updateSummary);
-      serviceCheckboxes.forEach(cb => cb.addEventListener('change', updateSummary));
+      function resetQuoteState() {
+        isSubmittedFrozen = false;
+        submittedFolio = '';
+        if (form) form.reset();
+        try { localStorage.removeItem(DRAFT_KEY); } catch (_err) { /* ignore */ }
+        if (successBanner) successBanner.classList.add('hidden');
+        if (formErrorBanner) formErrorBanner.classList.add('hidden');
+        if (summarySubmittedActions) summarySubmittedActions.classList.add('hidden');
+        if (btnSubmit) {
+          btnSubmit.disabled = false;
+          btnSubmit.classList.remove('opacity-50', 'cursor-not-allowed');
+        }
+        restoreDraftAndProfile();
+        updateSummary();
+        if (inputRecipient) inputRecipient.focus();
+      }
 
-      // Inicializar resumen en tiempo real
-      updateSummary();
+      const trackedInputs = [
+        selectVenue, selectShift, selectType,
+        inputCapacity, inputRecipient, inputPhone, inputEmail,
+        inputEventName, inputEventDates, inputEventSchedule, inputNotes
+      ];
+      trackedInputs.forEach(el => {
+        if (!el) return;
+        const evtName = el.tagName === 'SELECT' ? 'change' : 'input';
+        el.addEventListener(evtName, () => {
+          if (formErrorBanner) formErrorBanner.classList.add('hidden');
+          updateSummary();
+          saveDraft();
+        });
+      });
+      serviceCheckboxes.forEach(cb => cb.addEventListener('change', () => {
+        updateSummary();
+        saveDraft();
+      }));
 
       // Manejador del formulario
       if (form && successBanner) {
         form.addEventListener('submit', function (e) {
           e.preventDefault();
+          if (isSubmittedFrozen) return;
 
-          // Generar folio aleatorio
-          const randomFolio = 'TC-COT-2026-' + Math.floor(100 + Math.random() * 900);
-          const folioEl = document.getElementById('folio-number');
-          if (folioEl) folioEl.textContent = randomFolio;
+          const errors = [];
+          if (!inputRecipient || !inputRecipient.value.trim()) errors.push('nombre completo del destinatario');
+          if (!inputPhone || !inputPhone.value.trim()) errors.push('teléfono de contacto');
+          if (!inputEmail || !inputEmail.value.trim() || !inputEmail.checkValidity()) errors.push('correo electrónico válido');
+          if (!inputEventName || !inputEventName.value.trim()) errors.push('nombre del evento');
+          if (!inputEventDates || !inputEventDates.value.trim()) errors.push('fechas estimadas');
+          if (!inputEventSchedule || !inputEventSchedule.value.trim()) errors.push('horarios del evento');
+          if (!inputCapacity || !inputCapacity.value.trim() || !validateCapacityField()) errors.push('aforo dentro del cupo permitido');
 
-          // Guardar solicitud para el Panel de Administración (admin.html)
+          if (errors.length > 0) {
+            if (formErrorBanner) {
+              formErrorBanner.textContent = `Revisa los siguientes datos antes de enviar: ${errors.join(', ')}.`;
+              formErrorBanner.classList.remove('hidden');
+              formErrorBanner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+            return;
+          }
+
+          if (formErrorBanner) formErrorBanner.classList.add('hidden');
+          updateSummary();
+
+          submittedFolio = 'TC-COT-2026-' + Math.floor(100 + Math.random() * 900);
+          if (folioEl) folioEl.textContent = submittedFolio;
+
+          let storageErrMsg = '';
           try {
-            const inputPhone = document.getElementById('input-phone');
-            const inputEmail = document.getElementById('input-email');
             const selectedSrv = [];
             serviceCheckboxes.forEach(cb => {
               if (cb.checked && serviceNames[cb.id]) selectedSrv.push(serviceNames[cb.id]);
             });
 
             const newQuote = {
-              folio: randomFolio,
-              nombre: inputRecipient ? inputRecipient.value.trim() : 'Sin especificar',
-              telefono: inputPhone ? inputPhone.value.trim() : '',
-              correo: inputEmail ? inputEmail.value.trim() : '',
-              evento: inputEventName ? inputEventName.value.trim() : 'Evento por definir',
-              fechas: inputEventDates ? inputEventDates.value.trim() : 'Por definir',
-              horarios: inputEventSchedule ? inputEventSchedule.value.trim() : (selectShift ? shiftNames[selectShift.value] : ''),
-              personas: inputCapacity && inputCapacity.value ? `${inputCapacity.value} personas estimadas` : 'Por definir',
+              folio: submittedFolio,
+              nombre: inputRecipient.value.trim(),
+              telefono: inputPhone.value.trim(),
+              correo: inputEmail.value.trim(),
+              evento: inputEventName.value.trim(),
+              fechas: inputEventDates.value.trim(),
+              modalidad: (selectVenue && venueNames[selectVenue.value]) || 'Teatro Completo (1,730 butacas)',
+              turno: (selectShift && shiftNames[selectShift.value]) || '',
+              horarios: inputEventSchedule.value.trim(),
+              personas: `${inputCapacity.value.trim()} personas estimadas`,
+              giro: (selectType && typeNames[selectType.value]) || 'No especificado',
+              notas: inputNotes ? inputNotes.value.trim() : '',
               status: 'pendiente',
               servicios: selectedSrv.length > 0 ? selectedSrv.join(', ') : 'Equipamiento base del teatro'
             };
@@ -790,18 +1126,50 @@
             const existingQuotes = JSON.parse(localStorage.getItem('tc_admin_cotizaciones')) || [];
             existingQuotes.unshift(newQuote);
             localStorage.setItem('tc_admin_cotizaciones', JSON.stringify(existingQuotes));
-          } catch (err) { }
+            localStorage.removeItem(DRAFT_KEY);
+          } catch (_err) {
+            storageErrMsg = 'No se pudo guardar localmente en el navegador (almacenamiento lleno o bloqueado). Conserva una captura de tu folio.';
+          }
+
+          if (storageWarning) {
+            storageWarning.textContent = storageErrMsg;
+            storageWarning.classList.toggle('hidden', !storageErrMsg);
+          }
+
+          // Congelar la ficha resumen con los datos enviados
+          isSubmittedFrozen = true;
+          if (summaryStatusBadge) {
+            summaryStatusBadge.textContent = `Enviada · ${submittedFolio}`;
+            summaryStatusBadge.className = 'text-xs font-semibold bg-emerald-700 px-3 py-1 rounded-full text-white whitespace-nowrap';
+          }
+          if (summarySubmittedActions) summarySubmittedActions.classList.remove('hidden');
+          if (btnSubmit) {
+            btnSubmit.disabled = true;
+            btnSubmit.classList.add('opacity-50', 'cursor-not-allowed');
+          }
 
           successBanner.classList.remove('hidden');
           successBanner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-          form.reset();
-          setTimeout(updateSummary, 10);
         });
       }
 
-      function syncAuthNavbar() {
-        PortalCore.syncAuthNavbar();
+      if (btnCopyFolio) {
+        btnCopyFolio.addEventListener('click', async () => {
+          const textToCopy = folioEl ? folioEl.textContent : submittedFolio;
+          try {
+            await navigator.clipboard.writeText(textToCopy);
+            btnCopyFolio.textContent = 'Folio copiado';
+            setTimeout(() => { btnCopyFolio.textContent = 'Copiar folio'; }, 2000);
+          } catch (_err) {
+            btnCopyFolio.textContent = textToCopy;
+          }
+        });
       }
+
+      if (btnNewQuote) btnNewQuote.addEventListener('click', resetQuoteState);
+      if (btnSummaryReset) btnSummaryReset.addEventListener('click', resetQuoteState);
+
+      PortalCore.syncAuthNavbar();
       PortalCore.initMobileMenu();
 
       function syncCotizarWithAdminPanel() {
@@ -827,17 +1195,15 @@
             const el = document.getElementById(id);
             if (el && cms[key]) el.textContent = cms[key];
           });
-        } catch (err) { }
+        } catch (_err) { /* ignore malformed cms payload */ }
       }
 
       window.addEventListener('storage', (e) => {
         if (e.key === 'tc_admin_cms') syncCotizarWithAdminPanel();
       });
 
-      syncAuthNavbar();
       syncCotizarWithAdminPanel();
-
-      // Inicializar
+      restoreDraftAndProfile();
       updateSummary();
     });
   </script>
